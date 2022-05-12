@@ -17,4 +17,6 @@ npm install
 
 npm run dev
 
+Connettersi a: localhost:8080
+
 
