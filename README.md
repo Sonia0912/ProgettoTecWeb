@@ -9,9 +9,19 @@ npm install express body-parser cors morgan
 
 npm install --save-dev nodemon concurrently
 
+npm i bcrypt
+
+npm i passport passport-local express-session express-flash
+
+npm i method-override
+
+npm i dotenv
+
 Dalla cartella client:
 
 npm install
+
+npm install axios
 
 # Per avviare:
 

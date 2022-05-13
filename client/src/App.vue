@@ -93,7 +93,3 @@
 
   </div>
 </template>
-
-
-<style>
-</style>
