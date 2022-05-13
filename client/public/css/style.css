@@ -98,6 +98,15 @@ body {
      color: #1b284d;
 }
 
+#navbarSupportedContent ul {
+     text-align: right;
+}
+
+.dropdown-menu.dropdown-menu-end {
+     text-align: right;
+     margin-left: 15px;
+}
+
 /*
      FOOTER
 */

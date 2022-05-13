@@ -1,0 +1,83 @@
+[
+    {
+      "name": "Black",
+      "age": 9,
+      "gender" : "male",
+      "photo": "https://shorebread.com/wp-content/uploads/2018/11/adorable-animal-black-dog-1133082.jpg"
+    },{
+      "name": "Dylan",
+      "age": 2,
+      "gender" : "male",
+      "photo": "https://www.murraybridge.sa.gov.au/__data/assets/image/0039/685695/varieties/banner.jpg"
+    },{
+      "name": "Daisy",
+      "age": 7,
+      "gender" : "female",
+      "photo": "https://www.k9ofmine.com/wp-content/uploads/2021/03/white-colored-maltese.jpg"
+    },{
+      "name": "Poppy",
+      "age": 5,
+      "gender" : "female",
+      "photo": "https://www.dalmatiandiy.com/wp-content/uploads/2016/04/DIY-Ribbon-Poppy-Dog-Collar-Remembrance-ANZAC-Day.jpg"
+    },{
+      "name": "Black",
+      "age": 9,
+      "gender" : "male",
+      "photo": "https://shorebread.com/wp-content/uploads/2018/11/adorable-animal-black-dog-1133082.jpg"
+    },{
+      "name": "Dylan",
+      "age": 2,
+      "gender" : "male",
+      "photo": "https://www.murraybridge.sa.gov.au/__data/assets/image/0039/685695/varieties/banner.jpg"
+    },{
+      "name": "Daisy",
+      "age": 7,
+      "gender" : "female",
+      "photo": "https://www.k9ofmine.com/wp-content/uploads/2021/03/white-colored-maltese.jpg"
+    },{
+        "name": "Poppy",
+        "age": 5,
+        "gender" : "female",
+        "photo": "https://www.dalmatiandiy.com/wp-content/uploads/2016/04/DIY-Ribbon-Poppy-Dog-Collar-Remembrance-ANZAC-Day.jpg"
+    },{
+      "name": "Black",
+      "age": 9,
+      "gender" : "male",
+      "photo": "https://shorebread.com/wp-content/uploads/2018/11/adorable-animal-black-dog-1133082.jpg"
+    },{
+      "name": "Dylan",
+      "age": 2,
+      "gender" : "male",
+      "photo": "https://www.murraybridge.sa.gov.au/__data/assets/image/0039/685695/varieties/banner.jpg"
+    },{
+      "name": "Daisy",
+      "age": 7,
+      "gender" : "female",
+      "photo": "https://www.k9ofmine.com/wp-content/uploads/2021/03/white-colored-maltese.jpg"
+    },{
+        "name": "Poppy",
+        "age": 5,
+        "gender" : "female",
+        "photo": "https://www.dalmatiandiy.com/wp-content/uploads/2016/04/DIY-Ribbon-Poppy-Dog-Collar-Remembrance-ANZAC-Day.jpg"
+    },{
+      "name": "Black",
+      "age": 9,
+      "gender" : "male",
+      "photo": "https://shorebread.com/wp-content/uploads/2018/11/adorable-animal-black-dog-1133082.jpg"
+    },{
+      "name": "Dylan",
+      "age": 2,
+      "gender" : "male",
+      "photo": "https://www.murraybridge.sa.gov.au/__data/assets/image/0039/685695/varieties/banner.jpg"
+    },{
+      "name": "Daisy",
+      "age": 7,
+      "gender" : "female",
+      "photo": "https://www.k9ofmine.com/wp-content/uploads/2021/03/white-colored-maltese.jpg"
+    },{
+        "name": "Poppy",
+        "age": 5,
+        "gender" : "female",
+        "photo": "https://www.dalmatiandiy.com/wp-content/uploads/2016/04/DIY-Ribbon-Poppy-Dog-Collar-Remembrance-ANZAC-Day.jpg"
+    }
+]

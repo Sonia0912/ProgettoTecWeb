@@ -1,15 +1,16 @@
 <template>
-    <Home />
+    <Quiz />
 </template>
 
 
 <script>
-import Home from '@/components/Home.vue'
+
+import Quiz from '@/components/Quiz.vue'
 
 export default ({
-   name: 'home',
+   name: 'quiz',
    components: {
-       Home
+       Quiz
    }
 })
 </script>

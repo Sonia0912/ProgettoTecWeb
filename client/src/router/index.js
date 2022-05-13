@@ -10,8 +10,23 @@ const routes = [
   },
   {
     path: '/adoption',
-    name: 'adoption',
-    component: import('../views/AdoptionView.vue')
+    name: 'Adoption',
+    component: () => import('../views/AdoptionView.vue')
+  },
+  {
+    path: '/funnypets',
+    name: 'FunnyPets',
+    component: () => import('../views/FunnyPetsView.vue')
+  },
+  {
+    path: '/quiz',
+    name: 'Quiz',
+    component: () => import('../views/QuizView.vue')
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('../views/LoginView.vue')
   },
   {
     path: "/:catchAll(.*)",
