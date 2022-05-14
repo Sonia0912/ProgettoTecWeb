@@ -24,6 +24,11 @@ const routes = [
     component: () => import('../views/QuizView.vue')
   },
   {
+    path: '/hangman',
+    name: 'Hangman',
+    component: () => import('../views/HangmanView.vue')
+  },
+  {
     path: '/login',
     name: 'Login',
     component: () => import('../views/LoginView.vue')
