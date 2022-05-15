@@ -697,74 +697,150 @@ body {
      HANGMAN
 */
 
-#HangmanBody {
-     background-color: white !important;
+#HangmanBackgroud{
+     background-color: white;
+     display: grid; 
+     align-items: center;
+     justify-items: center;
+     grid-template-columns: 1fr 1fr 1fr;
+     padding: 15px;
+     margin: 10px;
+     border-radius: 10px;
 }
-
-
-
-#btnRules{
-     grid-area: rules;
-}
-
-#btnHangman{
-     grid-area: btnHangman;
-}
-
-.titleHang{
-     grid-area: titleHang;
-     text-align: center;
-     font-size: 25px;
-     padding: 20px;
-     color: #1b284d;
-     text-shadow: 3px 3px white;
-}
-
 #imgHangman{
-     
-     height: 50vw;
-     margin-top: 2vw;
-     margin-right: 2vw;
-     margin-bottom: 2vw;
-     margin-left: 2vh;
-   }
+     height: 20vh;
+     grid-row: 1 / 4;
+}
+#animalPhoto{
+     height: 15vh;
+     grid-row: 1 / 2;
+     grid-column: 2 / 4;
+     filter:blur(10px);
+}
+#wordToGuess{
+     grid-column: 2 / 4;
+     color: #324376;
+     background-color: #dbdbd7;
+     border: 2px solid red;
+     margin-top: 15px;
+     padding: 0px 10px;
+}
+#usedLetters{
+     grid-column: 1 / 5;
+     min-height: 10vw;
+}
+#scoreHangman{
+     text-align: center;
+}
+#spanRules{
+    position: absolute; 
+    right: 2px;
+}
+#btnRules{
+     border: unset;
+     border-radius: 20px;
+     padding: 5px 15px;
+     background-color: #6da2f3;
+     margin: 10px;
+}
+#rulesPopUp{
+     position:fixed;
+     display: none;
+     z-index: 1;
+     left: 10vw;
+     top: 20vw;
+     right: 10vw;
+     width: 80vw;
+     height: 35vh;
+     overflow: auto;
+     background-color: rgba(0,0,0, 0.5);
+}
+#descriptionHangman{
+     position: relative;
+     color: white;
+     font-family: 'Kalam', cursive;
+     margin:20px 10px;
+     padding: 10px;
+     width: 85vw;
 
-#score{
-     border-radius: 2px solid green;
-     display: inline;
+}
+#closeRules{
+     position: absolute; 
+     top: 7px;
+     right: 10px;
+     border: unset;
+     border-radius: 8px;
+     padding: 10px 10px;
+     background-color: #e9edf1;
+     margin: 10px;
+}
+/*
+     EVENTS
+*/
+#layoutEvent{
+     background-color: #2e86ab;
+     display: grid; 
+     align-items: center;
+     justify-items: center;
+     grid-template-columns: 1fr;
+     grid-row-gap: 2px;
+     grid-template-areas: "foto" 
+                          "nome"
+                          "data"
+                          "andress"
+                          "price"
+                          "description";
+                          
+     padding: 15px;
+     margin: 10px;
+     border-radius: 10px;
+}
+#figureEvetn{
+    position: relative;
+}
+#imgEvent{
+     width: 50vw;
+     grid-area: "foto";
+}
+.categoryEvetn{
+     position: absolute; 
+     bottom: 10px;
+     left: 5px;
+     background-color: red;
+     padding: 1px;
+}
+#nameEvent{
+     grid-area: "nome";
+}
+#dateEvent{
+     grid-area: "data";
+     margin: 10px;
+}
+#addressEvent{
+     grid-area: "andress";
+     margin: 10px;
+}
+#priceEvent{
+     grid-area: "price";
+     margin: 10px;
 }
 
-
-.ww {
-     font-size: 20px;
-     padding: 3px;
-    
-     }
-#word{
-     margin: 0px;
-     border: 2px solid red;
-     border-radius: 2px;
-     grid-area:word;
-    
-   }
-  
-   #animalPhoto{
-     margin-top: 2vw;
-     margin-right: 2vw;
-     margin-bottom: 2vw;
-     margin-left: 2vh;
-     height: 35vw;
-     filter: blur(10px);
-   }
- 
-   #letter{
-     display: block;
-     grid-area: letter;
-   }
-   #rules{
-     display: none;
-   }
-
+#descriptionEvent{
+     background-color: rgb(232, 235, 242);
+     grid-area: "description";
+     align-items: center;
+     justify-items: center;
+     border-radius: 10px;
+     height: 40vw;
+     padding: 5px 10px;
+     overflow: auto;
+}
+#infoEvent{
+     display: flex;
+     flex-direction: row;
+     margin: 10px;
+     justify-content: space-around;
+}
 
 /*
      ERROR
@@ -780,6 +856,32 @@ body {
      margin-top: 20px;
 }
 
+.past-events-list .event-item:nth-child(2n) {
+     padding-left: 10px;
+ }
+ .past-events-list .event-item {
+     margin-bottom: 80px;
+ }
+ .column {
+     box-sizing: border-box;
+     position: relative;
+     z-index: 1;
+     margin: 0;
+     padding: 0;
+     float: left;
+     min-height: 2px;
+ }
+ address, article, aside, div, footer, header, hgroup, layer, main, nav, section {
+     display: block;
+ }
+ body, button, input, select, textarea {
+     font-synthesis: none;
+     -moz-font-feature-settings: "kern";
+     -webkit-font-smoothing: antialiased;
+     -moz-osx-font-smoothing: grayscale;
+     direction: ltr;
+     text-align: left;
+ }
 /*
      MEDIA
 */

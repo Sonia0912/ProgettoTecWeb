@@ -1,47 +1,43 @@
  <template>
-    <div class="wigglePattern container">
-<div class="row">
+    <div class="wigglePattern">
 
-    <div class="col-xs-2"> </div>
-     <div class="col-xs-8">
-        <div class="title">Hangman Game </div>
-     </div>
-
-  
-    <div class="d-flex row-xs-3"> 
-        <img src="/images/hangman/facile0.png" id="imgHangman"> 
-    </div>
-    <div class="d-flex row-xs-3"> 
-        <img  id="animalPhoto">  
-    </div>
-
-    <div class="col-xs-3 d-flex justify-content-center"> 
-         <div id="word"> </div>    
-    </div>
+        <div id="spanRules">
+            <button id="btnRules"> ? </button>
+            <div id="rulesPopUp">
+                <button id="closeRules">X</button>
+                <div id="descriptionHangman">
+                    <p>How to play: </p>
+                    <ul>
+                        <li>You Start with 100 pti: </li>
+                        <li>If you guess the word immediately: + 100 pti </li>
+                        <li>If you guess one letter: - 5 pti </li>
+                        <li>If you wrong: - 10 pti </li>
+                    </ul>
 
 
-        <input type="text" id="letter" name="userWord"> <br>
-        <button id="btnHangman" onclick="guess()"> Send </button>
-            
-        <div> Your Score is: <p id="score"> 100 </p></div>
+                </div>
+            </div>
 
-        <button id="btnRules"> Rules </button>
-        <div id="rules"> 
-            <p id="descriptionHangman">
-                <div>How to play</div>
-                <div>You Start with 100 pti: </div>
-                <div>If you guess the word in one shote: + 100 pti </div> 
-                <div> If you guess one letter: - 5 pti  </div>
-                <div> If you wrong: - 10 pti </div>
-            </p>  
+        </div>
+        <div class="title">Hangman Game</div>
+        <span>
+            <div id="scoreHangman">Your score: <span id="quizScore">{{ score }}</span></div>
+        </span>
+
+        <div id="HangmanBackgroud">
+            <img src="/images/hangman/facile0.png" id="imgHangman">
+            <img id="animalPhoto">
+            <div id="wordToGuess"> </div>
+            <div id="usedLetters"></div>
         </div>
 
-</div>
-</div>
-    
+        <div id="hangmanInput">
+            <input type="text" id="letter" name="userWord">
+            <button id="btnHangman" onclick="guess()"> Send </button>
+        </div>
+    </div>
 
-    
- </template>
+</template>
 
 <script>
 export default {
