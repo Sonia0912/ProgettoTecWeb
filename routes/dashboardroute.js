@@ -1,26 +1,28 @@
 var express = require('express');
 var router = express.Router();
+const jwt = require('jsonwebtoken');
 const fs = require('fs');
-const { checkAuthenticated, checkNotAuthenticated } = require('./utils/auth');
-
-router.get('/dashboard', checkAuthenticated, function(req, res) {
-    res.render('dashboard', {
-        pageTitle: 'Dashboard',
-        pageID: 'dashboard',
-        email: req.user.email,
-        name: req.user.name,
-        surname: req.user.surname
-    });
-});
 
 router.post('/posts', function(req, res) {
-    savePost(req.user.email, req.body.text, req.body.img);
-    var contents = fs.readFileSync('./data/dashboard.json', 'utf8');
-    obj = JSON.parse(contents);
-    res.json(obj);
+    var token = req.headers.token;
+    jwt.verify(token, process.env.SESSION_SECRET, (err, decoded) => {
+        if(err) return res.status(401).json({
+            title: "unauthorized"
+        })
+        var contents = fs.readFileSync('./data/users.json', 'utf8');
+        obj = JSON.parse(contents);
+        var user = obj.users.find(user => user.id === decoded.userId);
+        if(!user) return res.status(401).json({
+            title: "user id not found"
+        })
+        savePost(user.email, req.body.text, req.body.img);
+        var contents = fs.readFileSync('./data/dashboard.json', 'utf8');
+        obj = JSON.parse(contents);
+        res.json(obj);
+    })  
 });
 
-router.get('/posts', checkAuthenticated, function(req, res) {
+router.get('/posts', function(req, res) {
     var contents = fs.readFileSync('./data/dashboard.json', 'utf8');
     obj = JSON.parse(contents);
     obj = obj.slice(-5);

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon server.js --ignore 'client/'",
+    "server": "nodemon server.js --ext js --ignore 'client/'",
     "client": "npm run serve --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
@@ -20,6 +20,7 @@
     "express-flash": "^0.0.2",
     "express-session": "^1.17.3",
     "jquery": "^3.6.0",
+    "jsonwebtoken": "^8.5.1",
     "method-override": "^3.0.0",
     "morgan": "^1.10.0",
     "passport": "^0.5.2",

@@ -2,18 +2,12 @@ var express = require('express');
 var router = express.Router();
 const fs = require('fs');
 
-router.get('/quiz', function(req, res) {
-    if(req.app.locals.userAuthenticated) {
-        res.json({ isAuth: true, score: getUserScore(req.user.email) })
-    } else {
-        res.json({ isAuth: false, score: -1 })
-    }
+router.get('/quiz/email/:email', function(req, res) {
+    res.json({ score: getUserScore(req.params.email) })    
 });
 
-router.put('/quiz', function(req, res) {
-    if(req.app.locals.userAuthenticated) {
-        updateUserScore(req.user.email)
-    }
+router.put('/quiz/email/:email', function(req, res) {
+    updateUserScore(req.params.email)
 })
 
 function getUserScore(userEmail) {
