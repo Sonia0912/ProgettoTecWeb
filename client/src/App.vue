@@ -31,7 +31,7 @@
                         <li class="nav-item"><router-link class="nav-link" to="/adoption">Adoption</router-link></li>
                         <li class="nav-item"><router-link class="nav-link" to="/donations">Donations</router-link></li>
                         <li class="nav-item"><router-link class="nav-link" to="/volunteering">Volunteering</router-link></li>
-                        <li class="nav-item"><router-link class="nav-link" to="/events">Events</router-link></li>
+                        <li class="nav-item"><router-link class="nav-link" to="/event">Events</router-link></li>
                         <li class="nav-item"><router-link class="nav-link" to="/funfacts">Fun facts</router-link></li>
                         <li class="nav-item"><router-link class="nav-link" to="/funnypets">Funny pets</router-link></li>
                         <li class="nav-item dropdown">

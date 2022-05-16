@@ -30,13 +30,23 @@ var blurPhoto = 10;
 window.onload = animalRequest();
 
 $('#btnRules').on("click",function () {
-  if($('#rules').is(":visible")){
-    $('#rules').hide(); 
+  if($('#rulesPopUp').is(":visible")){
+    $('#rulesPopUp').hide(); 
   }else{
-    $('#rules').show();
+    $('#rulesPopUp').show();
   }
   
-})
+});
+
+$('#closeRules').on("click",function () {
+  if($('#rulesPopUp').is(":visible")){
+    $('#rulesPopUp').hide(); 
+  }else{
+    $('#rulesPopUp').show();
+  }
+});
+
+
  function animalRequest() {
 
     $.ajax({
@@ -68,7 +78,7 @@ function hideWord(word){
     word = wordToGuess[wordToGuess.length - 1].toLowerCase();
     guessWord = word;
     for(let i =0; i < word.length; i++){
-      $('#word').append("<span class=ww id=w"+i+">"+ word.charAt(i) + "</span>"); 
+      $('#wordToGuess').append("<span class=ww id=w"+i+">"+ word.charAt(i) + "</span>"); 
     }
     hideWord(guessWord);
    
@@ -143,13 +153,13 @@ function hideWord(word){
       
       //check user win
         let count = 0;
-        for ( let k = 0; k < $('#word').text().length; k++){
-          if($('#word').text().charAt(k) != "+" && $('#word').text().charAt(k) != "-"){
+        for ( let k = 0; k < $('#wordToGuess').text().length; k++){
+          if($('#wordToGuess').text().charAt(k) != "+" && $('#wordToGuess').text().charAt(k) != "-"){
             count++; 
           }
         }
         
-        if(count === $('#word').text().length){
+        if(count === $('#wordToGuess').text().length){
           alert("WINNER!");
           $('#score').text(punteggio)
           clearWord(guessWord);
