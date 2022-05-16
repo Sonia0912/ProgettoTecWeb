@@ -3,8 +3,8 @@
 
         <div id="spanRules">
             <button id="btnRules"> ? </button>
-            <div id="rulesPopUp">
-                <button id="closeRules">X</button>
+            <div id="rulesPopUp" >
+                <button id="closeRules"> X </button>
                 <div id="descriptionHangman">
                     <p>How to play: </p>
                     <ul>

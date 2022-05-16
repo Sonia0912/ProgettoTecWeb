@@ -65,6 +65,7 @@ app.use(require('./routes/hangmanroute'));
 app.use(require('./routes/profileroute'));
 app.use(require('./routes/dashboardroute'));
 app.use(require('./routes/adoptionroute'));
+app.use(require('./routes/eventsroute'));
 
 /* app.get('/login', checkNotAuthenticated, (req, res) =>  {
     res.render('login', {
