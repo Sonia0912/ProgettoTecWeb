@@ -1,15 +1,30 @@
 $(function() {
-    $.getJSON('posts', getPosts);
+    $.getJSON('http://localhost:3000/posts', getPosts);
   
     $('.post-form').on("submit", function(e) {
         e.preventDefault();
-        $.post('posts', {
-            text: $('#text').val(),
-            img: $('#imgUploaded').attr('src'),
-        }, getLastPost)
-        .fail(function(response) {
+        if($('#img').get(0).files.length != 0 && $('#img')[0].files[0].size / 1000 > 60) {
             $("#errorPost").html("The maximum file size is 60KB.");
-        });
+        } else {
+            $.ajax({
+                url: 'http://localhost:3000/posts',
+                type: 'post',
+                data: {
+                    text: $('#text').val(),
+                    img: $('#imgUploaded').attr('src')
+                },
+                headers: {
+                    token: localStorage.getItem('token')
+                },
+                success: (res) => {
+                    getLastPost(res);
+                },
+                error: () => {
+                    $("#errorPost").html("Sorry, something went wrong");
+                } 
+            });
+            $('#imgUploaded').removeAttr('src');
+        }
     });
   
     function getPosts(posts) {
@@ -71,7 +86,7 @@ $(window).on("scroll", function() {
 	var scrollPosition = $(window).height() + $(window).scrollTop();
     if(scrollPosition + 280 >= scrollHeight) {
         curPostsLoaded += 5;
-        $.get('/moreposts/' + curPostsLoaded, function(posts, status) {
+        $.get('http://localhost:3000/moreposts/' + curPostsLoaded, function(posts, status) {
             for(let i = posts.length - 1; i >= 0; i--) {
                 var content =             
                 '<div class="post">' +

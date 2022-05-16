@@ -48,8 +48,7 @@
 
 
 <script>
-    import axios from 'axios';
-
+    import axios from 'axios'
     export default {
         name: "quiz",
         data() {
@@ -58,18 +57,19 @@
                 score: -1
             }
         },
+        created() {
+            if(localStorage.getItem('token') != null) {
+                this.isAuth = true;
+                axios.get("http://localhost:3000/quiz/email/" + localStorage.email)
+                .then((res) => {
+                    this.score = res.data.score
+                })
+            }
+        },
         mounted() {
             let Script = document.createElement("script");
             Script.setAttribute("src", "./js/quiz.js");
             document.head.appendChild(Script);
-            axios.get("http://localhost:3000/quiz")
-            .then(response => {
-                this.isAuth = response.isAuth;
-                this.score = response.score;
-            })
-            .catch(error => {
-                console.log(error);
-            })
         }
     }
 </script>

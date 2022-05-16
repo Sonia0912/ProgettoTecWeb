@@ -8,48 +8,15 @@ const cors = require('cors')
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const bcrypt = require('bcrypt')
-const passport = require('passport')
-const flash = require('express-flash')
-const session = require('express-session')
-const methodOverride = require('method-override')
 const fs = require('fs')
+const jwt = require('jsonwebtoken')
 
 app.use(cors())
 app.use(morgan('tiny'))
 
 
-const initializePassport = require('./routes/utils/passport-config')
-initializePassport(
-    passport,
-    email => {
-        var contents = fs.readFileSync('./data/users.json', 'utf8');
-        obj = JSON.parse(contents);
-        return obj.users.find(user => user.email === email);
-    },
-    id => {
-        var contents = fs.readFileSync('./data/users.json', 'utf8');
-        obj = JSON.parse(contents);
-        return obj.users.find(user => user.id === id);
-    }
-)
-
-const { checkAuthenticated, checkNotAuthenticated, changeAuth } = require('./routes/utils/auth');
-
-var obj = {
-    users: []
-};
-
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
-app.use(flash())
-app.use(session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false
-}))
-app.use(passport.initialize())
-app.use(passport.session())
-app.use(methodOverride('_method'))
 
 app.locals.siteTitle = 'AnimalHouse';
 app.locals.userAuthenticated = false;
@@ -66,27 +33,30 @@ app.use(require('./routes/profileroute'));
 app.use(require('./routes/dashboardroute'));
 app.use(require('./routes/adoptionroute'));
 
-/* app.get('/login', checkNotAuthenticated, (req, res) =>  {
-    res.render('login', {
-        pageTitle: 'Login',
-        pageID: 'login'
-    });
-}); */
+app.post('/login', (req, res, next) => {
+    var contents = fs.readFileSync('./data/users.json', 'utf8');
+    obj = JSON.parse(contents);
+    var user = obj.users.find(user => user.email === req.body.email);
+    if(!user) {
+        return res.status(401).json({
+            title: "user not found",
+            error: "No user was found with that e-mail"
+        })
+    }
+    if(!bcrypt.compareSync(req.body.password, user.password)) {
+        return res.status(401).json({
+            title: "login failed",
+            error: "The password is incorrect"
+        })
+    }
+    var token = jwt.sign({ userId: user.id }, process.env.SESSION_SECRET);
+    return res.status(200).json({
+        title: "login success",
+        token: token
+    })
+})
 
-/* app.get('/register', checkNotAuthenticated, (req, res) =>  {
-    res.render('register', {
-        pageTitle: 'Register',
-        pageID: 'register'
-    });
-}); */
-
-app.post('/login', checkNotAuthenticated, changeAuth, passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/login',
-    failureFlash: true
-}))
-
-app.post('/register', checkNotAuthenticated, async (req, res) => {
+app.post('/register', async (req, res) => {
     try {
         const hashedPassword = await bcrypt.hash(req.body.password, 10)
 
@@ -112,27 +82,11 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
                 });
             }
         });
-   
-        res.redirect('/login')
     } catch (e) {
         console.log("ERROR " + e)
         res.redirect('/')
     }
 })
-
-app.delete('/logout', changeAuth, (req, res) => {
-    req.logOut()
-    res.redirect('/login')
-})
-
-// Pagina di default per indirizzi non esistenti
-/* app.get("*", function (req, res) {
-    res.render("error", {
-        pageTitle: 'Error',
-        pageID: 'error'
-    });   
-});
- */
 
 const PORT = 3000;
 

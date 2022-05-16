@@ -1,4 +1,4 @@
-const questions = [
+var questions = [
     "What's the latin name of the ",
     "What's the animal type of the ",
     "What's the active time of the ",
@@ -222,11 +222,11 @@ function showResult(buttonIndex) {
 }
 
 function updateScore(correctAnswer) {
-    if(!scoreUpdated && correctAnswer) {
+    if(!scoreUpdated && correctAnswer && localStorage.getItem('token') != null) {
         var oldScore =  parseInt($("#quizScore").text());
         $("#quizScore").html(oldScore + 10);
         $.ajax({
-            url: '/quiz',
+            url: 'http://localhost:3000/quiz/email/' + localStorage.email,
             type: 'PUT'
         });
     }

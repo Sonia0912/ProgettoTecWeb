@@ -1,27 +1,26 @@
 # ProgettoTecWeb
+
 Progetto Tecnologie Web 2021-2022
 
 # Per aggiungere i node_modules:
 
 Dalla cartella ProgettoTecWeb: 
 
-npm install express body-parser cors morgan
+* npm install express body-parser cors morgan
 
-npm install --save-dev nodemon concurrently
+* npm install --save-dev nodemon concurrently
 
-npm i bcrypt
+* npm i bcrypt
 
-npm i passport passport-local express-session express-flash
+* npm i dotenv
 
-npm i method-override
-
-npm i dotenv
+* npm install jsonwebtoken
 
 Dalla cartella client:
 
-npm install
+* npm install
 
-npm install axios
+* npm install axios
 
 # Per avviare:
 

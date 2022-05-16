@@ -6,15 +6,16 @@
       <div class="border-end bg-white" id="sidebar-wrapper">
           <div class="sidebar-heading border-bottom bg-light">AnimalHouse</div>
           <div class="list-group list-group-flush">
-              
-              <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/dashboard">Dashboard</router-link>
-              <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/profile">Profile</router-link>
-              <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/leaderboard">Leaderboard</router-link>
-              <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/bookings">My bookings</router-link>
-
+              <span v-if="isAuth">
+                <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/dashboard">Dashboard</router-link>
+                <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/profile">Profile</router-link>
+                <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/leaderboard">Leaderboard</router-link>
+                <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/bookings">My bookings</router-link>
+              </span>
+              <span v-else>
                   <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/login">Log in</router-link>
                   <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/register">Register</router-link>
-
+              </span>
           </div>
       </div>
       <div id="page-content-wrapper">
@@ -93,3 +94,33 @@
 
   </div>
 </template>
+
+<script>
+  export default {
+    data() {
+      return {
+        isAuth: null
+      }
+    },
+    created() {
+      if(localStorage.getItem('isLogged') == true) {
+        this.isAuth = true;
+      } else {
+        this.isAuth = false;
+      }
+    },
+    mounted() {
+      if(localStorage.getItem('token') != null) {
+        this.isAuth = true;
+      } else {
+        this.isAuth = false;
+      }
+      window.addEventListener('isLogged-localstorage-logout', () => {
+          this.isAuth = false;
+      });
+      window.addEventListener('isLogged-localstorage-login', () => {
+          this.isAuth = true;
+      });  
+    }
+  }
+</script>

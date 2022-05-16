@@ -7,11 +7,6 @@
     </div>
 </template>
 
-<!-- <script>
-    var currentUrl = window.location.href;
-    $("#currentUrl").append(currentUrl);
-</script> -->
-
 <script>
     export default {
         data () {
