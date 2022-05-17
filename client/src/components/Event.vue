@@ -2,7 +2,7 @@
 	<div class="title">
 		Events
 	</div>
-	<div v-for="info in information" v-bind:value="info" :key="info.name">
+	<div v-for="info in information" v-bind:value="info" :key="info.name" id="evenstContainer">
 		<div id="layoutEvent">
 			<figure id="figureEvetn" v-if="info.photo">
 				<span class="categoryEvetn">{{ info.category }}</span>
