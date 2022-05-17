@@ -719,8 +719,6 @@ body {
      height: 30vh;
      grid-row-start: 1;
      grid-row-end: 3;
-     max-width: 30px;
-     max-height: 40px;
 
 }
 #animalPhoto{
