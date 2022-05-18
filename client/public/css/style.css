@@ -692,7 +692,6 @@ body {
      top: -0.5px;
 }
 
-
 /*
      HANGMAN
 */
@@ -880,7 +879,6 @@ body {
      -webkit-font-smoothing: antialiased;
      -moz-osx-font-smoothing: grayscale;
      direction: ltr;
-     text-align: left;
  }
 /*
      MEDIA

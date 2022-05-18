@@ -3,81 +3,92 @@
       "name": "Black",
       "age": 9,
       "gender" : "male",
-      "photo": "https://shorebread.com/wp-content/uploads/2018/11/adorable-animal-black-dog-1133082.jpg"
+      "photo": "https://shorebread.com/wp-content/uploads/2018/11/adorable-animal-black-dog-1133082.jpg",
+      "description": "Loves to play fetch",
+      "shelter": "Bay Avenue, 31 - NY"
     },{
       "name": "Dylan",
       "age": 2,
       "gender" : "male",
-      "photo": "https://www.murraybridge.sa.gov.au/__data/assets/image/0039/685695/varieties/banner.jpg"
+      "photo": "https://www.murraybridge.sa.gov.au/__data/assets/image/0039/685695/varieties/banner.jpg",
+      "description": "Dylan is a lovely dog",
+      "shelter": "King's Street, 30 - NY"
     },{
       "name": "Daisy",
       "age": 7,
       "gender" : "female",
-      "photo": "https://www.k9ofmine.com/wp-content/uploads/2021/03/white-colored-maltese.jpg"
+      "photo": "https://www.k9ofmine.com/wp-content/uploads/2021/03/white-colored-maltese.jpg",
+      "description": "She eats a lot of snacks",
+      "shelter": "Bay Avenue, 31 - NY"
     },{
       "name": "Poppy",
       "age": 5,
       "gender" : "female",
-      "photo": "https://www.dalmatiandiy.com/wp-content/uploads/2016/04/DIY-Ribbon-Poppy-Dog-Collar-Remembrance-ANZAC-Day.jpg"
+      "photo": "https://www.dalmatiandiy.com/wp-content/uploads/2016/04/DIY-Ribbon-Poppy-Dog-Collar-Remembrance-ANZAC-Day.jpg",
+      "description": "Smart and very energetic",
+      "shelter": "King's Street, 30 - NY"
     },{
-      "name": "Black",
-      "age": 9,
+      "name": "Pluto",
+      "age": 10,
       "gender" : "male",
-      "photo": "https://shorebread.com/wp-content/uploads/2018/11/adorable-animal-black-dog-1133082.jpg"
+      "photo": "https://shorebread.com/wp-content/uploads/2018/11/adorable-animal-black-dog-1133082.jpg",
+      "description": "Smart and very energetic",
+      "shelter": "Park Avenue, 29 - NY"
     },{
-      "name": "Dylan",
-      "age": 2,
+      "name": "Ade",
+      "age": 3,
       "gender" : "male",
-      "photo": "https://www.murraybridge.sa.gov.au/__data/assets/image/0039/685695/varieties/banner.jpg"
+      "photo": "https://www.murraybridge.sa.gov.au/__data/assets/image/0039/685695/varieties/banner.jpg",
+      "description": "Smart and very energetic",
+      "shelter": "King's Street, 30 - NY"
     },{
-      "name": "Daisy",
-      "age": 7,
+      "name": "Lucy",
+      "age": 1,
       "gender" : "female",
-      "photo": "https://www.k9ofmine.com/wp-content/uploads/2021/03/white-colored-maltese.jpg"
+      "photo": "https://www.k9ofmine.com/wp-content/uploads/2021/03/white-colored-maltese.jpg",
+      "description": "Smart and very energetic",
+      "shelter": "King's Street, 30 - NY"
     },{
-        "name": "Poppy",
-        "age": 5,
-        "gender" : "female",
-        "photo": "https://www.dalmatiandiy.com/wp-content/uploads/2016/04/DIY-Ribbon-Poppy-Dog-Collar-Remembrance-ANZAC-Day.jpg"
-    },{
-      "name": "Black",
-      "age": 9,
-      "gender" : "male",
-      "photo": "https://shorebread.com/wp-content/uploads/2018/11/adorable-animal-black-dog-1133082.jpg"
-    },{
-      "name": "Dylan",
-      "age": 2,
-      "gender" : "male",
-      "photo": "https://www.murraybridge.sa.gov.au/__data/assets/image/0039/685695/varieties/banner.jpg"
-    },{
-      "name": "Daisy",
-      "age": 7,
+      "name": "Foofy",
+      "age": 11,
       "gender" : "female",
-      "photo": "https://www.k9ofmine.com/wp-content/uploads/2021/03/white-colored-maltese.jpg"
+      "photo": "https://www.dalmatiandiy.com/wp-content/uploads/2016/04/DIY-Ribbon-Poppy-Dog-Collar-Remembrance-ANZAC-Day.jpg",
+      "description": "Smart and very energetic",
+      "shelter": "Park Avenue, 29 - NY"
     },{
-        "name": "Poppy",
-        "age": 5,
-        "gender" : "female",
-        "photo": "https://www.dalmatiandiy.com/wp-content/uploads/2016/04/DIY-Ribbon-Poppy-Dog-Collar-Remembrance-ANZAC-Day.jpg"
-    },{
-      "name": "Black",
-      "age": 9,
+      "name": "Bolt",
+      "age": 17,
       "gender" : "male",
-      "photo": "https://shorebread.com/wp-content/uploads/2018/11/adorable-animal-black-dog-1133082.jpg"
+      "photo": "https://shorebread.com/wp-content/uploads/2018/11/adorable-animal-black-dog-1133082.jpg",
+      "description": "Smart and very energetic - NY",
+      "shelter": "Park Avenue, 29 - NY"
     },{
-      "name": "Dylan",
-      "age": 2,
+      "name": "Tiger",
+      "age": 12,
       "gender" : "male",
-      "photo": "https://www.murraybridge.sa.gov.au/__data/assets/image/0039/685695/varieties/banner.jpg"
+      "photo": "https://www.murraybridge.sa.gov.au/__data/assets/image/0039/685695/varieties/banner.jpg",
+      "description": "Smart and very energetic",
+      "shelter": "King's Street, 30 - NY"
     },{
-      "name": "Daisy",
-      "age": 7,
+      "name": "Roxy",
+      "age": 4,
       "gender" : "female",
-      "photo": "https://www.k9ofmine.com/wp-content/uploads/2021/03/white-colored-maltese.jpg"
+      "photo": "https://www.k9ofmine.com/wp-content/uploads/2021/03/white-colored-maltese.jpg",
+      "description": "Smart and very energetic",
+      "shelter": "Park Avenue, 29 - NY"
     },{
-        "name": "Poppy",
-        "age": 5,
-        "gender" : "female",
-        "photo": "https://www.dalmatiandiy.com/wp-content/uploads/2016/04/DIY-Ribbon-Poppy-Dog-Collar-Remembrance-ANZAC-Day.jpg"
+      "name": "Sam",
+      "age": 6,
+      "gender" : "female",
+      "photo": "https://www.dalmatiandiy.com/wp-content/uploads/2016/04/DIY-Ribbon-Poppy-Dog-Collar-Remembrance-ANZAC-Day.jpg",
+      "description": "Smart and very energetic",
+      "shelter": "Bay Avenue, 31 - NY"
+    },{
+      "name": "Rex",
+      "age": 19,
+      "gender" : "male",
+      "photo": "https://shorebread.com/wp-content/uploads/2018/11/adorable-animal-black-dog-1133082.jpg",
+      "description": "Smart and very energetic",
+      "shelter": "Bay Avenue, 31 - NY"
     }
 ]

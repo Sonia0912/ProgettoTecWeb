@@ -42,6 +42,7 @@ $(function() {
             selectedGender += 1;
         } else {
             $(selectedType).filter(".female").hide();
+            $(selectedType).filter(".female").parent().hide();
             selectedGender -= 1;
         }       
     });
@@ -51,6 +52,7 @@ $(function() {
             selectedGender += 2;
         } else {
             $(selectedType).filter(".male").hide();
+            $(selectedType).filter(".male").parent().hide();
             selectedGender -= 2;
         }       
     });
@@ -75,7 +77,9 @@ $("#filterDog").on("click", function() {
     $("#filterDog").addClass("activeBtn");
     $("#filterCat").removeClass("activeBtn");
     $(".dog").show();
+    $(".dog").parent().show();
     $(".cat").hide();
+    $(".cat").parent().hide();
     selectedType = ".dog";
     resetAdvancedFilters();
 })
@@ -83,7 +87,9 @@ $("#filterCat").on("click", function() {
     $("#filterCat").addClass("activeBtn");
     $("#filterDog").removeClass("activeBtn");
     $(".cat").show();
+    $(".cat").parent().show();
     $(".dog").hide();
+    $(".dog").parent().hide();
     selectedType = ".cat";
     resetAdvancedFilters();
 })
@@ -92,11 +98,9 @@ $("#advancedFilterBtn").on("click", function() {
     if($("#advancedFilters").is(":visible")) {
         $(".advFilter").css("height", "60px");
         $(".relativeContainerHeight").css("height", "60px");
-        $(".relativeContainerù").css("height", "60px");
         $("#advancedFilters").hide();
     } else {
         $(".advFilter").css("height", "280px");
-        $(".relativeContainerù").css("height", "200px");
         $(".relativeContainerHeight").css("height", "200px");
         $("#advancedFilters").show();
     }
@@ -105,21 +109,20 @@ $("#advancedFilterBtn").on("click", function() {
 function loadPets(loadDogs) {
     if(loadDogs) {
         var pets = dogs;
-        var type = "dog ";
+        var type = "dog";
     } else {
         var pets = cats;
-        var type = "cat ";
+        var type = "cat";
     }
     var content = '';
     for(let i = 0; i < pets.length; i++) {
         genderIcon = (pets[i]["gender"] == "male") ? "/icons/ic_male.png" : "/icons/ic_female.png";
-        content = '';
-        content =       '<div class="petItem ' + type + pets[i]["gender"] + " " + pets[i]["age"] + '">'
+        content =       '<div class="petItem ' + type + " " + pets[i]["gender"] + " " + pets[i]["age"] + '">';
         content +=          '<div class="petPhoto"><img src="' + pets[i]["photo"] + '"></div>';
         content +=          '<div class="petName">' + pets[i]["name"] + '</div>';
         content +=          '<div class="petAgeGender">' + pets[i]["age"] + ' <img class="genderIcon" src="' + genderIcon + '"></div>';
         content +=      '</div>';
-        $("#pets").append(content);
+        $("#" + type + i).append(content);
     }
 }
 
@@ -137,11 +140,14 @@ function resetAdvancedFilters() {
 function filterResults(min, max, selectedGender) {
     for(let i = min; i <= max; i++) {
         $(selectedType + selectedGender).filter("." + i).show();
+        $(selectedType + selectedGender).filter("." + i).parent().show();
     }
     for(let i = 0; i < min; i++) {
         $(selectedType + selectedGender).filter("." + i).hide();
+        $(selectedType + selectedGender).filter("." + i).parent().hide();
     }
     for(let i = max + 1; i <= 20; i++) {
         $(selectedType + selectedGender).filter("." + i).hide();
+        $(selectedType + selectedGender).filter("." + i).parent().hide();
     }
 }

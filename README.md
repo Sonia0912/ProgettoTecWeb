@@ -22,6 +22,8 @@ Dalla cartella client:
 
 * npm install axios
 
+* npm install @vuepic/vue-datepicker
+
 # Per avviare:
 
 npm run dev

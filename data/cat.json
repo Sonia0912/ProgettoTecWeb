@@ -1,0 +1,101 @@
+[
+    {
+      "name": "Bob",
+      "age": 4,
+      "gender" : "male",
+      "photo": "https://cdn.britannica.com/91/181391-050-1DA18304/cat-toes-paw-number-paws-tiger-tabby.jpg",
+      "description": "Smart and very energetic",
+      "shelter": "Bay Avenue, 31 - NY"
+    },{
+      "name": "Meow",
+      "age": 2,
+      "gender" : "male",
+      "photo": "https://23hw1q3xvv4f3sksct3i9ujn-wpengine.netdna-ssl.com/wp-content/uploads/2019/09/Briggs-cat-e1568046724517-696x575.jpg",
+      "description": "Smart and very energetic",
+      "shelter": "Bay Avenue, 31 - NY"
+    },{
+      "name": "Susy",
+      "age": 7,
+      "gender" : "female",
+      "photo": "https://pbs.twimg.com/media/EH9T9ghXUAEE0ct.jpg",
+      "description": "Smart and very energetic",
+      "shelter": "Park Avenue, 29 - NY"
+    },{
+      "name": "Cloud",
+      "age": 5,
+      "gender" : "female",
+      "photo": "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/why-cats-are-best-pets-1559241235.jpg?crop=1.00xw:0.753xh;0,0.137xh&resize=1200:*",
+      "description": "Smart and very energetic",
+      "shelter": "King's Street, 30 - NY"
+    },{
+      "name": "Spencer",
+      "age": 5,
+      "gender" : "male",
+      "photo": "https://cdn.britannica.com/91/181391-050-1DA18304/cat-toes-paw-number-paws-tiger-tabby.jpg",
+      "description": "Smart and very energetic",
+      "shelter": "Park Avenue, 29 - NY"
+    },{
+      "name": "Fufy",
+      "age": 10,
+      "gender" : "male",
+      "photo": "https://23hw1q3xvv4f3sksct3i9ujn-wpengine.netdna-ssl.com/wp-content/uploads/2019/09/Briggs-cat-e1568046724517-696x575.jpg",
+      "description": "Smart and very energetic",
+      "shelter": "King's Street, 30 - NY"
+    },{
+      "name": "Kitty",
+      "age": 17,
+      "gender" : "female",
+      "photo": "https://pbs.twimg.com/media/EH9T9ghXUAEE0ct.jpg",
+      "description": "Smart and very energetic",
+      "shelter": "King's Street, 30 - NY"
+    },{
+      "name": "Melody",
+      "age": 15,
+      "gender" : "female",
+      "photo": "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/why-cats-are-best-pets-1559241235.jpg?crop=1.00xw:0.753xh;0,0.137xh&resize=1200:*",
+      "description": "Smart and very energetic",
+      "shelter": "King's Street, 30 - NY"
+    },{
+      "name": "Ken",
+      "age": 1,
+      "gender" : "male",
+      "photo": "https://cdn.britannica.com/91/181391-050-1DA18304/cat-toes-paw-number-paws-tiger-tabby.jpg",
+      "description": "Smart and very energetic",
+      "shelter": "Bay Avenue, 31 - NY"
+    },{
+      "name": "Lion",
+      "age": 12,
+      "gender" : "male",
+      "photo": "https://23hw1q3xvv4f3sksct3i9ujn-wpengine.netdna-ssl.com/wp-content/uploads/2019/09/Briggs-cat-e1568046724517-696x575.jpg",
+      "description": "Smart and very energetic",
+      "shelter": "Park Avenue, 29 - NY"
+    },{
+      "name": "Cream",
+      "age": 3,
+      "gender" : "female",
+      "photo": "https://pbs.twimg.com/media/EH9T9ghXUAEE0ct.jpg",
+      "description": "Smart and very energetic",
+      "shelter": "Park Avenue, 29 - NY"
+    },{
+      "name": "Sunny",
+      "age": 7,
+      "gender" : "female",
+      "photo": "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/why-cats-are-best-pets-1559241235.jpg?crop=1.00xw:0.753xh;0,0.137xh&resize=1200:*",
+      "description": "Smart and very energetic",
+      "shelter": "Bay Avenue, 31 - NY"
+    },{
+      "name": "Ted",
+      "age": 8,
+      "gender" : "male",
+      "photo": "https://cdn.britannica.com/91/181391-050-1DA18304/cat-toes-paw-number-paws-tiger-tabby.jpg",
+      "description": "Smart and very energetic",
+      "shelter": "King's Street, 30 - NY"
+    },{
+      "name": "Ben",
+      "age": 2,
+      "gender" : "male",
+      "photo": "https://23hw1q3xvv4f3sksct3i9ujn-wpengine.netdna-ssl.com/wp-content/uploads/2019/09/Briggs-cat-e1568046724517-696x575.jpg",
+      "description": "Smart and very energetic",
+      "shelter": "Park Avenue, 29 - NY"
+    }
+]

@@ -16,7 +16,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['src/components/*.vue', 'src/views/*.vue'],
+      files: ['src/components/*.vue', 'src/views/*.vue', 'src/*.vue', 'src/*.js'],
       rules: {
         'vue/multi-word-component-names': 0,
         'vue/no-parsing-error': 0
