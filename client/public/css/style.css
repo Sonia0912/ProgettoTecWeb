@@ -702,22 +702,37 @@ body {
      align-items: center;
      justify-items: center;
      grid-template-columns: 1fr 1fr 1fr;
+     grid-template-rows: 1fr 1fr;
      padding: 15px;
      margin: 10px;
      border-radius: 10px;
+
+}
+#hangmanContainer{
+     max-width: 500px;
+     margin: 10px auto;
+     border-radius: 20px;
+     
 }
 #imgHangman{
-     height: 20vh;
-     grid-row: 1 / 4;
+     height: 30vh;
+     grid-row-start: 1;
+     grid-row-end: 3;
+
 }
 #animalPhoto{
-     height: 15vh;
-     grid-row: 1 / 2;
-     grid-column: 2 / 4;
+     height: 25vh;
+     grid-column-start: 2;
+     grid-column-end: 4;
+     grid-row-start: 1;
+     grid-row-end: 3;
      filter:blur(10px);
 }
 #wordToGuess{
-     grid-column: 2 / 4;
+     grid-column-start: 2;
+     grid-column-end: 4;
+     grid-row-start: 3;
+     grid-row-end: 4;
      color: #324376;
      background-color: #dbdbd7;
      border: 2px solid red;
@@ -725,7 +740,10 @@ body {
      padding: 0px 10px;
 }
 #usedLetters{
-     grid-column: 1 / 5;
+     grid-column-start: 1 ;
+     grid-column-end:  2;
+     grid-row-start: 3;
+     grid-row-end: 4;
      min-height: 10vw;
 }
 #scoreHangman{
@@ -761,23 +779,41 @@ body {
      margin:20px 10px;
      padding: 10px;
      width: 85vw;
-
 }
 #closeRules{
-     position: absolute; 
+     position: absolute;
      top: 7px;
      right: 10px;
-     border: unset;
+     z-index: 1;
      border-radius: 8px;
      padding: 10px 10px;
      background-color: #e9edf1;
      margin: 10px;
+}
+#hangmanInput{
+     display: flex;
+     flex-direction: row;
+     text-align: center;
+     flex-wrap: wrap;
+     justify-content: space-around;
+     margin: 10px;
+
+}
+#letter{
+     margin-bottom: 10px;
+     border-radius: 10px;
+}
+#btnHangman{
+     margin-bottom: 10px;
+     background-color: green;
+     border-radius: 10px;
 }
 /*
      EVENTS
 */
 #layoutEvent{
      background-color: #2e86ab;
+     
      display: grid; 
      align-items: center;
      justify-items: center;
@@ -794,10 +830,15 @@ body {
      margin: 10px;
      border-radius: 10px;
 }
+#evenstContainer{
+     max-width: 500px;
+     margin: 0px auto;
+}
 #figureEvetn{
     position: relative;
 }
 #imgEvent{
+     max-width: 450px;
      width: 50vw;
      grid-area: "foto";
 }
@@ -840,6 +881,14 @@ body {
      margin: 10px;
      justify-content: space-around;
 }
+#bookEvent{
+     background-color: #3158c6;
+     border-radius: 10px;
+     padding: 5px;
+}
+#seatEvent{
+     margin: 15px;
+}
 
 /*
      ERROR
@@ -857,11 +906,13 @@ body {
 
 .past-events-list .event-item:nth-child(2n) {
      padding-left: 10px;
- }
- .past-events-list .event-item {
+}
+
+.past-events-list .event-item {
      margin-bottom: 80px;
- }
- .column {
+}
+
+.column {
      box-sizing: border-box;
      position: relative;
      z-index: 1;
@@ -869,17 +920,8 @@ body {
      padding: 0;
      float: left;
      min-height: 2px;
- }
- address, article, aside, div, footer, header, hgroup, layer, main, nav, section {
-     display: block;
- }
- body, button, input, select, textarea {
-     font-synthesis: none;
-     -moz-font-feature-settings: "kern";
-     -webkit-font-smoothing: antialiased;
-     -moz-osx-font-smoothing: grayscale;
-     direction: ltr;
- }
+}
+
 /*
      MEDIA
 */

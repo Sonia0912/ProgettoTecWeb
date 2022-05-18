@@ -32,6 +32,7 @@ app.use(require('./routes/hangmanroute'));
 app.use(require('./routes/profileroute'));
 app.use(require('./routes/dashboardroute'));
 app.use(require('./routes/adoptionroute'));
+app.use(require('./routes/eventsroute'));
 
 app.post('/login', (req, res, next) => {
     var contents = fs.readFileSync('./data/users.json', 'utf8');

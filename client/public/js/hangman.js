@@ -22,12 +22,24 @@ var punteggio = 100;
 var guessWord;
 let error = true; 
 var blurPhoto = 10;
+var usedWord = new Set();
+var guessedWord = new Set();
 //regole per il punteggio: 
 // se indovina al primo tentativo sono 100 pti
 // ogni lettera indovinare togli 5 punti
 // ogni lettera sbagliata togli 10 punti
 
 window.onload = animalRequest();
+
+function clearVariable(){
+  tentativi = 0;
+  guessWord = "";
+  error = true; 
+  blurPhoto = 10;
+  usedWord.clear();
+  guessedWord.clear();
+  $('.www').remove()
+}
 
 $('#btnRules').on("click",function () {
   if($('#rulesPopUp').is(":visible")){
@@ -49,6 +61,7 @@ $('#closeRules').on("click",function () {
 
  function animalRequest() {
 
+    clearVariable();
     $.ajax({
       type: 'GET',
       url: 'https://zoo-animal-api.herokuapp.com/animals/rand/'
@@ -97,10 +110,7 @@ function hideWord(word){
          alert("YOU ARE LOSER!"); 
          clearWord(guessWord);
          animalRequest();
-         tentativi = 0;
-         guessWord = "";
-         error = true; 
-         blurPhoto = 10;
+        clearVariable();
          $('#animalPhoto').css("filter","blur("+blurPhoto+"px)")
          changeImgHangMan();
          return;
@@ -116,39 +126,43 @@ function hideWord(word){
             $('#letter').val("");
             punteggio = punteggio + 100;
             clearWord(guessWord);
-            tentativi = 0;
-            guessWord = "";
-            error = true;
-            blurPhoto = 10;
+            clearVariable();
             $('#animalPhoto').css("filter","blur("+blurPhoto+"px)")
             changeImgHangMan();
             animalRequest();
             $('#score').text(punteggio)
             return;
            }
-          //  else{
-          //    punteggio = punteggio -10;
-          //    $('#letter').val("");
-          //  }
       }else if(userInput.length == 1){
-          var moreLetter = false;
-          for(let j = 0; j < guessWord.length; j ++){
-            if(guessWord[j] == userInput){
-              $('#w'+j).text(userInput);
-              moreLetter = true;
-              error = false; 
-            } 
+          console.log(guessWord.includes(userInput))
+          if(guessWord.includes(userInput)){
+            $('#score').text(punteggio)
+            blurPhoto = blurPhoto - 2;
+            $('#animalPhoto').css("filter","blur("+blurPhoto+"px)")
+            error = false;
+            if(guessedWord.has(userInput)){
+              alert("Hia già indovinato la lettera: " + userInput)
+            }else{
+              guessedWord.add(userInput)
+            }
+            
+            for (let j = 0; j < guessWord.length; j++) {
+                if (guessWord[j] == userInput) {
+                  $('#w' + j).text(userInput);
+              }
+            }
+          }else{
+            writeWordInsert(userInput);
+            usedWord.add(userInput);
+            tentativi++; 
+            punteggio = punteggio - 10;
+            $('#score').text(punteggio)
+            $('#letter').val("");
+            changeImgHangMan();
+          }
+      $('#letter').val("");  
+      console.log("Punteggio -> " + punteggio)
       }
-
-      if(moreLetter ){
-        punteggio = punteggio - 5;
-        $('#score').text(punteggio)
-        blurPhoto = blurPhoto - 2;
-        $('#animalPhoto').css("filter","blur("+blurPhoto+"px)")
-        error = false;
-      }
-      
-      $('#letter').val("");
          
       
       //check user win
@@ -163,27 +177,28 @@ function hideWord(word){
           alert("WINNER!");
           $('#score').text(punteggio)
           clearWord(guessWord);
-          tentativi = 0;
-          guessWord = "";
-          error = true; 
+          clearVariable();
           changeImgHangMan();
           animalRequest();
           return;
         }
 
      }
-     if(error){
-       tentativi++; 
-       punteggio = punteggio - 10;
-       $('#score').text(punteggio)
-       $('#letter').val("");
-       changeImgHangMan();
-     }else{
-       console.log("punteggio tot -> "+ punteggio)
-     }
+
      
    }
- }
+
+   function writeWordInsert(insertWord){
+
+     if(usedWord.has(insertWord)){
+      alert("Hai già inserito la lettera:" + insertWord);
+     }else{
+      $('#usedLetters').append("<span class=www>"+ insertWord + "</span>"); 
+       
+     }
+     
+    
+   }
 
  function changeImgHangMan(){
     $("#imgHangman").attr("src","/images/hangman/facile"+tentativi+".png");
