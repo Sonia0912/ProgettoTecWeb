@@ -718,6 +718,9 @@ body {
      height: 30vh;
      grid-row-start: 1;
      grid-row-end: 3;
+     max-width: 30vw;
+     max-height: 30vh;
+     
 
 }
 #animalPhoto{
@@ -726,7 +729,11 @@ body {
      grid-column-end: 4;
      grid-row-start: 1;
      grid-row-end: 3;
+     max-width: 45vw;
+     max-height: 45vh;
      filter:blur(10px);
+
+    
 }
 #wordToGuess{
      grid-column-start: 2;
@@ -807,6 +814,32 @@ body {
      margin-bottom: 10px;
      background-color: green;
      border-radius: 10px;
+}
+
+/*
+     PROFILE
+*/
+#profileContainer{
+     max-width: 500px;
+     margin: 10px auto;
+     border-radius: 20px;
+     background-color: #f8f48a;
+}
+#laoutProfile{
+     display: flex; 
+     flex-direction: row;
+     flex-wrap: wrap;
+     justify-content: space-around;
+     width: 100%;
+}
+#name{
+     flex: 0 0 20vw;
+}
+#email{
+     flex: 0 0 20vw;
+}
+#surname{
+     flex: 0 0 20vw;
 }
 /*
      EVENTS

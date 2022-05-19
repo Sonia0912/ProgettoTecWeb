@@ -118,7 +118,7 @@ function hideWord(word){
 
       //chechk  only the first letter insered by user
       error = true
-      let userInput = $('#letter').val();
+      let userInput = $('#letter').val().toLowerCase();
 
       if(userInput.length > 1 ){
         if(guessWord == userInput){
@@ -134,7 +134,8 @@ function hideWord(word){
             return;
            }
       }else if(userInput.length == 1){
-          console.log(guessWord.includes(userInput))
+          console.log(userInput)
+
           if(guessWord.includes(userInput)){
             $('#score').text(punteggio)
             blurPhoto = blurPhoto - 2;
