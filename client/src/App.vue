@@ -13,8 +13,13 @@
                 <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/bookings">My bookings</router-link>
               </span>
               <span v-else>
-                  <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/login">Log in</router-link>
-                  <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/register">Register</router-link>
+                <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/login">Log in</router-link>
+                <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/register">Register</router-link>
+              </span>
+              <span v-if="isAdmin">
+                <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/manage-adoptions">Manage adoptions</router-link>
+                <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/manage-events">Manage events</router-link>
+                <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/users">Users</router-link>
               </span>
           </div>
       </div>
@@ -99,12 +104,16 @@
   export default {
     data() {
       return {
-        isAuth: null
+        isAuth: null,
+        isAdmin: null,
       }
     },
     created() {
       if(localStorage.getItem('isLogged') == true) {
         this.isAuth = true;
+        if(localStorage.getItem('isAdmin') != null) {
+          this.isAdmin = true;
+        }
       } else {
         this.isAuth = false;
       }
@@ -112,15 +121,22 @@
     mounted() {
       if(localStorage.getItem('token') != null) {
         this.isAuth = true;
+        if(localStorage.getItem('isAdmin') != null) {
+          this.isAdmin = true;
+        }
       } else {
         this.isAuth = false;
       }
       window.addEventListener('isLogged-localstorage-logout', () => {
           this.isAuth = false;
+          this.isAdmin = false;
       });
       window.addEventListener('isLogged-localstorage-login', () => {
           this.isAuth = true;
       });  
+      window.addEventListener('isAdmin-localstorage-true', () => {
+          this.isAdmin = true;
+      }); 
     }
   }
 </script>

@@ -59,6 +59,11 @@ const routes = [
     component: () => import('../views/AdoptionBookingView.vue')
   },
   {
+    path: '/users',
+    name: 'Users',
+    component: () => import('../views/UsersView.vue')
+  },
+  {
     path: "/:catchAll(.*)",
     name: "Error",
     component: ErrorItem,

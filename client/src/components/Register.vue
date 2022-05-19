@@ -31,7 +31,6 @@
         },
         methods: {
             signUp() {
-                console.log("ciaociao")
                 if(this.email != '' && this.name != '' && this.surname != '' && this.password != '') {
                     let newUser = {
                         email: this.email,
@@ -44,7 +43,6 @@
                         this.$router.push("login")
                     )
                 } else {
-                    console.log("ciao")
                     this.error = "Please fill in all the fields"
                 }
             }

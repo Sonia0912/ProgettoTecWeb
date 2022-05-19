@@ -3,6 +3,9 @@
         <span v-if="this.$route.params.error === 'unauthorized'">
             <h2>Sign in to use this service</h2>
         </span>
+        <span v-else-if="this.$route.params.error === 'notadmin'">
+            <h2>Sign in as an admin to user this service</h2>
+        </span>
         <span v-else>
             <h2>Sign in</h2>
         </span>
@@ -42,6 +45,14 @@
                     .then(res => {
                         if(res.status === 200) {
                             localStorage.setItem('token', res.data.token)
+                            if(res.data.admin) {
+                                localStorage.setItem('isAdmin', res.data.admin)
+                                window.dispatchEvent(new CustomEvent('isAdmin-localstorage-true', {
+                                detail: {
+                                    storage: localStorage.getItem('isAdmin')
+                                }
+                            }));
+                            }
                             localStorage.setItem('email', this.email)
                             localStorage.setItem('isLogged', true)
                             window.dispatchEvent(new CustomEvent('isLogged-localstorage-login', {

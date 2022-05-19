@@ -442,6 +442,14 @@ body {
      background-color: #d7e7ff;
 }
 
+.pinkBackground {
+     background-color: #ffddf1;
+}
+
+.greenBackground {
+     background-color: #d7fff6;
+}
+
 #text {
      border: unset;
      border-radius: 10px;
@@ -891,6 +899,46 @@ body {
 }
 
 /*
+     ADMIN
+*/
+
+.title.pink {
+     color: #651c45;
+}
+
+#usersList_wrapper {
+     width: fit-content;
+     margin: 20px auto 0px auto;
+}
+
+#usersList_length, #usersList_filter {
+     padding-bottom: 20px;
+}
+
+#usersList_info, #usersList_paginate {
+     padding-bottom: 20px;
+     padding-top: 20px;
+}
+
+#usersList_filter label input {
+     background-color: white;
+}
+
+#usersList_length label select {
+     background-color: white;
+}
+
+#usersList_paginate span a {
+     background-color: white;
+}
+
+.dataTables_scroll {
+     background-color: white;
+     width: fit-content;
+     margin: 0 auto;
+}
+
+/*
      ERROR
 */
 
@@ -962,6 +1010,16 @@ body {
      }
      .carousel-caption.d-md-block h5 {
           font-size: 24px;
+     }
+}
+
+@media screen and (max-width: 650px) {
+     .dataTables_scroll {
+          width: unset;
+          margin: 0 20px;
+     }
+     #usersList_wrapper {
+          width: unset;
      }
 }
 

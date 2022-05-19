@@ -37,6 +37,14 @@
     export default {
         name: "adoptionBooking",
         components: { Datepicker },
+        created() {
+            if(localStorage.getItem('token') === null) {
+                    this.$router.push({
+                        name: 'Login', 
+                        params: { error: 'unauthorized' }
+                    });
+            }
+        },
         setup() {
             // dates to disable by default
             const date = ref();

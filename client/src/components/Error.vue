@@ -11,9 +11,11 @@
     export default {
         data () {
             return {
-                currentUrl: window.location.href
+                currentUrl: ''
             }
+        },
+        created() {
+            this.currentUrl = window.location.href;
         }
-
     }
 </script>
