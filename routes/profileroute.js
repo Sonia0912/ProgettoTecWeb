@@ -7,6 +7,7 @@ const jwt = require('jsonwebtoken');
 const fs = require('fs')
 var router = express.Router();
 
+
 router.get('/profile', function(req, res) {
     var token = req.headers.token;
     jwt.verify(token, process.env.SESSION_SECRET, (err, decoded) => {
@@ -29,5 +30,7 @@ router.get('/profile', function(req, res) {
         })
     })
 });
+
+
 
 module.exports = router;
