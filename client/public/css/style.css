@@ -827,12 +827,14 @@ body {
 /*
      PROFILE
 */
+
 #profileContainer{
      max-width: 500px;
      margin: 10px auto;
      border-radius: 20px;
      background-color: #f8f48a;
 }
+
 #laoutProfile{
      display: flex; 
      flex-direction: row;
@@ -840,15 +842,7 @@ body {
      justify-content: space-around;
      width: 100%;
 }
-#name{
-     flex: 0 0 20vw;
-}
-#email{
-     flex: 0 0 20vw;
-}
-#surname{
-     flex: 0 0 20vw;
-}
+
 /*
      EVENTS
 */
@@ -953,15 +947,7 @@ body {
      padding-top: 20px;
 }
 
-#usersList_filter label input {
-     background-color: white;
-}
-
-#usersList_length label select {
-     background-color: white;
-}
-
-#usersList_paginate span a {
+#usersList_filter label input, #usersList_length label select, #usersList_paginate span a {
      background-color: white;
 }
 

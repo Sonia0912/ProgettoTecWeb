@@ -119,6 +119,9 @@
                         },
                     };
                     axios(options);
+                    this.$router.push({
+                        name: 'MyBookings'
+                    });
                 } else {
                     alert("Please select a date")
                 }

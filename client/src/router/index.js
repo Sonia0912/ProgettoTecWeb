@@ -59,6 +59,11 @@ const routes = [
     component: () => import('../views/AdoptionBookingView.vue')
   },
   {
+    path: '/mybookings',
+    name: 'MyBookings',
+    component: () => import('../views/MyBookingsView.vue')
+  },
+  {
     path: '/users',
     name: 'Users',
     component: () => import('../views/UsersView.vue')

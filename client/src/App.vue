@@ -10,7 +10,7 @@
                 <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/dashboard">Dashboard</router-link>
                 <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/profile">Profile</router-link>
                 <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/leaderboard">Leaderboard</router-link>
-                <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/bookings">My bookings</router-link>
+                <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/mybookings">My bookings</router-link>
               </span>
               <span v-else>
                 <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/login">Log in</router-link>
@@ -113,6 +113,8 @@
         this.isAuth = true;
         if(localStorage.getItem('isAdmin') != null) {
           this.isAdmin = true;
+        } else {
+          this.isAdmin = false;
         }
       } else {
         this.isAuth = false;
@@ -123,6 +125,8 @@
         this.isAuth = true;
         if(localStorage.getItem('isAdmin') != null) {
           this.isAdmin = true;
+        } else {
+          this.isAdmin = false;
         }
       } else {
         this.isAuth = false;
