@@ -38,6 +38,7 @@ export default {
         logOut() {
             localStorage.removeItem('token')
             localStorage.removeItem('email')
+            localStorage.removeItem('isAdmin')
             localStorage.setItem('isLogged', false)
             window.dispatchEvent(new CustomEvent('isLogged-localstorage-logout', {
                 detail: {

@@ -36,6 +36,10 @@ body {
      font-family: 'Red Hat Display', sans-serif;  
 }
 
+button {
+     border: unset;
+}
+
 .row {
      margin-right: 0;
 }
@@ -272,7 +276,6 @@ body {
      background-color: white;
      color: #1b284d;
      margin: 10px 10px;
-     border: unset;
      border-radius: 10px;
      min-height: 50px;
      min-width: 100px;
@@ -310,7 +313,6 @@ body {
      background-color: #fd7e14;
      color: white;
      margin: 30px 0px;
-     border: unset;
      border-radius: 10px;
      height: 50px;
      width: 170px; 
@@ -465,8 +467,8 @@ body {
      float: right;
      margin-left: 10px;
      border-radius: 10px;
-     border: unset;
      padding: 8px 12px;
+     border: unset;
 }
 
 #img {
@@ -524,10 +526,6 @@ body {
      padding-bottom: 100px;
 }
 
-.funnypets {
-     margin: 20px 0px;
-}
-
 .funnypets img {
      max-height: 300px;
      margin: 0 auto 20px auto;
@@ -537,7 +535,6 @@ body {
      width: fit-content;
      padding: 10px;
      margin: 0px auto;
-     border: unset;
      background-color: #fd7e14 ;
      border-radius: 10px;
      color: white;
@@ -604,7 +601,6 @@ body {
 }
 
 #advancedFilterBtn {
-     border: unset;
      background-color: #b0d0ff;
      padding: 10px;
      width: 300px;
@@ -652,7 +648,6 @@ body {
 }
 
 #filterDog, #filterCat {
-     border: unset;
      border-radius: 10px;
      background-color: #e885b6;
      padding: 10px;
@@ -769,7 +764,6 @@ body {
     right: 2px;
 }
 #btnRules{
-     border: unset;
      border-radius: 20px;
      padding: 5px 15px;
      background-color: #6da2f3;
@@ -934,6 +928,51 @@ body {
      color: #651c45;
 }
 
+#addPet {
+     margin: 0 auto;
+     padding: 10px 15px;
+     border-radius: 10px;
+     background-color: #f43e99;
+     color: white;
+}
+
+#addPetBtn {
+     padding: 10px 15px;
+     border-radius: 10px;
+     background-color: #f43e99;
+     color: white;
+     float: right;
+}
+
+#addPet:hover, #addPetBtn:hover {
+     background-color: #ff89c4;
+}
+
+.deletePet {
+     padding: 4px 8px;
+     color: white;
+     background-color: #dc3545;
+     border-radius: 7px;
+}
+
+#petsList_wrapper {
+     width: fit-content;
+     margin: 20px auto 0px auto;
+}
+
+#petsList_length, #petsList_filter {
+     padding-bottom: 20px;
+}
+
+#petsList_info, #petsList_paginate {
+     padding-bottom: 20px;
+     padding-top: 20px;
+}
+
+#petsList_filter label input, #petsList_length label select, #petsList_paginate span a {
+     background-color: white;
+}
+
 #usersList_wrapper {
      width: fit-content;
      margin: 20px auto 0px auto;
@@ -956,6 +995,63 @@ body {
      background-color: white;
      width: fit-content;
      margin: 0 auto;
+     padding: 0px 20px;
+}
+
+#newPetForm {
+     background-color: white;
+     padding: 5px 30px 5px 30px;
+     margin: 30px 0px;
+     display: grid;
+     grid-template-columns: auto auto auto auto;
+     max-width: 500px;
+}
+
+#colForm1 {
+     grid-column-start: 1;
+     grid-column-end: 3;
+}
+
+#colForm2 {
+     grid-column-start: 3;
+     grid-column-end: 5;
+}
+
+.petPhotoField {
+     min-height: 80px;
+     height: fit-content;
+     grid-column-start: 1;
+     grid-column-end: 4;
+     margin-right: 10px;
+}
+
+#newPetSubmit {
+     grid-column-start: 4;
+     grid-column-end: 5;
+     align-self: end;
+     padding-bottom: 20px;
+}
+
+#newPetPhoto {
+     width: 99%;
+}
+
+.colForm {
+     padding: 0px 10px;
+}
+
+.newPetField {
+     padding: 10px 0px;
+}
+
+#newPetName, #newPetAge {
+     display: block;
+}
+
+#errorNewPet {
+     padding-top: 5px;
+     color: #dc3545;
+     transition: 1s;
 }
 
 /*
@@ -1038,7 +1134,7 @@ body {
           width: unset;
           margin: 0 20px;
      }
-     #usersList_wrapper {
+     #usersList_wrapper, #petsList_wrapper {
           width: unset;
      }
 }
@@ -1084,6 +1180,9 @@ body {
      .subtitle {
           font-size: 16px;
      }
+     .petPhotoField {
+          width: 230px;
+     }
 }
      
 @media screen and (max-width: 350px) {
@@ -1108,5 +1207,8 @@ body {
           display: none;
           width: 220px;
           margin: 20px 30px 20px 0px;
+     }
+     #newPetForm {
+          display: unset;
      }
 }

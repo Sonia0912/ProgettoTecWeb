@@ -64,6 +64,11 @@ const routes = [
     component: () => import('../views/MyBookingsView.vue')
   },
   {
+    path: '/manage-adoptions',
+    name: 'ManageAdoptions',
+    component: () => import('../views/ManageAdoptionsView.vue')
+  },
+  {
     path: '/users',
     name: 'Users',
     component: () => import('../views/UsersView.vue')

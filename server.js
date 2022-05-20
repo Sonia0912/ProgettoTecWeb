@@ -20,8 +20,8 @@ app.locals.userAuthenticated = false;
 app.use(express.static("public"));
 app.use(express.json());
 
-app.use(bodyParser.json({ limit: '100mb' }));
-app.use(bodyParser.urlencoded({ limit: '100mb', extended: false }));
+app.use(bodyParser.json({ limit: '50MB', type: 'application/json' }));
+app.use(bodyParser.urlencoded({ limit: '50MB', extended: true, type: 'application/x-www-form-urlencoded' }));
 
 app.use(require('./routes/authenticationroute'));
 app.use(require('./routes/quizroute'));
@@ -31,7 +31,6 @@ app.use(require('./routes/dashboardroute'));
 app.use(require('./routes/adoptionroute'));
 app.use(require('./routes/eventsroute'));
 app.use(require('./routes/adminroute'));
-
 
 const PORT = 3000;
 
