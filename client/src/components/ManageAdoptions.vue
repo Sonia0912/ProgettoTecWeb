@@ -72,6 +72,22 @@
             </thead>
             <tbody></tbody>
         </table>
+
+        <!-- Modal -->
+        <div id="modalDeletePet" class="modal">
+            <span id="closeButton" class="close" title="Close Modal">&times;</span>
+            <form class="modal-content">
+                <div class="container">
+                    <h1>Delete Pet</h1>
+                    <p>Are you sure you want to delete this pet from the database?</p>
+                    <div class="clearfix">
+                        <button type="button" id="cancelButton" class="cancelbtn">Cancel</button>
+                        <button type="button" id="confirmDeleteButton" class="deletebtn">Delete</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
     </div>
 </template>
 
@@ -116,3 +132,81 @@
         }
     }
 </script>
+
+<style scoped>
+.cancelbtn, .deletebtn {
+  float: left;
+  width: 30%;
+  border-radius: 10px;
+  padding: 10px 0px;
+}
+
+.cancelbtn {
+  background-color: #ccc;
+  color: black;
+  margin-left: 10%;
+}
+
+.deletebtn {
+  background-color: #dc3545;
+  color: white;
+  float: right;
+  margin-right: 10%;
+}
+
+.container {
+  padding: 16px;
+  text-align: center;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(26, 26, 43, 0.5);
+  padding-top: 50px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: fit-content; /* Could be more or less, depending on screen size */
+}
+
+/* The Modal Close Button (x) */
+.close {
+  position: absolute;
+  right: 35px;
+  top: 15px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #f1f1f1;
+}
+
+.close:hover,
+.close:focus {
+  color: #f44336;
+  cursor: pointer;
+}
+
+/* Clear floats */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+@media screen and (max-width: 480px) {
+     .modal-content {
+        margin: 30% 10px 20% 10px;
+    }
+}
+</style>
