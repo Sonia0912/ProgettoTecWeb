@@ -8,7 +8,6 @@ router.post('/login', (req, res, next) => {
     var contents = fs.readFileSync('./data/users.json', 'utf8');
     obj = JSON.parse(contents);
     var user = obj.users.find(user => user.email === req.body.email);
-    var isAdmin = user.admin;
     if(!user) {
         return res.status(401).json({
             title: "user not found",
@@ -21,6 +20,7 @@ router.post('/login', (req, res, next) => {
             error: "The password is incorrect"
         })
     }
+    var isAdmin =user.admin;
     var token = jwt.sign({ userId: user.id }, process.env.SESSION_SECRET);
     return res.status(200).json({
         title: "login success",
