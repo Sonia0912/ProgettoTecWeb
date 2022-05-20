@@ -841,7 +841,7 @@ button {
      EVENTS
 */
 #layoutEvent{
-     background-color: #2e86ab;
+     background-color: #fff186;
      
      display: grid; 
      align-items: center;
@@ -903,6 +903,7 @@ button {
      height: 40vw;
      padding: 5px 10px;
      overflow: auto;
+     max-height: 25vh;
 }
 #infoEvent{
      display: flex;

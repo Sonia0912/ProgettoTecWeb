@@ -2,7 +2,7 @@
 	<div class="title">
 		Events
 	</div>
-	<div v-for="info in information" v-bind:value="info" :key="info.name" id="evenstContainer">
+	<div v-for="(info,index) in information" v-bind:value="info" :key="info.name" id="evenstContainer">
 		<div id="layoutEvent">
 			<figure id="figureEvetn" v-if="info.photo">
 				<span class="categoryEvetn">{{ info.category }}</span>
@@ -22,8 +22,9 @@
 			</article>
 		</div>
 		<div id="infoEvent">
-			<div>Posti Rimasti: <span id="seatEvent"> {{info.totSeat - info.bookedSeat}}</span></div>
-			<div> <button id="bookEvent">Book</button></div>
+			<div>Posti Rimasti: <span id="seatEvent"> {{ info.totSeat - info.bookedSeat }}</span></div>
+			<div> <button id="bookEvent" @click="booking(info.name, index)">Book</button></div>
+
 		</div>
 	</div>
 </template>
@@ -37,6 +38,30 @@ export default {
 	data() {
 		return {
 			information: []
+		}
+	},
+	methods: {
+		booking(event, indice) {
+			if (localStorage.getItem('token') === null) {
+				this.$router.push({
+					name: 'Login',
+					params: { error: 'unauthorized' }
+				})
+			} else {
+				console.log(this.information.name)
+				let booking = {
+					nameEvent: event,
+					userEmail: localStorage.getItem('email')
+				}
+				axios.post('http://localhost:3000/bookingEvent', booking).then(res =>{
+					console.log(res);
+					alert("Booked")
+					this.information[indice].bookedSeat += 1; 
+				}, err =>{
+					console.log(err)
+					alert("Già prenotato")
+				})
+			}
 		}
 	},
 	mounted() {
