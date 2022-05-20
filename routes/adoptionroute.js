@@ -14,6 +14,21 @@ router.get('/catsForAdoption', function(req, res) {
     res.json(obj);
 });
 
+router.get('/getPets', function(req, res) {
+    var contentsDog = fs.readFileSync('./data/dog.json', 'utf8');
+    var contentsCat = fs.readFileSync('./data/cat.json', 'utf8');
+    objDog = JSON.parse(contentsDog);
+    objDog.forEach(object => {
+        object.type = 'dog';
+    });
+    objCat = JSON.parse(contentsCat);
+    objCat.forEach(object => {
+        object.type = 'cat';
+    });
+    obj = objDog.concat(objCat);
+    res.json(obj);
+});
+
 router.get('/infoPet/:type/:name', function(req, res) {
     var contents = fs.readFileSync('./data/' + req.params.type + '.json', 'utf8');
     obj = JSON.parse(contents);
@@ -95,5 +110,43 @@ router.post('/adoptionBook', function(req, res) {
         }
     });
 });
+
+router.post('/addPet', function(req, res) {
+    fs.readFile('./data/' + req.body.type + '.json', 'utf8', function readFileCallback(err, data) {
+        if(err) {
+            console.log("ERROR READING FILE: " + err);
+        } else {
+            obj = JSON.parse(data);
+            obj.push({
+                name: req.body.name,
+                age: req.body.age,
+                gender: req.body.gender,
+                photo: req.body.photo,
+                description: req.body.description,
+                shelter: req.body.shelter
+            });
+            json = JSON.stringify(obj);
+            fs.writeFile('./data/' + req.body.type + '.json', json, 'utf8', (err) => {
+                if (!err) {
+                  console.log('Pet added to the database');
+                }
+            });
+        }
+    });
+    res.status(204).send("OK");
+})
+
+router.delete('/deletePet/:type/:name', function(req, res) { 
+    var contents = fs.readFileSync('./data/' + req.params.type + '.json', 'utf8');
+    obj = JSON.parse(contents);
+    remainingObj = obj.filter(data => data.name != req.params.name);
+    json = JSON.stringify(remainingObj);
+    fs.writeFile('./data/' + req.params.type + '.json', json, 'utf8', (err) => {
+        if (!err) {
+          console.log('Pet deleted');
+        }
+    });
+    res.send("OK");
+})
 
 module.exports = router;

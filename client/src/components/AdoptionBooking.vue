@@ -85,7 +85,6 @@
             var fullDates = [];
             axios.get('http://localhost:3000/fullDates/' + this.$route.params.petName)
             .then((res) => {
-                console.log("dentro prima")
                 // disable those dates
                 for(let i = 0; i < res.data.length; i++) {
                     fullDates.push(new Date(new Date().setMonth((res.data[i].month - 1), res.data[i].day)));
