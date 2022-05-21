@@ -3,15 +3,21 @@
         <div class="title">Profile</div>
         <div id="laoutProfile">
 
-            <h3>E-mail: <span id="email">{{ email }}</span> </h3>
-
-            <h3>Name:
-                <span id="name">{{ name }}</span> </h3>
-            <input v-model="name">
-            <h3>Surname:  <span id="surname">{{ surname }}</span></h3>
-            <input v-model="surname">
-            <button @click="logOut">Log Out</button>
-            <button @click="saveInfo">Save</button>
+            
+                <span id="emailSpan" class="fontProfile">E-mail:</span> 
+                <span id="email">{{ email }}</span>
+       
+                <span id="nameSpan" class="fontProfile">Name:</span> 
+                <span id="name">{{ name }}</span>
+                <input id="inputName" v-model="name">
+           
+                <span id="suernameSpan" class="fontProfile">Surname:</span> 
+                <span id="surname">{{ surname }}</span>
+                <input id="inputSurname" v-model="surname">
+       
+           
+            <button id="logoutBtn" @click="logOut">Log Out</button>
+            <button id="saveBtn" @click="saveInfo">Save</button>
 
         </div>
 
