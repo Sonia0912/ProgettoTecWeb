@@ -1029,12 +1029,17 @@ button {
      margin: 20px;
      max-width: 30px;
 } 
+
 /*
      EVENTS
 */
-#layoutEvent{
-     background-color: #fff186;
-     
+
+.eventsContainer{
+     padding-bottom: 30px;
+}
+
+.layoutEvent{
+     background-color: white; 
      display: grid; 
      align-items: center;
      justify-items: center;
@@ -1051,44 +1056,61 @@ button {
      margin: 10px;
      border-radius: 10px;
 }
-#evenstContainer{
+
+.eventContainer{
      max-width: 500px;
      margin: 0px auto;
 }
-#figureEvetn{
+
+.figureEvent{
     position: relative;
 }
-#imgEvent{
+
+.imgEvent{
      max-width: 450px;
      width: 50vw;
      grid-area: "foto";
 }
-.categoryEvetn{
+
+.categoryEvent{
      position: absolute; 
      bottom: 10px;
-     left: 5px;
-     background-color: red;
-     padding: 1px;
+     left: 10px;
+     background-color: #ffcae4be;
+     padding: 1px 5px;
+     border-radius: 5px;
 }
-#nameEvent{
+
+.eventContainer div article {
+     margin-left: 10px;
+}
+
+.divPriceEvent {
+     margin-bottom: 8px;
+}
+
+/* .nameEvent{
      grid-area: "nome";
 }
-#dateEvent{
+
+.dateEvent{
      grid-area: "data";
      margin: 10px;
 }
-#addressEvent{
+
+.addressEvent{
      grid-area: "andress";
      margin: 10px;
 }
-#priceEvent{
+
+.priceEvent{
      grid-area: "price";
      margin: 10px;
-}
+} */
 
-#descriptionEvent{
-     background-color: rgb(232, 235, 242);
-     grid-area: "description";
+.descriptionEvent{
+     background-color: #e6eaf0;
+/*      grid-area: "description"; */
      align-items: center;
      justify-items: center;
      border-radius: 10px;
@@ -1097,19 +1119,27 @@ button {
      overflow: auto;
      max-height: 25vh;
 }
-#infoEvent{
+
+.infoEvent{
      display: flex;
      flex-direction: row;
-     margin: 10px;
+     padding: 10px;
      justify-content: space-around;
 }
-#bookEvent{
-     background-color: #3158c6;
+
+.bookEvent{
+     background-color: #f43e99;
      border-radius: 10px;
-     padding: 5px;
+     padding: 8px 12px;
+     color: white;
 }
-#seatEvent{
-     margin: 15px;
+
+.bookEvent:hover{
+     background-color: #f67ab8;
+}
+
+.seatEvent{
+     margin: 10px;
 }
 
 /*
