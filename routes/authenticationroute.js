@@ -20,7 +20,7 @@ router.post('/login', (req, res, next) => {
             error: "The password is incorrect"
         })
     }
-    var isAdmin =user.admin;
+    var isAdmin = user.admin;
     var token = jwt.sign({ userId: user.id }, process.env.SESSION_SECRET);
     return res.status(200).json({
         title: "login success",

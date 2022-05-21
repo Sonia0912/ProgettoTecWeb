@@ -1,5 +1,5 @@
 <template>
-    <div class="pinkBackground">
+    <div class="pinkLeafBackground">
         <div class="title pink">Users</div>
         <table id="usersList">
             <thead>

@@ -60,6 +60,7 @@ router.post('/adoptionBook', function(req, res) {
         } else {
             obj = JSON.parse(data);
             obj.push({
+                id: Date.now().toString(),
                 username: req.body.username,
                 petName: req.body.petName,
                 shelter: req.body.shelter,
@@ -148,5 +149,84 @@ router.delete('/deletePet/:type/:name', function(req, res) {
     });
     res.send("OK");
 })
+
+router.get('/myvisits/:loggedEmail', function(req, res) {
+    fs.readFile('./data/visits.json', 'utf8', function readFileCallback(err, data) {
+        if(err) {
+            console.log("ERROR READING FILE: " + err);
+        } else {
+            obj = JSON.parse(data);
+            var myBookings = [];
+            for(let i = 0; i < obj.length; i++) {
+                if(obj[i].username === req.params.loggedEmail) {
+                    objFormatted = formatDayTime(obj[i]);
+                    myBookings.push(objFormatted);
+                }
+            }
+            var myBookingsOrdered = myBookings.reverse();
+            res.json(myBookingsOrdered)
+        }
+    });
+})
+
+router.delete('/deleteBooking/:idVisit', function(req, res) { 
+    var contents = fs.readFileSync('./data/visits.json', 'utf8');
+    obj = JSON.parse(contents);
+    remainingObj = obj.filter(data => data.id != req.params.idVisit);
+    json = JSON.stringify(remainingObj);
+    fs.writeFile('./data/visits.json', json, 'utf8', (err) => {
+        if (!err) {
+          console.log('Visit deleted');
+        }
+    });
+    res.send("OK");
+})
+
+function formatDayTime(visit) {
+    let arr = visit.time.split(':');
+    if(arr[1].length === 1) {
+        let formattedTime = arr[0] + ":0" + arr[1]
+        visit.time = formattedTime;
+    }
+    switch(visit.month) {
+        case 1:
+            visit.month = "January"
+            break;
+        case 2:
+            visit.month = "February"
+            break;
+        case 3:
+            visit.month = "March"
+            break;
+        case 4:
+            visit.month = "April"
+            break;
+        case 5:
+            visit.month = "May"
+            break;
+        case 6:
+            visit.month = "June"
+            break;
+        case 7:
+            visit.month = "July"
+            break;
+        case 8:
+            visit.month = "August"
+            break;
+        case 9:
+            visit.month = "September"
+            break;
+        case 10:
+            visit.month = "October"
+            break;
+        case 11:
+            visit.month = "November"
+            break;
+        case 12:
+            visit.month = "December"
+            break;
+    }
+    return visit;
+}
 
 module.exports = router;

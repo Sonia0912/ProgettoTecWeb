@@ -59,6 +59,11 @@ button {
      flex-direction: column;
 }
 
+.serverError {
+     text-align: center;
+     color: #dc3545;
+}
+
 /*
      HEADER
 */
@@ -444,8 +449,42 @@ button {
      background-color: #d7e7ff;
 }
 
+.blueCurtainBackground {
+     background-color: #d7e7ff;
+     background-image: url("data:image/svg+xml,%3Csvg width='44' height='12' viewBox='0 0 44 12' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 12v-2L0 0v10l4 2h16zm18 0l4-2V0L22 10v2h16zM20 0v8L4 0h16zm18 0L22 8V0h16z' fill='%23b1d0ff' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E");
+}
+
 .pinkBackground {
      background-color: #ffddf1;
+}
+
+.pinkCircleBackground {
+     background-color: #ffddf1;
+     background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffa0d8' fill-opacity='0.4'%3E%3Cpath d='M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10zM10 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10S0 25.523 0 20s4.477-10 10-10zm10 8c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zm40 40c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.pinkWallBackground {
+     background-color: #ffe5f4;
+     background-image: url("data:image/svg+xml,%3Csvg width='42' height='44' viewBox='0 0 42 44' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='Page-1' fill='none' fill-rule='evenodd'%3E%3Cg id='brick-wall' fill='%23ffaadc' fill-opacity='0.4'%3E%3Cpath d='M0 0h42v44H0V0zm1 1h40v20H1V1zM0 23h20v20H0V23zm22 0h20v20H22V23z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.pinkLeafBackground {
+     background-color: #ffeaf6;
+     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 80 40' width='80' height='40'%3E%3Cpath fill='%23ffbde4' fill-opacity='0.4' d='M0 40a19.96 19.96 0 0 1 5.9-14.11 20.17 20.17 0 0 1 19.44-5.2A20 20 0 0 1 20.2 40H0zM65.32.75A20.02 20.02 0 0 1 40.8 25.26 20.02 20.02 0 0 1 65.32.76zM.07 0h20.1l-.08.07A20.02 20.02 0 0 1 .75 5.25 20.08 20.08 0 0 1 .07 0zm1.94 40h2.53l4.26-4.24v-9.78A17.96 17.96 0 0 0 2 40zm5.38 0h9.8a17.98 17.98 0 0 0 6.67-16.42L7.4 40zm3.43-15.42v9.17l11.62-11.59c-3.97-.5-8.08.3-11.62 2.42zm32.86-.78A18 18 0 0 0 63.85 3.63L43.68 23.8zm7.2-19.17v9.15L62.43 2.22c-3.96-.5-8.05.3-11.57 2.4zm-3.49 2.72c-4.1 4.1-5.81 9.69-5.13 15.03l6.61-6.6V6.02c-.51.41-1 .85-1.48 1.33zM17.18 0H7.42L3.64 3.78A18 18 0 0 0 17.18 0zM2.08 0c-.01.8.04 1.58.14 2.37L4.59 0H2.07z'%3E%3C/path%3E%3C/svg%3E");
+}
+
+.purpleBackground {
+     background-color: #ebd7ff;
+}
+
+.purpleCurtainBackground {
+     background-color: #f2e6ff;
+     background-image: url("data:image/svg+xml,%3Csvg width='44' height='12' viewBox='0 0 44 12' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 12v-2L0 0v10l4 2h16zm18 0l4-2V0L22 10v2h16zM20 0v8L4 0h16zm18 0L22 8V0h16z' fill='%23dcb9ff' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E");
+}
+
+.greenCurtainBackground {
+     background-color: #cefbee;
+     background-image: url("data:image/svg+xml,%3Csvg width='44' height='12' viewBox='0 0 44 12' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 12v-2L0 0v10l4 2h16zm18 0l4-2V0L22 10v2h16zM20 0v8L4 0h16zm18 0L22 8V0h16z' fill='%2397e1cb' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E");
 }
 
 .greenBackground {
@@ -489,11 +528,11 @@ button {
 }
 
 #submitPost {
-     background-color: #62dab6;
+     background-color: #60cead;
 }
 
 #submitPost:hover {
-     background-color: #6df2ca;
+     background-color: #60e3bc;
 }
 
 #imgUploaded {
@@ -693,6 +732,99 @@ button {
 #slider-range div {
      background: #f7d4e5;
      top: -0.5px;
+}
+
+.summary {
+     display: flex;
+     flex-direction: row;
+     background-color: white;
+     align-items: center;
+     padding: 20px 30px;
+     border-radius: 10px;
+     width: 500px;
+     margin: 10px auto;
+ }
+
+ .summary img {
+     height: 100px;
+     width: 100px;
+     border-radius: 50px;
+     object-fit: cover;
+     margin-right: 10px;
+ }
+
+ .summaryInfoContainer {
+     margin-left: 10px;
+     align-self: flex-start;
+ }
+
+ .summaryInfo span {
+     margin-right: 5px;
+ }
+
+ .summaryName {
+     font-size: 20px;
+     font-weight: 600;
+ }
+
+ .summaryDescription {
+     margin-top: 10px;
+ }
+
+ .bookingForm {
+     margin: 10px auto 40px auto;
+     width: 500px;
+     display: grid;
+ }
+
+ .formTitle {
+     margin: 10px 0px;
+     font-size: 18px;
+ }
+
+ .formShelter {
+     font-size: 16px;
+     background-color: white;
+     border-radius: 10px;
+     padding: 8px;
+ }
+
+ .formOpenings {
+     font-size: 14px;
+     margin-top: 5px;
+ }
+
+ .dp__input_wrap input {
+     border: unset;
+     border-radius: 10px;
+     padding-top: 8px;
+     padding-bottom: 8px;
+ }
+
+ .dp__input_wrap input:hover {
+     border: 1px solid #9198ae;
+ }
+
+ .bookingForm button {
+     border-radius: 10px;
+     margin: 30px auto;
+     background-color: #ffc107;
+     color: white;
+     font-weight: 600;
+     border: unset;
+     padding: 10px 20px;
+ }
+
+ .bookingForm button:hover {
+     background-color: #ffd454;
+ }
+
+ .bookingForm button:active {
+     background-color: #ffbf00;
+ }
+
+#myVisits {
+     margin: 50px 0px;
 }
 
 /*
@@ -928,6 +1060,14 @@ button {
      color: #651c45;
 }
 
+.title.purple {
+     color: #341b61;
+}
+
+.title.green {
+     color: #0f4332;
+}
+
 #addPet {
      margin: 0 auto;
      padding: 10px 15px;
@@ -1158,6 +1298,18 @@ button {
      #errorPost {
           margin-bottom: 10px;
      }
+     .summary {
+          width: 400px;
+          padding: 12px 16px;
+          font-size: 14px;
+     }
+     .summary img {
+          height: 80px;
+          width: 80px;
+      }
+     .bookingForm {
+          width: 400px;
+     }
 }
      
 @media screen and (max-width: 480px) {
@@ -1182,6 +1334,16 @@ button {
      }
      .petPhotoField {
           width: 230px;
+     }
+     .summary {
+          width: 300px;
+          padding: 12px 16px;
+     }
+     .bookingForm {
+          width: 300px;
+     }
+     #myVisits {
+          margin: 25px 0px;
      }
 }
      
