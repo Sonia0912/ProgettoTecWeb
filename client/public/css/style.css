@@ -1136,6 +1136,8 @@ button {
      width: fit-content;
      margin: 0 auto;
      padding: 0px 20px;
+     border: 1px solid #aaaaaa;
+     border-radius: 10px;
 }
 
 #newPetForm {
@@ -1145,6 +1147,8 @@ button {
      display: grid;
      grid-template-columns: auto auto auto auto;
      max-width: 500px;
+     border: 1px solid #aaaaaa;
+     border-radius: 10px;
 }
 
 #colForm1 {
