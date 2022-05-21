@@ -28,18 +28,43 @@ $(function() {
     } );
 });
 
+var selectedRow = null;
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    var modal = document.getElementById('modalDeletePet');
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+// Delete button opens the modal
 $('#petsList tbody').on('click', 'button', function () {
-    var selectedRow = table.row($(this).parents('tr'));
+    $('#modalDeletePet').show();
+    selectedRow = table.row($(this).parents('tr'));
+});
+
+$("#confirmDeleteButton").on("click", function() {
     var data = selectedRow.data();
     $.ajax({
         url: 'http://localhost:3000/deletePet/' + data["type"] + '/' + data["name"],
         type: 'DELETE'
     }).done(function() {
         selectedRow.remove().draw();
+        $('#modalDeletePet').hide();
     }).fail(function() {
-        console.log("Delete failed")
+        console.log("Delete failed");
+        $('#modalDeletePet').hide();
     })
-});
+})
+
+$("#cancelButton").on("click", function() {
+    $('#modalDeletePet').hide();
+})
+
+$("#closeButton").on("click", function() {
+    $('#modalDeletePet').hide();
+})
 
 function updatePhoto(input) {
     if(input.files.length != 0 && input.files[0].size / 1000 > 60) {
