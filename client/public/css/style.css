@@ -827,16 +827,76 @@ button {
      margin: 10px auto;
      border-radius: 20px;
      background-color: #f8f48a;
+    
+     justify-content: center;
+    
 }
 
 #laoutProfile{
-     display: flex; 
-     flex-direction: row;
-     flex-wrap: wrap;
-     justify-content: space-around;
-     width: 100%;
+     display: grid;
+     grid-template-columns: 1fr 1fr 1fr;
+     padding: 20px;
+     justify-content: center;
+
+}
+.fontProfile{
+     font-size: large;
+     font-weight: bold;
+     padding: 4px;
+     
+}
+#emailSpan{
+     grid-column-start: 1;
+     grid-column-end: 2;
+}
+#email{
+     grid-column-start: 2;
+     grid-column-end: 4;
+}
+#name{
+     grid-column-start: 2;
+     grid-column-end: 3;
+ 
+}
+#nameSpan{
+     grid-column-start: 1;
+    grid-column-end: 2;
+}
+#surnameSpan{
+     grid-column-start: 1;
+    grid-column-end: 2;
 }
 
+#surname{
+     grid-column-start: 2;
+     grid-column-end: 3;
+}
+#inputName{
+     grid-column-start: 3;
+     grid-column-end: 4;
+     margin: auto 10px;
+     border-radius: 10px;
+}
+#inputSurname{
+     grid-column-start: 3;
+     grid-column-end: 4;
+     margin: auto 10px;
+     border-radius: 10px;
+}
+#logoutBtn{
+     grid-column-start: 1;
+     grid-column-end: 2;
+     background-color: red;
+     margin: 20px;
+}
+#saveBtn{
+     grid-column-start: 3;
+     grid-column-end: 4;
+     border-radius: 20px;
+     background-color: blue;
+     margin: 20px;
+     max-width: 30px;
+} 
 /*
      EVENTS
 */
