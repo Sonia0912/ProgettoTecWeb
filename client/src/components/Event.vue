@@ -18,7 +18,7 @@
 				</article>
 			</div>
 			<div class="infoEvent">
-				<div>Posti Rimasti: <span class="seatEvent">{{ info.totSeat - info.bookedSeat }}</span></div>
+				<div>Available seats: <span class="seatEvent">{{ info.totSeat - info.bookedSeat }}</span></div>
 				<div><button class="bookEvent" @click="booking(info.name, index)">Book</button></div>
 			</div>
 		</div>

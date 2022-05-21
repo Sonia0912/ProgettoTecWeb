@@ -14,13 +14,10 @@
 //   }
 // }
 
-
-$('body').css("background-color","#4f788c");
-
 var tentativi = 0; 
 var punteggio = 100;
 var guessWord;
-let error = true; 
+var error = true; 
 var blurPhoto = 10;
 var usedWord = new Set();
 var guessedWord = new Set();
@@ -107,7 +104,7 @@ function hideWord(word){
  function guess(){
 
      if(tentativi > 9){
-         alert("YOU ARE LOSER!"); 
+         alert("Game over!"); 
          clearWord(guessWord);
          animalRequest();
         clearVariable();
@@ -122,7 +119,7 @@ function hideWord(word){
 
       if(userInput.length > 1 ){
         if(guessWord == userInput){
-            alert("WINNER!");
+            alert("Victory!");
             $('#letter').val("");
             punteggio = punteggio + 100;
             clearWord(guessWord);
@@ -142,7 +139,7 @@ function hideWord(word){
             $('#animalPhoto').css("filter","blur("+blurPhoto+"px)")
             error = false;
             if(guessedWord.has(userInput)){
-              alert("Hia già indovinato la lettera: " + userInput)
+              alert("You already tried this letter: " + userInput)
             }else{
               guessedWord.add(userInput)
             }
@@ -175,7 +172,7 @@ function hideWord(word){
         }
         
         if(count === $('#wordToGuess').text().length){
-          alert("WINNER!");
+          alert("Victory!");
           $('#score').text(punteggio)
           clearWord(guessWord);
           clearVariable();
@@ -192,7 +189,7 @@ function hideWord(word){
    function writeWordInsert(insertWord){
 
      if(usedWord.has(insertWord)){
-      alert("Hai già inserito la lettera:" + insertWord);
+      alert("You already tried this letter: " + insertWord);
      }else{
       $('#usedLetters').append("<span class=www>"+ insertWord + "</span>"); 
        
