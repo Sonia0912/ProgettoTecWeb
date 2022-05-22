@@ -864,8 +864,8 @@ button {
      grid-column-end: 4;
      grid-row-start: 1;
      grid-row-end: 3;
-     max-width: 45vw;
-     max-height: 45vh;
+     max-width: 30vw;
+     max-height: 25vh;
      filter:blur(10px);
 
     
@@ -1253,6 +1253,141 @@ button {
 }
 
 #errorNewPet {
+     padding-top: 5px;
+     color: #dc3545;
+     transition: 1s;
+}
+
+/*
+     Manage-Event
+*/
+
+
+#addEvent {
+     margin: 0 auto;
+     padding: 10px 15px;
+     border-radius: 10px;
+     background-color: #f43e99;
+     color: white;
+}
+
+#addEventBtn {
+     padding: 10px 15px;
+     border-radius: 10px;
+     background-color: #f43e99;
+     color: white;
+     float: right;
+}
+
+#addEvent:hover, #addPetBtn:hover {
+     background-color: #ff89c4;
+}
+
+.deleteEvent {
+     padding: 4px 8px;
+     color: white;
+     background-color: #dc3545;
+     border-radius: 7px;
+}
+
+#eventsList_wrapper {
+     width: fit-content;
+     margin: 20px auto 0px auto;
+}
+
+#eventsList_length, #eventsList_filter {
+     padding-bottom: 20px;
+}
+
+#eventsList_info, #eventsList_paginate {
+     padding-bottom: 20px;
+     padding-top: 20px;
+}
+
+#eventsList_filter label input, #eventsList_length label select, #eventsList_paginate span a {
+     background-color: white;
+}
+
+#usersList_wrapper {
+     width: fit-content;
+     margin: 20px auto 0px auto;
+}
+
+#usersList_length, #usersList_filter {
+     padding-bottom: 20px;
+}
+
+#usersList_info, #usersList_paginate {
+     padding-bottom: 20px;
+     padding-top: 20px;
+}
+
+#usersList_filter label input, #usersList_length label select, #usersList_paginate span a {
+     background-color: white;
+}
+
+.dataTables_scroll {
+     background-color: white;
+     width: fit-content;
+     margin: 0 auto;
+     padding: 0px 20px;
+     border: 1px solid #aaaaaa;
+     border-radius: 10px;
+}
+
+#newEventForm {
+     background-color: white;
+     padding: 5px 30px 5px 30px;
+     margin: 30px 0px;
+     display: grid;
+     grid-template-columns: auto auto auto auto;
+     max-width: 500px;
+     border: 1px solid #aaaaaa;
+     border-radius: 10px;
+}
+
+#colForm1 {
+     grid-column-start: 1;
+     grid-column-end: 3;
+}
+
+#colForm2 {
+     grid-column-start: 3;
+     grid-column-end: 5;
+}
+
+.eventPhotoField {
+     min-height: 80px;
+     height: fit-content;
+     grid-column-start: 1;
+     grid-column-end: 4;
+     margin-right: 10px;
+}
+
+#newEventSubmit {
+     grid-column-start: 4;
+     grid-column-end: 5;
+     align-self: end;
+     padding-bottom: 20px;
+}
+
+#newEventPhoto {
+     width: 99%;
+}
+
+.colForm {
+     padding: 0px 10px;
+}
+
+.newEventField {
+     padding: 10px 0px;
+}
+
+#newEventName, #newEventAge {
+     display: block;
+}
+
+#errorNewEvent {
      padding-top: 5px;
      color: #dc3545;
      transition: 1s;

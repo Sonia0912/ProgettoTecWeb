@@ -34,7 +34,7 @@
                         <input type="number" min="0" max="1000" name="totSeat" id="newEventSeats" v-model="seats" required />
                     </div>
                     <!-- Category -->
-                    <div class="newPetField">
+                    <div class="newEventField">
                         <div>Category:</div>
                         <select v-model="category" name="category" id="newEventCategory" required>
                             <option value="Festival">Festival</option>
@@ -116,9 +116,9 @@
         },
         methods: {
             submit: function (event) {
-                if (this.name && this.age && this.gender && this.shelter && this.type) {
+                if (this.name && this.date && this.place && this.price && this.description && this.seats && this.category && this.photo) {
                     this.$router.push({
-                        name: 'Adoption'
+                        name: 'Event'
                     });
                     return true;
                 }

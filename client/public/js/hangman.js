@@ -110,14 +110,14 @@ function hideWord(word){
          alert("YOU ARE LOSER!"); 
          clearWord(guessWord);
          animalRequest();
-        clearVariable();
+         clearVariable();
          $('#animalPhoto').css("filter","blur("+blurPhoto+"px)")
          changeImgHangMan();
          return;
      }else{
 
       //chechk  only the first letter insered by user
-      error = true
+      error = true;
       let userInput = $('#letter').val().toLowerCase();
 
       if(userInput.length > 1 ){
@@ -125,24 +125,40 @@ function hideWord(word){
             alert("WINNER!");
             $('#letter').val("");
             punteggio = punteggio + 100;
+            $('#quizScore').text(punteggio);
             clearWord(guessWord);
             clearVariable();
             $('#animalPhoto').css("filter","blur("+blurPhoto+"px)")
             changeImgHangMan();
             animalRequest();
-            $('#score').text(punteggio)
             return;
+           }else{
+             alert("try again and you will be luckier")
+             $('#letter').val("");
+             punteggio = punteggio - 10;
+             $('#quizScore').text(punteggio);
+
            }
       }else if(userInput.length == 1){
-          console.log(userInput)
 
           if(guessWord.includes(userInput)){
-            $('#score').text(punteggio)
-            blurPhoto = blurPhoto - 2;
-            $('#animalPhoto').css("filter","blur("+blurPhoto+"px)")
-            error = false;
             if(guessedWord.has(userInput)){
-              alert("Hia già indovinato la lettera: " + userInput)
+              alert("You have just guess the letter: " + userInput)
+              tentativi++; 
+              punteggio = punteggio - 10;
+              $('#quizScore').text(punteggio);
+              $('#letter').val("");
+              changeImgHangMan();
+            }else{
+              $('#quizScore').text(punteggio);
+              blurPhoto = blurPhoto - 2;
+              $('#animalPhoto').css("filter","blur("+blurPhoto+"px)")
+              error = false;
+
+            }
+            
+            if(guessedWord.has(userInput)){
+              alert("You have just guessed this word " + userInput)
             }else{
               guessedWord.add(userInput)
             }
@@ -157,12 +173,11 @@ function hideWord(word){
             usedWord.add(userInput);
             tentativi++; 
             punteggio = punteggio - 10;
-            $('#score').text(punteggio)
+            $('#quizScore').text(punteggio);
             $('#letter').val("");
             changeImgHangMan();
           }
       $('#letter').val("");  
-      console.log("Punteggio -> " + punteggio)
       }
          
       
@@ -176,7 +191,7 @@ function hideWord(word){
         
         if(count === $('#wordToGuess').text().length){
           alert("WINNER!");
-          $('#score').text(punteggio)
+          $('#quizScore').text(punteggio);
           clearWord(guessWord);
           clearVariable();
           changeImgHangMan();
@@ -202,5 +217,10 @@ function hideWord(word){
    }
 
  function changeImgHangMan(){
+   if(tentativi>9){
+    $("#imgHangman").attr("src","/images/hangman/facile"+9+".png");
+   }else{
     $("#imgHangman").attr("src","/images/hangman/facile"+tentativi+".png");
+   }
+   
  }
