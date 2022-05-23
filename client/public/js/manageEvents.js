@@ -27,6 +27,12 @@ $(function() {
     } );
 });
 
+$('#newEventForm').submit(function(e){
+
+   console.log("Sono qui")
+  // location.reload()
+});
+
 var selectedRow = null;
 
 // When the user clicks anywhere outside of the modal, close it

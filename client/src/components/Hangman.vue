@@ -3,7 +3,7 @@
 
         <div id="hangmanContainer">
 
-            <div id="spanRules">
+            <div id="divRules">
                 <button id="btnRules"> ? </button>
                 <div id="rulesPopUp">
                     <button id="closeRules"> X </button>
@@ -19,8 +19,13 @@
 
                     </div>
                 </div>
-
             </div>
+
+            <div id="divResult">
+                <button id="closeResult"> X </button>
+                <div id="textResult"> </div>
+            </div>
+
             <div>
 
                 <div class="title">Hangman Game</div>

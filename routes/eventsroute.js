@@ -37,7 +37,31 @@ router.post('/bookingEvent',async (req, res) => {
                       console.log('Booking Update');
                       //return res.status(200).send("true")
                     }
-                });       
+                });     
+                fs.readFile('./data/events.json', 'utf8', function readFileCallback(err, data) {
+                    if(err) {
+                        console.log("ERROR READING FILE: " + err);
+                    } else {
+                        obj = JSON.parse(data);
+                        for (var i = 0; i < obj.length; i++) {
+                            if (obj[i].name == eventName) {
+                                obj[i].bookedSeat += 1;
+                                console.log('num seat: '+ obj[i].bookedSeat )
+                                break;
+                            }
+                        }
+            
+                        json = JSON.stringify(obj);
+                        fs.writeFile('./data/events.json', json, 'utf8', (err) => {
+                            if (!err) {
+                              console.log('Value seat change into the database');
+                              console.log(eventName)
+                             return res.status(200).send("true")
+                            }
+                        });
+                    }
+                });
+                
             }else{
                 return res.status(400).send("false");
             }
@@ -45,31 +69,6 @@ router.post('/bookingEvent',async (req, res) => {
         }
     });
 
-    if(continua){
-        fs.readFile('./data/events.json', 'utf8', function readFileCallback(err, data) {
-            if(err) {
-                console.log("ERROR READING FILE: " + err);
-            } else {
-                obj = JSON.parse(data);
-                for (var i = 0; i < obj.length; i++) {
-                    if (obj[i].name == eventName) {
-                        obj[i].bookedSeat += 1;
-                        console.log('num seat: '+ obj[i].bookedSeat )
-                        break;
-                    }
-                }
-    
-                json = JSON.stringify(obj);
-                fs.writeFile('./data/events.json', json, 'utf8', (err) => {
-                    if (!err) {
-                      console.log('Value seat change into the database');
-                      console.log(eventName)
-                       return res.status(200).send("true")
-                    }
-                });
-            }
-        });
-    }
    
 })
 
@@ -83,21 +82,22 @@ router.post('/', function(req, res) {
             var booked = obj.booking.find(booked => booked.nameEvent === req.body.nameEvent & booked.userEmail === req.body.userEmail );
            
             if(booked){
-                console.log("Hai già prenotato")
+                return res.status(400).send("false");
             }else{
-                console.log(req.body)
+                //console.log(req.body)
                 obj.push({
                     nameEvent:req.body.nameEvent,
                     userEmail:req.body.userEmail
                 });
+                json = JSON.stringify(obj);
+                fs.writeFile('./data/bookingEvent.json', json, 'utf8', (err) => {
+                    if (!err) {
+                      console.log('Event booking added to the database');
+                    }
+                });
             }
            
-            json = JSON.stringify(obj);
-            fs.writeFile('./data/bookingEvent.json', json, 'utf8', (err) => {
-                if (!err) {
-                  console.log('Event booking added to the database');
-                }
-            });
+           
         }
     });
 });
@@ -110,6 +110,8 @@ router.get('/getEvents', function(req, res) {
 });
 
 router.post('/addEvent', function(req, res) {
+
+    console.log("sono qui")
     fs.readFile('./data/events.json', 'utf8', function readFileCallback(err, data) {
         if(err) {
             console.log("ERROR READING FILE: " + err);
@@ -124,13 +126,13 @@ router.post('/addEvent', function(req, res) {
                 totSeat: req.body.totSeat,
                 bookedSeat:0,
                 category:req.body.category,
-                photo:photo.req.body.photo
+                photo:req.body.photo
             });
             json = JSON.stringify(obj);
             fs.writeFile('./data/events.json', json, 'utf8', (err) => {
                 if (!err) {
                   console.log('Event added to the database');
-                
+                 
                 }
             });
         }

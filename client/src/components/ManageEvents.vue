@@ -4,7 +4,7 @@
 
         <div class="centeredGrid">
             <button @click="isHidden = !isHidden" id="addEvent">New event</button>
-            <form v-if="!isHidden" id="newEventForm" @submit="submit" action="http://localhost:3000/addEvent" method="post">
+            <form  id="newEventForm" @submit="submit" action="http://localhost:3000/addEvent" method="post">
                 <div id="colForm1">
                     <!-- Name -->
                     <div class="newEventField">Name:
@@ -98,7 +98,8 @@
                 description: '',
                 seats: '',
                 category: '',
-                photo: ''
+                photo: '',
+                isHidden: true
             }
         },
         created() {
@@ -116,13 +117,16 @@
         },
         methods: {
             submit: function (event) {
-                if (this.name && this.date && this.place && this.price && this.description && this.seats && this.category && this.photo) {
-                    this.$router.push({
-                        name: 'Event'
-                    });
-                    return true;
-                }
-                event.preventDefault();
+                
+                // if(this.name){
+                //     // this.$router.push({
+                //     //     name: 'Event'
+                //     // });
+                //     return true;
+                // }
+                
+                 event.preventDefault();
+                    
             }
         }
     }

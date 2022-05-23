@@ -1,29 +1,33 @@
 
-
-// function utente(name){
-//   if(name){
-//     this.name = name; 
-//     this.punteggio = 0; //getPunteggio da file
-//     this.error = true; 
-//     this.guessWord = ""; //getWord
-//   }else{
-//     this.name = "Utente"; 
-//     this.punteggio = 0;
-//     this.error = true; 
-//     this.guessWord = ""; //getWord
-//   }
-// }
-
-
 $('body').css("background-color","#4f788c");
 
+var punteggioUtente = 0; 
+
+if (localStorage.getItem('token') != null) {
+  $.ajax({
+    url: 'http://localhost:3000/hangmanScore',
+    type: 'get',
+    data: {
+      email: localStorage.getItem('email')
+    }
+  }).then(res=>{
+       punteggioUtente =  res.score
+       console.log(punteggioUtente)
+  })
+
+}
+
+
 var tentativi = 0; 
-var punteggio = 100;
+var punteggioPartita = 100;
 var guessWord;
 let error = true; 
 var blurPhoto = 10;
 var usedWord = new Set();
 var guessedWord = new Set();
+let isTextNode = (_, el) => el.nodeType === Node.TEXT_NODE;
+
+
 //regole per il punteggio: 
 // se indovina al primo tentativo sono 100 pti
 // ogni lettera indovinare togli 5 punti
@@ -48,6 +52,10 @@ $('#btnRules').on("click",function () {
     $('#rulesPopUp').show();
   }
   
+});
+$('#closeResult').on("click", function(){
+  $('#divResult').contents().filter(isTextNode).remove();
+  $('#divResult').hide();
 });
 
 $('#closeRules').on("click",function () {
@@ -107,12 +115,16 @@ function hideWord(word){
  function guess(){
 
      if(tentativi > 9){
-         alert("YOU ARE LOSER!"); 
+      $('#divResult').show();
+       $('#textResult').text("YOU ARE A LOSER!");
+         
          clearWord(guessWord);
          animalRequest();
          clearVariable();
+         $('#letter').val("");
          $('#animalPhoto').css("filter","blur("+blurPhoto+"px)")
          changeImgHangMan();
+         saveResult(punteggioPartita);
          return;
      }else{
 
@@ -122,35 +134,39 @@ function hideWord(word){
 
       if(userInput.length > 1 ){
         if(guessWord == userInput){
-            alert("WINNER!");
+          $('#divResult').show();
+            $('#textResult').text("WINNER!");
             $('#letter').val("");
-            punteggio = punteggio + 100;
-            $('#quizScore').text(punteggio);
+            punteggioPartita = punteggioPartita + 100;
+            $('#quizScore').text(punteggioPartita);
             clearWord(guessWord);
             clearVariable();
             $('#animalPhoto').css("filter","blur("+blurPhoto+"px)")
             changeImgHangMan();
             animalRequest();
+            saveResult(punteggioPartita);
             return;
            }else{
-             alert("try again and you will be luckier")
+            $('#divResult').show();
+            $('#textResult').text("try again and you will be luckier")
              $('#letter').val("");
-             punteggio = punteggio - 10;
-             $('#quizScore').text(punteggio);
+             punteggioPartita = punteggioPartita - 10;
+             $('#quizScore').text(punteggioPartita);
 
            }
       }else if(userInput.length == 1){
 
           if(guessWord.includes(userInput)){
             if(guessedWord.has(userInput)){
-              alert("You have just guess the letter: " + userInput)
+              $('#divResult').show();
+              $('#textResult').text("You have just guess the letter: " + userInput)
               tentativi++; 
-              punteggio = punteggio - 10;
-              $('#quizScore').text(punteggio);
+              punteggioPartita = punteggioPartita - 10;
+              $('#quizScore').text(punteggioPartita);
               $('#letter').val("");
               changeImgHangMan();
             }else{
-              $('#quizScore').text(punteggio);
+              $('#quizScore').text(punteggioPartita);
               blurPhoto = blurPhoto - 2;
               $('#animalPhoto').css("filter","blur("+blurPhoto+"px)")
               error = false;
@@ -158,7 +174,9 @@ function hideWord(word){
             }
             
             if(guessedWord.has(userInput)){
-              alert("You have just guessed this word " + userInput)
+              $('#divResult').show();
+              $('#textResult').text("You have just guessed this word " + userInput)
+
             }else{
               guessedWord.add(userInput)
             }
@@ -172,8 +190,8 @@ function hideWord(word){
             writeWordInsert(userInput);
             usedWord.add(userInput);
             tentativi++; 
-            punteggio = punteggio - 10;
-            $('#quizScore').text(punteggio);
+            punteggioPartita = punteggioPartita - 10;
+            $('#quizScore').text(punteggioPartita);
             $('#letter').val("");
             changeImgHangMan();
           }
@@ -190,12 +208,15 @@ function hideWord(word){
         }
         
         if(count === $('#wordToGuess').text().length){
-          alert("WINNER!");
-          $('#quizScore').text(punteggio);
+          $('#divResult').show();
+          $('#textResult').text("WINNER!")
+          $('#quizScore').text(punteggioPartita);
           clearWord(guessWord);
           clearVariable();
+          $('#animalPhoto').css("filter","blur("+blurPhoto+"px)")
           changeImgHangMan();
           animalRequest();
+          saveResult(punteggioPartita);
           return;
         }
 
@@ -204,10 +225,38 @@ function hideWord(word){
      
    }
 
+
+
+   function saveResult(punteggio){
+
+
+    if (localStorage.getItem('token') != null) {
+      $.ajax({
+        url: 'http://localhost:3000/hangman',
+        type: 'post',
+        data: {
+            email: localStorage.getItem('email'),
+            scoreUser: punteggio
+        },
+        headers: {
+            token: localStorage.getItem('token')
+        },
+    });
+
+    }
+    
+
+  }
+    
+
+
+
    function writeWordInsert(insertWord){
 
      if(usedWord.has(insertWord)){
-      alert("Hai già inserito la lettera:" + insertWord);
+      $('#divResult').show();
+      $('#textResult').text("You have just insered the letter:" + insertWord);
+      //punteggio = punteggio - 5;
      }else{
       $('#usedLetters').append("<span class=www>"+ insertWord + "</span>"); 
        

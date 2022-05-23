@@ -847,6 +847,7 @@ button {
      max-width: 500px;
      margin: 10px auto;
      border-radius: 20px;
+     position: relative;
      
 }
 #imgHangman{
@@ -891,7 +892,7 @@ button {
 #scoreHangman{
      text-align: center;
 }
-#spanRules{
+#divRules{
     position: absolute; 
     right: 2px;
 }
@@ -948,6 +949,18 @@ button {
      margin-bottom: 10px;
      background-color: green;
      border-radius: 10px;
+
+}
+#divResult{
+     display: none;
+     z-index: 1;
+     position: absolute;
+     right: 20vw;
+     left: 20vw;
+     top:25vh;
+     background-color: rgba(33, 46, 236, 0.405);
+
+
 }
 
 /*
@@ -955,20 +968,22 @@ button {
 */
 
 #profileContainer{
-     max-width: 500px;
+     max-width: 90vw;
      margin: 10px auto;
      border-radius: 20px;
      background-color: #f8f48a;
-    
      justify-content: center;
     
 }
 
+
 #laoutProfile{
+     max-height: 80vw;
      display: grid;
      grid-template-columns: 1fr 1fr 1fr;
      padding: 20px;
      justify-content: center;
+
 
 }
 .fontProfile{
@@ -1429,6 +1444,8 @@ button {
      MEDIA
 */
 
+
+
 @media screen and (max-width: 1200px) {
      #nameHeader {
           font-size: 35px;
@@ -1544,6 +1561,77 @@ button {
      #myVisits {
           margin: 25px 0px;
      }
+}
+
+@media  screen and (max-width: 400px) {
+     #laoutProfile{
+         max-height: 80vw;
+         display: grid;
+         grid-template-columns: 1fr 1fr;
+         padding: 20px;
+         justify-content: center;
+    
+    
+    }
+    
+    #emailSpan{
+         grid-column-start: 1;
+         grid-column-end: 2;
+    }
+    #email{
+         grid-column-start: 2;
+         grid-column-end: 3;
+         padding: 5px;
+    }
+    #name{
+         grid-column-start: 2;
+         grid-column-end: 3;
+         padding: 5px;
+     
+    }
+    #nameSpan{
+         grid-column-start: 1;
+        grid-column-end: 2;
+        padding: 5px;
+    }
+    #surnameSpan{
+         grid-column-start: 1;
+        grid-column-end: 2;
+        padding: 5px;
+    }
+    
+    #surname{
+         grid-column-start: 2;
+         grid-column-end: 3;
+         padding: 5px;
+    }
+    #inputName{
+         grid-column-start: 1;
+         grid-column-end: 3;
+         margin: auto 10px;
+         border-radius: 10px;
+    }
+    #inputSurname{
+         grid-column-start: 1;
+         grid-column-end: 3;
+         margin: auto 10px;
+         border-radius: 10px;
+    }
+    #logoutBtn{
+         grid-column-start: 1;
+         grid-column-end: 2;
+         background-color: red;
+         margin: 20px;
+    }
+    #saveBtn{
+         grid-column-start: 2;
+         grid-column-end: 3;
+         border-radius: 20px;
+         background-color: blue;
+         margin: 20px;
+         
+    } 
+
 }
      
 @media screen and (max-width: 350px) {
