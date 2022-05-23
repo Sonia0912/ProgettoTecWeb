@@ -13,6 +13,8 @@
             <!-- Requirements -->
             <div class="titleVol">Requirements:</div>
             <ul id="requirements"></ul>
+            <!-- Book button -->
+            <div id="positionNotSelected"></div>
             <button id="jobBook">Book</button> 
         </div>
 
@@ -22,24 +24,19 @@
             <textarea id="cv" placeholder="Tell us something about yourself..."></textarea>
             <!-- Day and time -->
             <div class="titleVol">Pick a day and time for the interview:</div>
-            <!-- <input type="date"> -->
-            <input type="text" id="txtDate" />
-            <select name="from" id="from">
-                <option value="1">09:00</option>
-                <option value="2">10:00</option>
-                <option value="3">11:00</option>
-                <option value="4">12:00</option>
-            </select>
+            <input type="text" id="txtDate" readonly />
+            <select name="time" id="interviewTime"></select>
+            <div id="dateUnavailable"></div>
             <!-- Submit button -->
             <div id="formNotCompleted"></div>
-            <button id="jobSubmit">Submit</button>       
+            <button @click="goToBookings" id="jobSubmit">Submit</button>       
         </div>
     </div>
 </template>
 
 <script>
-/*     import Datepicker from '@vuepic/vue-datepicker';
-    import '@vuepic/vue-datepicker/dist/main.css'; */
+    import $ from 'jquery'
+    import axios from 'axios'
     export default {
         data() {
             return {
@@ -61,6 +58,40 @@
             let Script = document.createElement("script");
             Script.setAttribute("src", "./js/volunteering.js");
             document.head.appendChild(Script);
+        },
+        methods: {
+            goToBookings() {
+                if($('#jobPosition').val() && $('#jobShelter').val() && $('#cv').val() && $("#txtDate").val() && $("#interviewTime").val()) {
+                    let interview = {
+                        position: $('#jobPosition').val(),
+                        shelter: $('#jobShelter').val(),
+                        cv: $('#cv').val(),
+                        date: $("#txtDate").val(),
+                        time: $("#interviewTime").val()
+                    }
+                    axios.post('http://localhost:3000/addInterview', interview, {
+                        headers: {
+                            token: localStorage.getItem('token')
+                        }
+                    })
+                    .then(() => {
+                        $("#jobPosition").empty();
+                        $("#jobShelter").empty();
+                        $("#requirements").empty();
+                        $("#positionNotSelected").empty();
+                        $("#cv").val('');
+                        $("#txtDate").val('');
+                        $("#interviewTime").empty();
+                        $("#formNotCompleted").empty();
+                        this.$router.push({
+                            name: 'MyBookings', 
+                        });
+                    })
+                    .catch(err => { $("#serverErrorVol").html("Sorry something went wrong (" + err + ")") })
+                } else {
+                    $("#formNotCompleted").html("Please fill in all the fields");
+                }                         
+            }
         }
     }
 </script>
