@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: false }))
 app.locals.siteTitle = 'AnimalHouse';
 app.locals.userAuthenticated = false;
 
-app.use(express.static("public"));
+app.use(express.static("img"));
 app.use(express.json());
 
 app.use(bodyParser.json({ limit: '50MB', type: 'application/json' }));
@@ -31,6 +31,7 @@ app.use(require('./routes/dashboardroute'));
 app.use(require('./routes/adoptionroute'));
 app.use(require('./routes/eventsroute'));
 app.use(require('./routes/adminroute'));
+app.use(require('./routes/volunteeringroute'));
 
 const PORT = 3000;
 

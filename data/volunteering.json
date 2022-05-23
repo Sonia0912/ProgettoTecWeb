@@ -1,0 +1,38 @@
+[
+    {
+        "id": "qwerty",
+        "position": "Adoptions Concierge",
+        "shelter": "Bay Avenue, 31 - NY",
+        "requirements": ["Must be 18yo", "Positive attitude", "Communication skills"]
+    },
+    {
+        "id": "qwerty123",
+        "position": "Animal Care - Dogs",
+        "shelter": "Bay Avenue, 31 - NY",
+        "requirements": ["Must be 18yo", "Positive attitude", "Good understanding of dogs"]
+    },
+    {
+        "id": "qwerty123456",
+        "position": "Animal Care - Dogs",
+        "shelter": "Park Avenue, 29 - NY",
+        "requirements": ["Must be 18yo", "Positive attitude", "Communication skills", "Good understanding of dogs"]
+    },
+    {
+        "id": "qwerty",
+        "position": "Cat PALs",
+        "shelter": "Bay Avenue, 31 - NY",
+        "requirements": ["Must be 18yo", "Positive attitude", "Good understanding of cats"]
+    },
+    {
+        "id": "qwerty",
+        "position": "Cat PALs",
+        "shelter": "Park Avenue, 29 - NY",
+        "requirements": ["Must be 18yo", "Positive attitude", "Good understanding of cats"]
+    },
+    {
+        "id": "qwerty",
+        "position": "Cat PALs",
+        "shelter": "King's Street, 30 - NY",
+        "requirements": ["Must be 18yo", "Good understanding of cats"]
+    }
+]
