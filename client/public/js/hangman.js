@@ -21,7 +21,7 @@ if (localStorage.getItem('token') != null) {
 var tentativi = 0; 
 var punteggioPartita = 100;
 var guessWord;
-let error = true; 
+var error = true; 
 var blurPhoto = 10;
 var usedWord = new Set();
 var guessedWord = new Set();

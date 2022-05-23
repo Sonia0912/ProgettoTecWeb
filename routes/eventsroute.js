@@ -72,35 +72,7 @@ router.post('/bookingEvent',async (req, res) => {
    
 })
 
-router.post('/', function(req, res) {
-    fs.readFile('./data/bookingEvent.json', 'utf8', function readFileCallback(err, data) {
-        if(err) {
-            console.log("ERROR READING FILE: " + err);
-        } else {
-            obj = JSON.parse(data);
-           // console.log(req.data.nameEvent)
-            var booked = obj.booking.find(booked => booked.nameEvent === req.body.nameEvent & booked.userEmail === req.body.userEmail );
-           
-            if(booked){
-                return res.status(400).send("false");
-            }else{
-                //console.log(req.body)
-                obj.push({
-                    nameEvent:req.body.nameEvent,
-                    userEmail:req.body.userEmail
-                });
-                json = JSON.stringify(obj);
-                fs.writeFile('./data/bookingEvent.json', json, 'utf8', (err) => {
-                    if (!err) {
-                      console.log('Event booking added to the database');
-                    }
-                });
-            }
-           
-           
-        }
-    });
-});
+
 
 router.get('/getEvents', function(req, res) {
     var content = fs.readFileSync('./data/events.json', 'utf8');

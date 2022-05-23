@@ -86,7 +86,7 @@
                 </div>
                 <div class="footer__section">
                     <span class="footer__title">To have fun</span>
-                    <router-link to="/donations" class="footer__link">Fun facts</router-link>
+                    <router-link to="/funfacts" class="footer__link">Fun facts</router-link>
                     <router-link to="/funnypets" class="footer__link">Funny pets</router-link>
                     <router-link to="/quiz" class="footer__link">Quiz</router-link>
                     <router-link to="/hangman" class="footer__link">Hangman</router-link>

@@ -1,26 +1,12 @@
 /*
 COLORS
-     Yellow: #f7e62d
-     Light Yellow: #f6f5ae
-     Orange: #ff9c50
-     Red: #f24236
-     Light blue: #2e86ab
-     Medium grey: #565554
-     Dark blue-grey: #262532
-
-     Medium blue: #4f788c
-     Light blue: #bccdd7
-     Very light orange: #eadece
-     Brown: #5b4c49
-     Orange: #d8782e
-     Yellow: #f7e62d
-
-     Light blue: #3c91e6
-     Dark blue: #324376
-     Yellow: #f7e62d
-     Light yellow: #f5dd90
-     Light orange: #f68e5f
-     Red-orange: #f76c5e
+     Dark blue: #1b284d
+     Brigth blue: #0d6efd
+     Light blue: #d7e7ff
+     Orange: #fd7e14
+     Pink: #f43e99
+     Green/blue: #60cead
+     Red: #dc3545
 
 FONTS
      font-family: 'Kalam', cursive;
@@ -605,6 +591,40 @@ button {
 }
 
 /*
+     FUN FACTS
+*/
+
+.funFactsContainer {
+     text-align: center;
+}
+
+.fact {
+     background-color: white;
+     border-radius: 10px;
+     padding: 20px;
+     width: fit-content;
+     max-width: 600px;
+     height: fit-content;
+     overflow: auto;
+     margin: 30px auto 0px auto;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+}
+
+.searchFact button {
+     margin-left: 20px;
+     border-radius: 5px;
+     padding: 5px 10px;
+     background-color:#fd7e14;
+     color: white;
+}
+
+.searchFact button:hover {
+     background-color:#ffa053;
+}
+
+/*
      ADOPTION
 */
 
@@ -841,47 +861,46 @@ button {
      padding: 15px;
      margin: 10px;
      border-radius: 10px;
-
 }
+
 #hangmanContainer{
      max-width: 500px;
-     margin: 10px auto;
-     border-radius: 20px;
-     position: relative;
-     
+     margin: 0px auto;
+     border-radius: 20px; 
 }
+
 #imgHangman{
      height: 30vh;
      grid-row-start: 1;
      grid-row-end: 3;
      max-width: 30vw;
      max-height: 30vh;
-     
-
 }
+
 #animalPhoto{
      height: 25vh;
      grid-column-start: 2;
      grid-column-end: 4;
      grid-row-start: 1;
      grid-row-end: 3;
-     max-width: 30vw;
-     max-height: 25vh;
-     filter:blur(10px);
-
-    
+     max-width: 45vw;
+     max-height: 45vh;
+     filter:blur(10px);   
 }
+
 #wordToGuess{
      grid-column-start: 2;
      grid-column-end: 4;
      grid-row-start: 3;
      grid-row-end: 4;
      color: #324376;
-     background-color: #dbdbd7;
-     border: 2px solid red;
+     background-color: #e4efff;
+     border: 2px solid #408dff;
+     border-radius: 10px;
      margin-top: 15px;
-     padding: 0px 10px;
+     padding: 4px 15px;
 }
+
 #usedLetters{
      grid-column-start: 1 ;
      grid-column-end:  2;
@@ -889,20 +908,25 @@ button {
      grid-row-end: 4;
      min-height: 10vw;
 }
+
 #scoreHangman{
      text-align: center;
 }
-#divRules{
+
+#spanRules{
     position: absolute; 
     right: 2px;
 }
+
 #btnRules{
      border-radius: 20px;
-     padding: 5px 15px;
-     background-color: #6da2f3;
+     padding: 5px 13px;
+     background-color: #0d6efd;
      margin: 10px;
+     color: white;
 }
-#rulesPopUp{
+
+/* #rulesPopUp{
      position:fixed;
      display: none;
      z-index: 1;
@@ -912,44 +936,63 @@ button {
      width: 80vw;
      height: 35vh;
      overflow: auto;
-     background-color: rgba(0,0,0, 0.5);
-}
+     background-color: #fd7e14;
+     border-radius: 10px;
+} */
+
 #descriptionHangman{
      position: relative;
      color: white;
-     font-family: 'Kalam', cursive;
      margin:20px 10px;
      padding: 10px;
      width: 85vw;
 }
-#closeRules{
+
+.hangmanRulesContainer {
+     padding: 20px;
+     background-color: #e37a24;
+     color: white;
+}
+
+.modal-content.hangmanModal-content {
+     background-color: #e37a24;
+}
+
+/* #closeRules{
      position: absolute;
      top: 7px;
      right: 10px;
      z-index: 1;
      border-radius: 8px;
-     padding: 10px 10px;
+     padding: 6px 10px;
      background-color: #e9edf1;
      margin: 10px;
-}
+} */
+
 #hangmanInput{
      display: flex;
      flex-direction: row;
      text-align: center;
      flex-wrap: wrap;
      justify-content: space-around;
-     margin: 10px;
+     padding: 20px;
 
 }
+
 #letter{
      margin-bottom: 10px;
      border-radius: 10px;
+     border: 2px solid #408dff;
 }
+
 #btnHangman{
      margin-bottom: 10px;
      background-color: green;
      border-radius: 10px;
-
+     background-color: #fd7e14;
+     border-radius: 6px;
+     padding: 6px 15px;
+     color: white;
 }
 #divResult{
      display: none;
@@ -959,7 +1002,6 @@ button {
      left: 20vw;
      top:25vh;
      background-color: rgba(33, 46, 236, 0.405);
-
 
 }
 
@@ -972,8 +1014,8 @@ button {
      margin: 10px auto;
      border-radius: 20px;
      background-color: #f8f48a;
+     background-color: #f8f48a;   
      justify-content: center;
-    
 }
 
 
@@ -1044,12 +1086,17 @@ button {
      margin: 20px;
      max-width: 30px;
 } 
+
 /*
      EVENTS
 */
-#layoutEvent{
-     background-color: #fff186;
-     
+
+.eventsContainer{
+     padding-bottom: 30px;
+}
+
+.layoutEvent{
+     background-color: white; 
      display: grid; 
      align-items: center;
      justify-items: center;
@@ -1066,44 +1113,61 @@ button {
      margin: 10px;
      border-radius: 10px;
 }
-#evenstContainer{
+
+.eventContainer{
      max-width: 500px;
      margin: 0px auto;
 }
-#figureEvetn{
+
+.figureEvent{
     position: relative;
 }
-#imgEvent{
+
+.imgEvent{
      max-width: 450px;
      width: 50vw;
      grid-area: "foto";
 }
-.categoryEvetn{
+
+.categoryEvent{
      position: absolute; 
      bottom: 10px;
-     left: 5px;
-     background-color: red;
-     padding: 1px;
+     left: 10px;
+     background-color: #ffcae4be;
+     padding: 1px 5px;
+     border-radius: 5px;
 }
-#nameEvent{
+
+.eventContainer div article {
+     margin-left: 10px;
+}
+
+.divPriceEvent {
+     margin-bottom: 8px;
+}
+
+/* .nameEvent{
      grid-area: "nome";
 }
-#dateEvent{
+
+.dateEvent{
      grid-area: "data";
      margin: 10px;
 }
-#addressEvent{
+
+.addressEvent{
      grid-area: "andress";
      margin: 10px;
 }
-#priceEvent{
+
+.priceEvent{
      grid-area: "price";
      margin: 10px;
-}
+} */
 
-#descriptionEvent{
-     background-color: rgb(232, 235, 242);
-     grid-area: "description";
+.descriptionEvent{
+     background-color: #e6eaf0;
+/*      grid-area: "description"; */
      align-items: center;
      justify-items: center;
      border-radius: 10px;
@@ -1112,19 +1176,27 @@ button {
      overflow: auto;
      max-height: 25vh;
 }
-#infoEvent{
+
+.infoEvent{
      display: flex;
      flex-direction: row;
-     margin: 10px;
+     padding: 10px;
      justify-content: space-around;
 }
-#bookEvent{
-     background-color: #3158c6;
+
+.bookEvent{
+     background-color: #f43e99;
      border-radius: 10px;
-     padding: 5px;
+     padding: 8px 12px;
+     color: white;
 }
-#seatEvent{
-     margin: 15px;
+
+.bookEvent:hover{
+     background-color: #f67ab8;
+}
+
+.seatEvent{
+     margin: 10px;
 }
 
 /*
@@ -1483,6 +1555,9 @@ button {
      .carousel-caption.d-md-block h5 {
           font-size: 24px;
      }
+     .fact {
+          width: 60vw;
+     }
 }
 
 @media screen and (max-width: 650px) {
@@ -1560,6 +1635,9 @@ button {
      }
      #myVisits {
           margin: 25px 0px;
+     }
+     .fact {
+          width: 80vw;
      }
 }
 
@@ -1659,5 +1737,8 @@ button {
      }
      #newPetForm {
           display: unset;
+     }
+     .searchFact button {
+          margin-top: 10px;
      }
 }

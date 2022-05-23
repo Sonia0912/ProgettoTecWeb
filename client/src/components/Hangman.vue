@@ -1,25 +1,49 @@
  <template>
     <div class="wigglePattern">
-
         <div id="hangmanContainer">
 
-            <div id="divRules">
+            <div id="spanRules">
                 <button id="btnRules"> ? </button>
-                <div id="rulesPopUp">
-                    <button id="closeRules"> X </button>
-                    <div id="descriptionHangman">
+
+                <!-- Modal -->
+                <div id="rulesPopUp" class="modal">
+                    <span id="closeRules" class="close" title="Close Modal">&times;</span>
+                    <form class="modal-content hangmanModal-content">
+                        <div class="container hangmanRulesContainer">
+                            <h1>How to play</h1>
+                            <ul>
+                                <li>You have to guess the name of the animal in the picture.</li>
+                                <li>You can insert one letter or the entire word.</li>
+                                <li>You start with 100 points.</li>
+                                <li>If you guess the word immediately you get all the 100 points.</li>
+                                <li>If you guess one letter: -5 points</li>
+                                <li>If the letter or word are wrong: -10 points</li>
+                                <li>You only have 10 rounds to win!</li>
+                            </ul>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+                
+
+<!--                 <div id="rulesPopUp" class="modal">
+                    <button id="closeRules">&times;</button>
+                    <div id="descriptionHangman" class="modal-content">
                         <p>How to play: </p>
                         <ul>
-                            <li>You Start with 100 pti: </li>
-                            <li>If you guess the word immediately: + 100 pti </li>
-                            <li>If you guess one letter: - 5 pti </li>
-                            <li>If you wrong: - 10 pti </li>
+                            <li>You have to guess the name of the animal in the picture.</li>
+                            <li>You can insert one letter or the entire word.</li>
+                            <li>You start with 100 points.</li>
+                            <li>If you guess the word immediately you get all the 100 points.</li>
+                            <li>If you guess one letter: -5 points</li>
+                            <li>If the letter or word are wrong: -10 points</li>
+                            <li>You only have 10 rounds to win!</li>
                         </ul>
-
-
                     </div>
                 </div>
             </div>
+                </div> -->
 
             <div id="divResult">
                 <button id="closeResult"> X </button>
@@ -27,32 +51,24 @@
             </div>
 
             <div>
-
                 <div class="title">Hangman Game</div>
                 <span>
-                    <div id="scoreHangman">Your score: <span id="quizScore">{{ score }}</span></div>
+                    <div id="scoreHangman">Your total score: <span id="quizScore">{{ score }}</span></div>
+                    <div id="scoreHangman">Current score: <span id="hangmanCurrentScore">100</span></div>
                 </span>
-
                 <div id="HangmanBackgroud">
                     <img src="/images/hangman/facile0.png" id="imgHangman">
                     <img id="animalPhoto">
                     <div id="wordToGuess"></div>
                     <div id="usedLetters"></div>
                 </div>
-
                 <div id="hangmanInput">
                     <input type="text" id="letter" name="userWord">
                     <button id="btnHangman" onclick="guess()"> Send </button>
                 </div>
             </div>
-
         </div>
-
-
-
     </div>
-
-
 </template>
 
 <script>
