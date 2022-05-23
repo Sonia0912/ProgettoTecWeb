@@ -1,13 +1,26 @@
 var table = null;
+var selectedRow = null;
 
-$(function() {
-    table = $('#eventsList').DataTable( {
+$(function () {
+    createTable();
+    $('#newEventForm').hide()
+    $('#addEvent').on("click", function () {
+        if ($('#newEventForm').is(":visible")) {
+            $('#newEventForm').hide();
+        } else {
+            $('#newEventForm').show();
+        }
+    })
+});
+
+function createTable() {
+    table = $('#eventsList').DataTable({
         scrollX: true,
         ajax: {
             url: 'http://localhost:3000/getEvents',
             dataSrc: ''
         },
-        columns: [ 
+        columns: [
             { data: 'name' },
             { data: 'place' },
             { data: 'date' },
@@ -24,19 +37,23 @@ $(function() {
                 "width": "170px", "targets": 3
             }
         ]
-    } );
+    });
+}
+
+$('#newEventForm').submit(function (e) {
+    var newEvent = {
+        name: $("#newEventName").val(),
+        place: $("#newEventPlace").val(),
+        date: $("#newEventDate").val()
+    }
+    table.row.add(newEvent).draw(false);
+
+
 });
 
-$('#newEventForm').submit(function(e){
-
-   console.log("Sono qui")
-  // location.reload()
-});
-
-var selectedRow = null;
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
+window.onclick = function (event) {
     var modal = document.getElementById('modalDeleteEvent');
     if (event.target == modal) {
         modal.style.display = "none";
@@ -49,37 +66,24 @@ $('#eventsList tbody').on('click', 'button', function () {
     selectedRow = table.row($(this).parents('tr'));
 });
 
-$("#confirmDeleteButton").on("click", function() {
+$("#confirmDeleteButton").on("click", function () {
     var data = selectedRow.data();
     $.ajax({
         url: 'http://localhost:3000/deleteEvent/' + data["name"],
         type: 'DELETE'
-    }).done(function() {
+    }).done(function () {
         selectedRow.remove().draw();
         $('#modalDeleteEvent').hide();
-    }).fail(function() {
+    }).fail(function () {
         console.log("Delete failed");
         $('#modalDeleteEvent').hide();
     })
 })
 
-$("#cancelButton").on("click", function() {
+$("#cancelButton").on("click", function () {
     $('#modalDeleteEvent').hide();
 })
 
-$("#closeButton").on("click", function() {
+$("#closeButton").on("click", function () {
     $('#modalDeleteEvent').hide();
 })
-
-function updatePhoto(input) {
-    if(input.files.length != 0 && input.files[0].size / 1000 > 60) {
-        $('#newEventPhoto').val('');
-        $("#errorNewEvent").html("The maximum file size is 60KB.");
-    } else {
-        var reader = new FileReader();            
-        reader.onload = function (e) {
-            $("#srcPhoto").val(e.target.result)
-        };
-        reader.readAsDataURL(input.files[0]);
-    }
-}

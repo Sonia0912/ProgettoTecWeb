@@ -3,7 +3,7 @@
         <div class="title pink">Manage events</div>
 
         <div class="centeredGrid">
-            <button @click="isHidden = !isHidden" id="addEvent">New event</button>
+            <button id="addEvent">New event</button>
             <form  id="newEventForm" @submit="submit" action="http://localhost:3000/addEvent" method="post">
                 <div id="colForm1">
                     <!-- Name -->
@@ -44,10 +44,8 @@
                     </div>
                     <!-- Photo -->
                     <div class="newEventField eventPhotoField">
-                        <div>Photo:</div>
-                        <input type="file" onchange="updatePhoto(this);" ref="myFiles" name="photoName" id="newEventPhoto" accept="image/png, image/jpeg" required />
-                        <input v-model="photo" type="text" name="photo" id="srcPhoto" hidden />
-                        <div id="errorNewEvent"></div>
+                         Photo URI:
+                        <input type="text" name="photo" id="newPetPhoto" required />
                     </div>
                 </div>
                 <div id="newEventSubmit">
@@ -89,19 +87,6 @@
 <script>
     export default{
         name: "manageAdoptions",
-        data() {
-            return {
-                name: '',
-                date: '',
-                place: '',
-                price: '',
-                description: '',
-                seats: '',
-                category: '',
-                photo: '',
-                isHidden: true
-            }
-        },
         created() {
             if(localStorage.getItem('token') === null || localStorage.getItem('isAdmin') === null) {
                 this.$router.push({
@@ -114,20 +99,6 @@
             let Script = document.createElement("script");
             Script.setAttribute("src", "./js/manageEvents.js");
             document.head.appendChild(Script);
-        },
-        methods: {
-            submit: function (event) {
-                
-                // if(this.name){
-                //     // this.$router.push({
-                //     //     name: 'Event'
-                //     // });
-                //     return true;
-                // }
-                
-                 event.preventDefault();
-                    
-            }
         }
     }
 </script>
