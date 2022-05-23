@@ -1,6 +1,29 @@
 var table = null;
+var selectedRow = null;
 
 $(function() {
+    createTable();
+    $("#newPetForm").hide();
+    $("#addPet").on("click", function() {
+        if($("#newPetForm").is(":visible")) {
+            $("#newPetForm").hide();
+        } else {
+            $("#newPetForm").show();
+        }     
+    })
+});
+
+$('#newPetForm').submit(function() {
+    var newPet = {
+        name: $("#newPetName").val(),
+        age: $("#newPetAge").val(),
+        type: $('input[name="type"]:checked').val(),
+        shelter: $("#newPetShelter").val()
+    }
+    table.row.add(newPet).draw(false);
+})
+
+function createTable() {
     table = $('#petsList').DataTable( {
         scrollX: true,
         ajax: {
@@ -26,9 +49,7 @@ $(function() {
             }
         ]
     } );
-});
-
-var selectedRow = null;
+}
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
@@ -65,16 +86,3 @@ $("#cancelButton").on("click", function() {
 $("#closeButton").on("click", function() {
     $('#modalDeletePet').hide();
 })
-
-function updatePhoto(input) {
-    if(input.files.length != 0 && input.files[0].size / 1000 > 60) {
-        $('#newPetPhoto').val('');
-        $("#errorNewPet").html("The maximum file size is 60KB.");
-    } else {
-        var reader = new FileReader();            
-        reader.onload = function (e) {
-            $("#srcPhoto").val(e.target.result)
-        };
-        reader.readAsDataURL(input.files[0]);
-    }
-}

@@ -52,7 +52,7 @@ $('#eventsList tbody').on('click', 'button', function () {
 $("#confirmDeleteButton").on("click", function() {
     var data = selectedRow.data();
     $.ajax({
-        url: 'http://localhost:3000/deleteEvent/:' + data["name"],
+        url: 'http://localhost:3000/deleteEvent/' + data["name"],
         type: 'DELETE'
     }).done(function() {
         selectedRow.remove().draw();

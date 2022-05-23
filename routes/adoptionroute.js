@@ -84,7 +84,7 @@ router.post('/adoptionBook', function(req, res) {
         } else {
             obj = JSON.parse(data);
             var found = false;
-            // update the number of bookings for that day and shelter
+            // update the number of bookings for that day and pet
             for (var i = 0; i < obj.length; i++) {
                 if (obj[i].petName === req.body.petName && obj[i].day === req.body.day && obj[i].month === req.body.month) {
                     obj[i].totVisits += 1;
@@ -172,11 +172,26 @@ router.get('/myvisits/:loggedEmail', function(req, res) {
 router.delete('/deleteBooking/:idVisit', function(req, res) { 
     var contents = fs.readFileSync('./data/visits.json', 'utf8');
     obj = JSON.parse(contents);
+    visitToDelete = obj.filter(data => data.id === req.params.idVisit);
     remainingObj = obj.filter(data => data.id != req.params.idVisit);
     json = JSON.stringify(remainingObj);
     fs.writeFile('./data/visits.json', json, 'utf8', (err) => {
         if (!err) {
           console.log('Visit deleted');
+        }
+    });
+    var contents2 = fs.readFileSync('./data/visitsPerDay.json', 'utf8');
+    obj2 = JSON.parse(contents2);
+    for(let i = 0; i < obj2.length; i++) {
+        if(obj2[i].petName === visitToDelete[0].petName && obj2[i].day === visitToDelete[0].day && obj2[i].month === visitToDelete[0].month && obj2[i].year === visitToDelete[0].year) {
+            obj2[i].totVisits -= 1;
+            break;
+        }
+    }
+    json2 = JSON.stringify(obj2);
+    fs.writeFile('./data/visitsPerDay.json', json2, 'utf8', (err) => {
+        if (!err) {
+          console.log('Number of visits updated');
         }
     });
     res.send("OK");

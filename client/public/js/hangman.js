@@ -1,6 +1,4 @@
 
-$('body').css("background-color","#4f788c");
-
 var punteggioUtente = 0; 
 
 if (localStorage.getItem('token') != null) {

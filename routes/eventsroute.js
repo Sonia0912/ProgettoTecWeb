@@ -112,7 +112,7 @@ router.post('/addEvent', function(req, res) {
     res.status(204).send("OK");
 })
 
-router.delete('/deleteEvent/:name', function(req, res) { 
+router.delete('/deleteEvent/:name', function(req, res) {
     var contents = fs.readFileSync('./data/events.json', 'utf8');
     obj = JSON.parse(contents);
     remainingObj = obj.filter(data => data.name != req.params.name);

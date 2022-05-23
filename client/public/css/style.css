@@ -875,6 +875,7 @@ button {
      grid-row-end: 3;
      max-width: 30vw;
      max-height: 30vh;
+     object-fit: cover;
 }
 
 #animalPhoto{
@@ -1323,19 +1324,15 @@ button {
      padding-bottom: 20px;
 }
 
-#newPetPhoto {
-     width: 99%;
+#colForm1, #colForm2 {
+     padding: 0 10px;
 }
-
-.colForm {
-     padding: 0px 10px;
-}
-
+ 
 .newPetField {
      padding: 10px 0px;
 }
 
-#newPetName, #newPetAge {
+#newPetName, #newPetAge, #newPetPhoto {
      display: block;
 }
 
