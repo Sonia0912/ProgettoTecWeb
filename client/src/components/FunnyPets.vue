@@ -4,8 +4,9 @@
             <div class="centeredGrid funnypets">
                 <div class="title">Video of the day</div>
                 <div class="video-container">
-                    <iframe width="420" height="315" src="https://www.youtube.com/embed/SSuj4Cz9F0M" allowfullscreen></iframe> 
+                    <iframe id="videoPet" width="420" height="315" src="https://www.youtube.com/embed/SSuj4Cz9F0M" allowfullscreen></iframe> 
                 </div>
+                <button id="anotherVideo">Another one</button>                    
             </div>
     
             <div class="centeredGrid funnypets">
