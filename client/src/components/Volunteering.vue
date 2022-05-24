@@ -3,7 +3,7 @@
         <div class="title">Volunteering</div>
         <div class="serverError" id="serverErrorVol">{{ error }}</div>
 
-        <div id="viewVolunteering"> 
+        <div id="viewVolunteering" class="verticalForm"> 
             <!-- Job position -->
             <div class="titleVol">Position:</div>
             <select id="jobPosition"><option></option></select>
@@ -18,13 +18,13 @@
             <button id="jobBook">Book</button> 
         </div>
 
-        <div id="bookVolunteering">
+        <div id="bookVolunteering" class="verticalForm">
             <!-- Form -->
             <div class="titleVol">CV:</div>
             <textarea id="cv" placeholder="Tell us something about yourself..."></textarea>
             <!-- Day and time -->
-            <div class="titleVol">Pick a day and time for the interview:</div>
-            <input type="text" id="txtDate" readonly />
+            <div class="titleVol">Day and time of the interview:</div>
+            <input type="text" id="txtDate" placeholder="mm/dd/yyyy" readonly />
             <select name="time" id="interviewTime"></select>
             <div id="dateUnavailable"></div>
             <!-- Submit button -->

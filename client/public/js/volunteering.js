@@ -45,7 +45,7 @@ $(function() {
         var volunteeringsSelected = volunteeringItems.filter(item => item.position === $("#jobPosition").val());
         var volunteeringSelected = volunteeringsSelected.filter(item => item.shelter === $("#jobShelter").val());
         for(let i = 0; i < volunteeringSelected[0]["requirements"].length; i++) {
-            var content = '<ul>' + volunteeringSelected[0]["requirements"][i] + '</ul>';
+            var content = '<li>' + volunteeringSelected[0]["requirements"][i] + '</li>';
             $("#requirements").append(content);
         }
     });

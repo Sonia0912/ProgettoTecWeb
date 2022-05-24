@@ -7,6 +7,7 @@
             <button @click="typeOfBooking = 1" id="eventsType" :class="{active: typeOfBooking === 1 }">Events</button>
             <button @click="typeOfBooking = 2" id="interviewsType" :class="{active: typeOfBooking === 2 }">Interviews</button>
         </div>
+
         <div v-if="typeOfBooking === 0" id="myVisits">
             <div v-if="visits.length === 0" class="subtitle">You haven't booked any visit yet</div>
             <div class="summary visitSummary" v-for="(info, index) in visits" @click="askToDelete(info.id, index)" :id="info.id" :key="info.petName">
@@ -23,8 +24,14 @@
                 </div>
             </div>
         </div>
-        <div v-if="typeOfBooking === 1" id="myEvents">event</div>
-        <div v-if="typeOfBooking === 2" id="myInterviews">interview</div>
+
+        <div v-if="typeOfBooking === 1" id="myEvents">
+            <div v-if="events.length === 0" class="subtitle">You haven't booked any event yet</div>
+        </div>
+
+        <div v-if="typeOfBooking === 2" id="myInterviews">
+            <div v-if="interviews.length === 0" class="subtitle">You haven't booked any interview yet</div>
+        </div>
 
         <!-- Modal -->
         <div id="deleteBookingModal" class="modal">

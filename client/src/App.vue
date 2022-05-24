@@ -19,6 +19,8 @@
               <span v-if="isAdmin">
                 <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/manage-adoptions">Manage adoptions</router-link>
                 <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/manage-events">Manage events</router-link>
+                <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/manage-interviews">Manage interviews</router-link>
+                <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/volunteering-positions">Volunteering positions</router-link>
                 <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/users">Users</router-link>
               </span>
           </div>
@@ -34,7 +36,6 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
                         <li class="nav-item"><router-link class="nav-link" to="/adoption">Adoption</router-link></li>
-                        <li class="nav-item"><router-link class="nav-link" to="/donations">Donations</router-link></li>
                         <li class="nav-item"><router-link class="nav-link" to="/volunteering">Volunteering</router-link></li>
                         <li class="nav-item"><router-link class="nav-link" to="/events">Events</router-link></li>
                         <li class="nav-item"><router-link class="nav-link" to="/funfacts">Fun facts</router-link></li>
@@ -80,7 +81,6 @@
                     <span class="footer__title">AnimalHouse</span>
                     <router-link to="/" class="footer__link">Home</router-link>
                     <router-link to="/adoption" class="footer__link">Adoption</router-link>
-                    <router-link to="/donations" class="footer__link">Donations</router-link>
                     <router-link to="/volunteering" class="footer__link">Volunteering</router-link>
                     <router-link to="/events" class="footer__link">Events</router-link>
                 </div>

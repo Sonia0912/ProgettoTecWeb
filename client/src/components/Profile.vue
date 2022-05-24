@@ -1,26 +1,32 @@
 <template>
-    <div id="profileContainer">
+    <div id="profileContainer" class="blueCurtainBackground">
         <div class="title">Profile</div>
-        <div id="laoutProfile">
+        <div id="profileGridContainer">
+            <div id="layoutProfile">
 
-            
                 <span id="emailSpan" class="fontProfile">E-mail:</span> 
                 <span id="email">{{ email }}</span>
-       
-                <span id="nameSpan" class="fontProfile">Name:</span> 
-                <span id="name">{{ name }}</span>
+
+                <span id="nameSpan" class="fontProfile">Name:</span>
                 <input id="inputName" v-model="name">
-           
-                <span id="suernameSpan" class="fontProfile">Surname:</span> 
-                <span id="surname">{{ surname }}</span>
+            
+                <span id="surnameSpan" class="fontProfile">Surname:</span>
                 <input id="inputSurname" v-model="surname">
-       
-           
-            <button id="logoutBtn" @click="logOut">Log Out</button>
-            <button id="saveBtn" @click="saveInfo">Save</button>
 
+                <span id="passwordSpan" class="fontProfile">Password:</span>
+                <input type="password" id="inputSurname" v-model="password">
+
+                <span id="quizSpan" class="fontProfile">Quiz score:</span> 
+                <span id="email">{{ quizScore }}</span>
+
+                <span id="hangmanSpan" class="fontProfile">Hangman score:</span> 
+                <span id="email">{{ hangmanScore }}</span>
+                    
+                <button id="logoutBtn" @click="logOut">Log Out</button>
+                <button id="saveBtn" @click="saveInfo">Save</button>
+
+            </div>
         </div>
-
     </div>
 </template>
 
@@ -37,7 +43,10 @@ export default {
         return {
             email: '',
             name: '',
-            surname: ''
+            surname: '',
+            password: '',
+            quizScore: 0,
+            hangmanScore: 0
         }
     },
     methods: {
@@ -57,7 +66,8 @@ export default {
             let user = {
                 email: this.email,
                 name: this.name,
-                surname: this.surname
+                surname: this.surname,
+                password: this.password
             }
             axios.post('http://localhost:3000/profile', user)
         }
@@ -68,6 +78,8 @@ export default {
                 this.email = res.data.user.email;
                 this.name = res.data.user.name;
                 this.surname = res.data.user.surname;
+                this.quizScore = res.data.user.quizScore;
+                this.hangmanScore = res.data.user.hangmanScore;
             })
     }
 }

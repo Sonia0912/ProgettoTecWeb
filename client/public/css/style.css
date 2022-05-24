@@ -828,7 +828,7 @@ button {
  .bookingForm button {
      border-radius: 10px;
      margin: 30px auto;
-     background-color: #ffc107;
+     background-color: #f43e99;
      color: white;
      font-weight: 600;
      border: unset;
@@ -836,16 +836,55 @@ button {
  }
 
  .bookingForm button:hover {
-     background-color: #ffd454;
+     background-color: #f880bc;
  }
 
- .bookingForm button:active {
-     background-color: #ffbf00;
- }
-
-#myVisits {
+#myVisits, #myEvents, #myInterviews {
      margin: 50px 0px;
 }
+
+/*
+     VOLUNTEERING
+*/
+
+.titleVol {
+     margin-bottom: 10px;
+     font-size: 20px;
+     font-weight: 600;
+     text-align: center;
+}
+
+#viewVolunteering select, #bookVolunteering input, #bookVolunteering select {
+     margin-bottom: 20px;
+     border: unset;
+     border-radius: 8px;
+     height: 35px;
+     min-width: 200px;
+     padding: 0px 5px;
+}
+
+#bookVolunteering textarea {
+     margin-bottom: 20px;
+     border: unset;
+     border-radius: 8px;
+     min-width: 400px;
+     min-height: 150px;
+     padding: 15px;
+}
+
+#jobBook, #jobSubmit {
+     border-radius: 10px;
+     margin: 30px auto;
+     background-color: #f43e99;
+     color: white;
+     font-weight: 600;
+     border: unset;
+     padding: 10px 20px;
+ }
+
+#jobBook:hover, #jobSubmit:hover {
+     background-color: #f880bc;
+ }
 
 /*
      HANGMAN
@@ -927,20 +966,6 @@ button {
      color: white;
 }
 
-/* #rulesPopUp{
-     position:fixed;
-     display: none;
-     z-index: 1;
-     left: 10vw;
-     top: 20vw;
-     right: 10vw;
-     width: 80vw;
-     height: 35vh;
-     overflow: auto;
-     background-color: #fd7e14;
-     border-radius: 10px;
-} */
-
 #descriptionHangman{
      position: relative;
      color: white;
@@ -958,17 +983,6 @@ button {
 .modal-content.hangmanModal-content {
      background-color: #e37a24;
 }
-
-/* #closeRules{
-     position: absolute;
-     top: 7px;
-     right: 10px;
-     z-index: 1;
-     border-radius: 8px;
-     padding: 6px 10px;
-     background-color: #e9edf1;
-     margin: 10px;
-} */
 
 #hangmanInput{
      display: flex;
@@ -1011,82 +1025,66 @@ button {
 */
 
 #profileContainer{
-     max-width: 90vw;
-     margin: 10px auto;
-     border-radius: 20px;
-     background-color: #f8f48a;
-     background-color: #f8f48a;   
-     justify-content: center;
+     padding-bottom: 30px;
 }
-
-
-#laoutProfile{
-     max-height: 80vw;
+#layoutProfile{
      display: grid;
+     row-gap: 5px;
      grid-template-columns: 1fr 1fr 1fr;
      padding: 20px;
      justify-content: center;
-
-
+     background-color: white;
+     max-width: 500px;
+     margin: 0px auto;
+     border-radius: 20px;
 }
 .fontProfile{
      font-size: large;
      font-weight: bold;
-     padding: 4px;
-     
+     padding: 4px;   
 }
-#emailSpan{
+#emailSpan, #nameSpan, #surnameSpan, #quizSpan, #passwordSpan, #hangmanSpan{
      grid-column-start: 1;
-     grid-column-end: 2;
+     grid-column-end: 3;
 }
 #email{
-     grid-column-start: 2;
+     grid-column-start: 3;
      grid-column-end: 4;
+     margin: auto 12px;
 }
-#name{
-     grid-column-start: 2;
-     grid-column-end: 3;
- 
-}
-#nameSpan{
-     grid-column-start: 1;
-    grid-column-end: 2;
-}
-#surnameSpan{
-     grid-column-start: 1;
-    grid-column-end: 2;
-}
-
-#surname{
-     grid-column-start: 2;
-     grid-column-end: 3;
-}
-#inputName{
+#inputName, #inputSurname{
      grid-column-start: 3;
      grid-column-end: 4;
      margin: auto 10px;
      border-radius: 10px;
+     border: unset;
+     background-color: #e3ebf5;
+     padding: 5px 10px;
 }
-#inputSurname{
-     grid-column-start: 3;
-     grid-column-end: 4;
-     margin: auto 10px;
-     border-radius: 10px;
+#logoutBtn, #saveBtn {
+     border-radius: 8px;
+     margin: 20px;
+     width: 100px;
+     padding: 5px;
+     color: white;
 }
 #logoutBtn{
      grid-column-start: 1;
      grid-column-end: 2;
-     background-color: red;
-     margin: 20px;
+     background-color: #dc3545;
+}
+#logoutBtn:hover {
+     background-color: #e36672;
 }
 #saveBtn{
      grid-column-start: 3;
      grid-column-end: 4;
-     border-radius: 20px;
-     background-color: blue;
-     margin: 20px;
-     max-width: 30px;
+     background-color: #60cead;
+     justify-self: end;
 } 
+#saveBtn:hover {
+     background-color: #92dfc8;
+}
 
 /*
      EVENTS
@@ -1098,18 +1096,8 @@ button {
 
 .layoutEvent{
      background-color: white; 
-     display: grid; 
-     align-items: center;
-     justify-items: center;
-     grid-template-columns: 1fr;
-     grid-row-gap: 2px;
-     grid-template-areas: "foto" 
-                          "nome"
-                          "data"
-                          "andress"
-                          "price"
-                          "description";
-                          
+     display: grid;
+     justify-items: center;                        
      padding: 15px;
      margin: 10px;
      border-radius: 10px;
@@ -1127,7 +1115,6 @@ button {
 .imgEvent{
      max-width: 450px;
      width: 50vw;
-     grid-area: "foto";
 }
 
 .categoryEvent{
@@ -1147,28 +1134,8 @@ button {
      margin-bottom: 8px;
 }
 
-/* .nameEvent{
-     grid-area: "nome";
-}
-
-.dateEvent{
-     grid-area: "data";
-     margin: 10px;
-}
-
-.addressEvent{
-     grid-area: "andress";
-     margin: 10px;
-}
-
-.priceEvent{
-     grid-area: "price";
-     margin: 10px;
-} */
-
 .descriptionEvent{
      background-color: #e6eaf0;
-/*      grid-area: "description"; */
      align-items: center;
      justify-items: center;
      border-radius: 10px;
@@ -1513,8 +1480,6 @@ button {
      MEDIA
 */
 
-
-
 @media screen and (max-width: 1200px) {
      #nameHeader {
           font-size: 35px;
@@ -1598,6 +1563,9 @@ button {
      .bookingForm {
           width: 400px;
      }
+     #profileGridContainer {
+          margin: 0px 10px;
+     }
 }
      
 @media screen and (max-width: 480px) {
@@ -1630,83 +1598,22 @@ button {
      .bookingForm {
           width: 300px;
      }
-     #myVisits {
+     #myVisits, #myEvents, #myInterviews {
           margin: 25px 0px;
      }
      .fact {
           width: 80vw;
      }
-}
-
-@media  screen and (max-width: 400px) {
-     #laoutProfile{
-         max-height: 80vw;
-         display: grid;
-         grid-template-columns: 1fr 1fr;
-         padding: 20px;
-         justify-content: center;
-    
-    
-    }
-    
-    #emailSpan{
-         grid-column-start: 1;
-         grid-column-end: 2;
-    }
-    #email{
-         grid-column-start: 2;
-         grid-column-end: 3;
-         padding: 5px;
-    }
-    #name{
-         grid-column-start: 2;
-         grid-column-end: 3;
-         padding: 5px;
-     
-    }
-    #nameSpan{
-         grid-column-start: 1;
-        grid-column-end: 2;
-        padding: 5px;
-    }
-    #surnameSpan{
-         grid-column-start: 1;
-        grid-column-end: 2;
-        padding: 5px;
-    }
-    
-    #surname{
-         grid-column-start: 2;
-         grid-column-end: 3;
-         padding: 5px;
-    }
-    #inputName{
-         grid-column-start: 1;
-         grid-column-end: 3;
-         margin: auto 10px;
-         border-radius: 10px;
-    }
-    #inputSurname{
-         grid-column-start: 1;
-         grid-column-end: 3;
-         margin: auto 10px;
-         border-radius: 10px;
-    }
-    #logoutBtn{
-         grid-column-start: 1;
-         grid-column-end: 2;
-         background-color: red;
-         margin: 20px;
-    }
-    #saveBtn{
-         grid-column-start: 2;
-         grid-column-end: 3;
-         border-radius: 20px;
-         background-color: blue;
-         margin: 20px;
-         
-    } 
-
+     #bookVolunteering textarea {
+          min-width: 300px;
+     }
+     #logoutBtn, #saveBtn {
+          margin: 5px;
+          padding: 3px;
+     }
+     #inputName, #inputSurname {
+          width: 120px;
+     }
 }
      
 @media screen and (max-width: 350px) {
@@ -1737,5 +1644,8 @@ button {
      }
      .searchFact button {
           margin-top: 10px;
+     }
+     #bookVolunteering textarea {
+          min-width: 250px;
      }
 }

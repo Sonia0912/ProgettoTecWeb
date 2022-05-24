@@ -4,9 +4,9 @@ if (process.env.NODE_ENV !== 'production') {
 
 var express = require('express');
 const jwt = require('jsonwebtoken');
-const fs = require('fs')
+const fs = require('fs');
 var router = express.Router();
-
+const bcrypt = require('bcrypt');
 
 router.get('/profile', function(req, res) {
     var token = req.headers.token;
@@ -25,13 +25,16 @@ router.get('/profile', function(req, res) {
             user: {
                 email: user.email,
                 name: user.name,
-                surname: user.surname
+                surname: user.surname,
+                quizScore: user.quizScore,
+                hangmanScore: user.hangmanScore
             }
         })
     })
 });
 
 router.post('/profile',async (req, res) => {
+    const hashedPassword = await bcrypt.hash(req.body.password, 10)
     fs.readFile('./data/users.json', 'utf8', function readFileCallback(err, data) {
         if(err) {
             console.log("ERROR READING FILE: " + err);
@@ -41,6 +44,9 @@ router.post('/profile',async (req, res) => {
                 if (obj.users[i].email === req.body.email) {
                     obj.users[i].name = req.body.name
                     obj.users[i].surname = req.body.surname
+                    if(req.body.password != '') {
+                        obj.users[i].password = hashedPassword
+                    }
                     break;
                 }
             }
@@ -53,30 +59,5 @@ router.post('/profile',async (req, res) => {
         }
     });
 })
-
-
-router.post('/profile',async (req, res) => {
-    fs.readFile('./data/users.json', 'utf8', function readFileCallback(err, data) {
-        if(err) {
-            console.log("ERROR READING FILE: " + err);
-        } else {
-            obj = JSON.parse(data);
-            for (var i = 0; i < obj.users.length; i++) {
-                if (obj.users[i].email === req.body.email) {
-                    obj.users[i].name = req.body.name
-                    obj.users[i].surname = req.body.surname
-                    break;
-                }
-            }
-            newJson = JSON.stringify(obj);
-            fs.writeFile('./data/users.json', newJson, 'utf8', (err) => {
-                if (!err) {
-                  console.log('Info Profile Update');
-                }
-            });
-        }
-    });
-})
-
 
 module.exports = router;

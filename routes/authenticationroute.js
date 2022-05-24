@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
 
 router.post('/login', (req, res, next) => {
     var contents = fs.readFileSync('./data/users.json', 'utf8');
