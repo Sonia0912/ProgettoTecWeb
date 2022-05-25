@@ -16,7 +16,7 @@
                                 <li>You can insert one letter or the entire word.</li>
                                 <li>You start with 100 points.</li>
                                 <li>If you guess the word immediately you get all the 100 points.</li>
-                                <li>If you guess one letter: -5 points</li>
+                                <li>If you insert one letter just guessed: -5 points</li>
                                 <li>If the letter or word are wrong: -10 points</li>
                                 <li>You only have 10 rounds to win!</li>
                             </ul>
@@ -27,24 +27,6 @@
 
                 
 
-<!--                 <div id="rulesPopUp" class="modal">
-                    <button id="closeRules">&times;</button>
-                    <div id="descriptionHangman" class="modal-content">
-                        <p>How to play: </p>
-                        <ul>
-                            <li>You have to guess the name of the animal in the picture.</li>
-                            <li>You can insert one letter or the entire word.</li>
-                            <li>You start with 100 points.</li>
-                            <li>If you guess the word immediately you get all the 100 points.</li>
-                            <li>If you guess one letter: -5 points</li>
-                            <li>If the letter or word are wrong: -10 points</li>
-                            <li>You only have 10 rounds to win!</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-                </div> -->
-
             <div id="divResult">
                 <button id="closeResult"> X </button>
                 <div id="textResult"> </div>
@@ -53,7 +35,9 @@
             <div>
                 <div class="title">Hangman Game</div>
                 <span>
-                    <div id="scoreHangman">Your total score: <span id="quizScore">{{ score }}</span></div>
+           
+                    <div v-if="isAuth" id="scoreHangman">Your total score: <span id="quizScore"> {{ score }}</span></div>
+
                     <div id="scoreHangman">Current score: <span id="hangmanCurrentScore">100</span></div>
                 </span>
                 <div id="HangmanBackgroud">
@@ -72,8 +56,25 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     name: "hangman",
+    data() {
+            return {
+                isAuth: false,
+                score: 0
+            }
+        },
+        created() {
+            if(localStorage.getItem('token') != null) {
+                this.isAuth = true;
+                axios.get("http://localhost:3000/hangmanScore/email/" + localStorage.email)
+                .then((res) => {
+                    console.log(res.data)
+                    this.score = res.data.score
+                })
+            }
+        },
     mounted() {
         let Script = document.createElement("script");
         Script.setAttribute("src", "./js/hangman.js");

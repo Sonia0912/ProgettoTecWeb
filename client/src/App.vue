@@ -40,6 +40,7 @@
                         <li class="nav-item"><router-link class="nav-link" to="/events">Events</router-link></li>
                         <li class="nav-item"><router-link class="nav-link" to="/funfacts">Fun facts</router-link></li>
                         <li class="nav-item"><router-link class="nav-link" to="/funnypets">Funny pets</router-link></li>
+                        <li class="nav-item"><router-link class="nav-link" to="/topvideoanimal">Top 10 Videos</router-link></li>
                         <li class="nav-item dropdown">
                             <router-link class="nav-link dropdown-toggle" id="navbarDropdown" to="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Games</router-link>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">

@@ -8,6 +8,9 @@ $("#anotherFundog").on("click", function(){
 $("#anotherFuncat").on("click", function(){
     getFunnyCat();
 })
+// $('#anotherVideo').on("click",function(){
+//     getVideoOfDay();
+// })
 
 function getFunnyDog() {
         $.ajax({
@@ -28,3 +31,4 @@ function getFunnyCat() {
         $('#funcat').attr("src", animal[0]["url"]);
     });
 }
+

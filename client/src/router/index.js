@@ -64,6 +64,11 @@ const routes = [
     component: () => import('../views/EventView.vue')
   },
   {
+    path: '/topvideoanimal',
+    name: 'TopVideoAnimal',
+    component: () => import('../views/TopAnimalVideoView.vue')
+  },
+  {
     path: '/adoption-booking/:petType/:petName',
     name: 'AdoptionBooking',
     component: () => import('../views/AdoptionBookingView.vue')

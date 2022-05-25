@@ -19,7 +19,8 @@ module.exports = {
       files: ['src/components/*.vue', 'src/views/*.vue', 'src/*.vue', 'src/*.js'],
       rules: {
         'vue/multi-word-component-names': 0,
-        'vue/no-parsing-error': 0
+        'vue/no-parsing-error': 0, 
+        'vue/require-v-for-key':0
       },
     },
   ]
