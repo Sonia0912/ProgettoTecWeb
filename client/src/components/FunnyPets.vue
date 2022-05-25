@@ -5,7 +5,8 @@
                 <div class="title">Video of the day</div>
                 <div class="video-container">
                     <iframe id="videoPet" width="420" height="315" src="https://www.youtube.com/embed/SSuj4Cz9F0M" allowfullscreen></iframe> 
-                </div>
+                      </div>
+                      <div id="descroptionVideo"> </div>
                 <button id="anotherVideo">Another one</button>                    
             </div>
     

@@ -997,12 +997,18 @@ button {
 }
 #divResult{
      display: none;
-     z-index: 1;
+     z-index: 3;
      position: absolute;
      right: 20vw;
      left: 20vw;
      top:25vh;
-     background-color: rgba(33, 46, 236, 0.405);
+     background-color: rgba(59, 157, 248, 0.405);
+     border-radius: 20px;
+
+     padding: 10px;
+}
+#closeResult{
+     border-radius: 10px;
 
 }
 
@@ -1478,6 +1484,50 @@ button {
 }
 
 /*
+     TOP10 Video
+*/
+
+#countryVideo{
+     border-radius: 10px;
+     position: relative;
+     right: 10vw;
+     left: 20vw;
+     max-width: 20vw;
+     margin:20px;
+}
+#videoPet{
+     border-radius: 10px;
+     width: 420px; 
+     height: 315px;
+}
+.fi {
+     background-size: contain;
+     background-position: 50%;
+     background-repeat: no-repeat;
+     position: relative;
+     display: inline-block;
+     width: 1.33333333em;
+     line-height: 1em;
+   }
+   .fi:before {
+     content: '\00a0';
+   }
+   .fi.fis {
+     width: 1em;
+   }
+   #numVideo{
+        background-color: rgb(255, 30, 0);
+        border-radius: 20px;
+        justify-content: center;
+        font-family: 'Nanum Myeongjo', serif;
+        max-width: 25px;
+        margin: 10px;
+        padding: 5px;
+   }
+
+
+
+/*
      ERROR
 */
 
@@ -1646,8 +1696,8 @@ button {
          padding: 20px;
          justify-content: center;
     
-    
     }
+
     
     #emailSpan{
          grid-column-start: 1;
@@ -1706,6 +1756,12 @@ button {
          margin: 20px;
          
     } 
+
+    #videoPet{
+     
+     width: 300px;
+     height: 200px;
+}
 
 }
      

@@ -34,6 +34,15 @@ function clearVariable(){
   $('.www').remove()
 }
 
+// When the user clicks anywhere outside of the divResult, close it
+window.onclick = function (event) {
+  
+    // if ($('#divResult').is(":visible")) {
+    //     $('#divResult').contents().filter(isTextNode).remove();
+    //     $('#divResult').hide();
+    // }
+}
+
 $('#btnRules').on("click",function () {
   if($('#rulesPopUp').is(":visible")){
     $('#rulesPopUp').hide(); 
