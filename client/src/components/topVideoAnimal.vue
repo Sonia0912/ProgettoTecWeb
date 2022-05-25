@@ -29,7 +29,8 @@ export default {
     name: "TopVideoAnimal",
     data() {
         return {
-            videos: []
+            videos: [],
+            error:''
         }
     },
     methods: {
@@ -43,7 +44,9 @@ export default {
                         this.videos.push("https://www.youtube.com/embed/" + el.id);
                     })
 
-                })
+                }).catch(error => {
+				this.error = "Sorry, something went wrong (" + error.status + ")";
+			})
 
         }
     },

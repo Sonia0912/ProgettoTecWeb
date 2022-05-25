@@ -13,7 +13,7 @@ if (localStorage.getItem('token') != null) {
   })
 
 }
-var tentativi = 0; 
+var tentativi = 1; 
 var punteggioPartita = 100;
 var guessWord;
 var error = true; 
@@ -111,7 +111,7 @@ function hideWord(word){
  }
  function guess(){
 
-     if(tentativi > 9){
+     if(tentativi >= 9){
       $('#divResult').show();
        $('#textResult').text("YOU ARE A LOSER!");
          
@@ -187,7 +187,7 @@ function hideWord(word){
             writeWordInsert(userInput);
             usedWord.add(userInput);
             tentativi++; 
-            punteggioPartita = punteggioPartita - 5;
+            punteggioPartita = punteggioPartita - 10;
             $('#hangmanCurrentScore').text(punteggioPartita);
             $('#letter').val("");
             changeImgHangMan();

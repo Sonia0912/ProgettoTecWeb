@@ -45,7 +45,7 @@
                     <!-- Photo -->
                     <div class="newEventField eventPhotoField">
                          Photo URI:
-                        <input type="text" name="photo" id="newPetPhoto" required />
+                        <input type="text" name="photo" id="newEventPhoto" required />
                     </div>
                 </div>
                 <div id="newEventSubmit">

@@ -46,13 +46,14 @@
 						params: { error: 'unauthorized' }
 					})
 				} else {
+				
 					let booking = {
 						nameEvent: event.name,
 						userEmail: localStorage.getItem('email'), 
 						dateEvent: event.date,
 						placeEvent: event.place, 
-						descriptionEvent: event.description
-
+						descriptionEvent: event.description,
+						photo: event.photo
 					}
 					axios.post('http://localhost:3000/bookingEvent', booking).then(res => {
 						console.log(res)

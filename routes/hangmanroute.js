@@ -22,7 +22,7 @@ router.post('/hangman', function (req, res) {
             for (var i = 0; i < obj.users.length; i++) {
                 if (obj.users[i].email === req.body.email) {
                     
-                    obj.users[i].hangmanScore = req.body.scoreUser;
+                    obj.users[i].hangmanScore = parseInt(req.body.scoreUser);
                     break;
                 }
             }   

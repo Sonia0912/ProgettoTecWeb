@@ -34,7 +34,7 @@ function createTable() {
                 defaultContent: '<button class="deleteEvent">Delete</button>',
             },
             {
-                "width": "170px", "targets": 3
+                "width": "170px", "targets": 1
             }
         ]
     });

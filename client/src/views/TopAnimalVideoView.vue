@@ -5,7 +5,7 @@
 
 <script>
 
-import Video from '@/components/topVideoAnimal.vue'
+import Video from '@/components/TopVideoAnimal.vue'
 
 export default ({
    name: 'TopVideoAnimal',

@@ -1022,6 +1022,7 @@ button {
 }
 #closeResult{
      border-radius: 10px;
+     z-index: 2;
 
 }
 
@@ -1148,6 +1149,7 @@ button {
      padding: 5px 10px;
      overflow: auto;
      max-height: 25vh;
+     min-width: 250px;
 }
 
 .infoEvent{
@@ -1188,7 +1190,7 @@ button {
      color: #0f4332;
 }
 
-#addPet, #addVol {
+#addPet, #addVol, #addEvent {
      margin: 0 auto;
      padding: 10px 15px;
      border-radius: 10px;
@@ -1196,7 +1198,7 @@ button {
      color: white;
 }
 
-#addPetBtn, #addVolBtn {
+#addPetBtn, #addVolBtn, #addEventBtn {
      padding: 10px 15px;
      border-radius: 10px;
      background-color: #f43e99;
@@ -1204,7 +1206,7 @@ button {
      float: right;
 }
 
-#addPet:hover, #addPetBtn:hover, #addVolBtn:hover {
+#addPet:hover, #addPetBtn:hover, #addVolBtn:hover, #addEvent:hover {
      background-color: #ff89c4;
 }
 
@@ -1215,157 +1217,22 @@ button {
      border-radius: 7px;
 }
 
-#petsList_wrapper, #volsList_wrapper {
+#petsList_wrapper, #volsList_wrapper, #eventsList_wrapper {
      width: fit-content;
      margin: 20px auto 0px auto;
 }
 
-#petsList_length, #petsList_filter, #volsList_length, #volsList_filter {
+#petsList_length, #petsList_filter, #volsList_length, #volsList_filter, #eventsList_length, #eventsList_filter {
      padding-bottom: 20px;
 }
 
-#petsList_info, #petsList_paginate, #volsList_info, #volsList_paginate {
+#petsList_info, #petsList_paginate, #volsList_info, #volsList_paginate, #eventsList_info, #eventsList_paginate {
      padding-bottom: 20px;
      padding-top: 20px;
 }
 
 #petsList_filter label input, #petsList_length label select, #petsList_paginate span a,
-#volsList_filter label input, #volsList_length label select, #volsList_paginate span a {
-     background-color: white;
-}
-
-#usersList_wrapper {
-     width: fit-content;
-     margin: 20px auto 0px auto;
-}
-
-#usersList_length, #usersList_filter {
-     padding-bottom: 20px;
-}
-
-#usersList_info, #usersList_paginate {
-     padding-bottom: 20px;
-     padding-top: 20px;
-}
-
-#usersList_filter label input, #usersList_length label select, #usersList_paginate span a {
-     background-color: white;
-}
-
-.dataTables_scroll {
-     background-color: white;
-     width: fit-content;
-     margin: 0 auto;
-     padding: 0px 20px;
-     border: 1px solid #cdcdcd;
-     border-radius: 10px;
-}
-
-#newPetForm {
-     background-color: white;
-     padding: 5px 30px 5px 30px;
-     margin: 30px 0px;
-     display: grid;
-     grid-template-columns: auto auto auto auto;
-     max-width: 500px;
-     border: 1px solid #cdcdcd;
-     border-radius: 10px;
-}
-
-#colForm1 {
-     grid-column-start: 1;
-     grid-column-end: 3;
-}
-
-#colForm2 {
-     grid-column-start: 3;
-     grid-column-end: 5;
-}
-
-.petPhotoField {
-     min-height: 80px;
-     height: fit-content;
-     grid-column-start: 1;
-     grid-column-end: 4;
-     margin-right: 10px;
-}
-
-#newPetSubmit {
-     grid-column-start: 4;
-     grid-column-end: 5;
-     align-self: end;
-     padding-bottom: 20px;
-}
-
-#colForm1, #colForm2 {
-     padding: 0 10px;
-}
- 
-.newPetField {
-     padding: 10px 0px;
-}
-
-#newPetName, #newPetAge, #newPetPhoto {
-     display: block;
-}
-
-#errorNewPet {
-     padding-top: 5px;
-     color: #dc3545;
-     transition: 1s;
-}
-
-.newVolField {
-     margin-bottom: 20px;
-}
-
-#newVolForm {
-     background-color: white;
-     padding: 20px;
-     border-radius: 10px;
-     border: 1px solid #cdcdcd;
-     margin: 20px 0px;
-}
-
-/*
-     Manage-Event
-*/
-
-
-#addEvent {
-     margin: 0 auto;
-     padding: 10px 15px;
-     border-radius: 10px;
-     background-color: #f43e99;
-     color: white;
-}
-
-#addEventBtn {
-     padding: 10px 15px;
-     border-radius: 10px;
-     background-color: #f43e99;
-     color: white;
-     float: right;
-}
-
-#addEvent:hover, #addPetBtn:hover, #addVolBtn:hover {
-     background-color: #ff89c4;
-}
-
-#eventsList_wrapper {
-     width: fit-content;
-     margin: 20px auto 0px auto;
-}
-
-#eventsList_length, #eventsList_filter {
-     padding-bottom: 20px;
-}
-
-#eventsList_info, #eventsList_paginate {
-     padding-bottom: 20px;
-     padding-top: 20px;
-}
-
+#volsList_filter label input, #volsList_length label select, #volsList_paginate span a,
 #eventsList_filter label input, #eventsList_length label select, #eventsList_paginate span a {
      background-color: white;
 }
@@ -1397,7 +1264,7 @@ button {
      border-radius: 10px;
 }
 
-#newEventForm {
+#newPetForm, #newEventForm {
      background-color: white;
      padding: 5px 30px 5px 30px;
      margin: 30px 0px;
@@ -1418,7 +1285,7 @@ button {
      grid-column-end: 5;
 }
 
-.eventPhotoField {
+.petPhotoField , .eventPhotoField{
      min-height: 80px;
      height: fit-content;
      grid-column-start: 1;
@@ -1426,34 +1293,44 @@ button {
      margin-right: 10px;
 }
 
-#newEventSubmit {
+#newPetSubmit, #newEventSubmit {
      grid-column-start: 4;
      grid-column-end: 5;
      align-self: end;
      padding-bottom: 20px;
 }
 
-#newEventPhoto {
-     width: 99%;
+#colForm1, #colForm2 {
+     padding: 0 10px;
 }
-
-.colForm {
-     padding: 0px 10px;
-}
-
-.newEventField {
+ 
+.newPetField, .newEventField {
      padding: 10px 0px;
 }
 
-#newEventName, #newEventAge {
+#newPetName, #newPetAge, #newPetPhoto,#newEventPhoto {
      display: block;
 }
 
-#errorNewEvent {
+#errorNewPet {
      padding-top: 5px;
      color: #dc3545;
      transition: 1s;
 }
+
+.newVolField {
+     margin-bottom: 20px;
+}
+
+#newVolForm {
+     background-color: white;
+     padding: 20px;
+     border-radius: 10px;
+     border: 1px solid #cdcdcd;
+     margin: 20px 0px;
+}
+
+
 
 /*
      TOP10 Video
@@ -1582,7 +1459,7 @@ button {
           width: unset;
           margin: 0 20px;
      }
-     #usersList_wrapper, #petsList_wrapper, #volsList_wrapper {
+     #usersList_wrapper, #petsList_wrapper, #volsList_wrapper, #eventsList_wrapper {
           width: unset;
      }
 }
@@ -1672,73 +1549,7 @@ button {
 }
 
 @media  screen and (max-width: 400px) {
-     #laoutProfile{
-         max-height: 80vw;
-         display: grid;
-         grid-template-columns: 1fr 1fr;
-         padding: 20px;
-         justify-content: center;
     
-    }
-
-    
-    #emailSpan{
-         grid-column-start: 1;
-         grid-column-end: 2;
-    }
-    #email{
-         grid-column-start: 2;
-         grid-column-end: 3;
-         padding: 5px;
-    }
-    #name{
-         grid-column-start: 2;
-         grid-column-end: 3;
-         padding: 5px;
-     
-    }
-    #nameSpan{
-         grid-column-start: 1;
-        grid-column-end: 2;
-        padding: 5px;
-    }
-    #surnameSpan{
-         grid-column-start: 1;
-        grid-column-end: 2;
-        padding: 5px;
-    }
-    
-    #surname{
-         grid-column-start: 2;
-         grid-column-end: 3;
-         padding: 5px;
-    }
-    #inputName{
-         grid-column-start: 1;
-         grid-column-end: 3;
-         margin: auto 10px;
-         border-radius: 10px;
-    }
-    #inputSurname{
-         grid-column-start: 1;
-         grid-column-end: 3;
-         margin: auto 10px;
-         border-radius: 10px;
-    }
-    #logoutBtn{
-         grid-column-start: 1;
-         grid-column-end: 2;
-         background-color: red;
-         margin: 20px;
-    }
-    #saveBtn{
-         grid-column-start: 2;
-         grid-column-end: 3;
-         border-radius: 20px;
-         background-color: blue;
-         margin: 20px;
-         
-    } 
 
     #videoPet{
      
@@ -1771,7 +1582,7 @@ button {
           width: 220px;
           margin: 20px 30px 20px 0px;
      }
-     #newPetForm {
+     #newPetForm, #newEventForm {
           display: unset;
      }
      .searchFact button {

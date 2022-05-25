@@ -32,6 +32,8 @@
         <!-- Events -->
         <div v-if="typeOfBooking === 1" id="myEvents">
             <div v-if="events.length === 0" class="subtitle">You haven't booked any event yet</div>
+                
+
         </div>
 
         <!-- Interviews -->

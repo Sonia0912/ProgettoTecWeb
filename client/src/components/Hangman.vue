@@ -34,6 +34,7 @@
 
             <div>
                 <div class="title">Hangman Game</div>
+                 <div class="serverError">{{ error }}</div>
                 <span>
            
                     <div v-if="isAuth" id="scoreHangman">Your total score: <span id="quizScore"> {{ score }}</span></div>
@@ -62,7 +63,8 @@ export default {
     data() {
             return {
                 isAuth: false,
-                score: 0
+                score: 0,
+                error: ''
             }
         },
         created() {
@@ -71,7 +73,9 @@ export default {
                 axios.get("http://localhost:3000/hangmanScore/email/" + localStorage.email)
                 .then((res) => {
                     this.score = res.data.score
-                })
+                }).catch(error => {
+				this.error = "Sorry, something went wrong (" + error + ")";
+			})
             }
         },
     mounted() {

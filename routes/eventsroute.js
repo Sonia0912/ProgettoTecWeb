@@ -18,6 +18,7 @@ router.post('/bookingEvent',async (req, res) => {
         } else {
             obj = JSON.parse(data);
            
+            //controllo che non sia già presente la prenotazione
             for (var i = 0; i < obj.length; i++) {
                 if (obj[i].nameEvent === req.body.nameEvent && obj[i].userEmail === req.body.userEmail ) {
                     continua = false;
@@ -30,9 +31,10 @@ router.post('/bookingEvent',async (req, res) => {
                 obj.push({
                     nameEvent: req.body.nameEvent,
                     userEmail: req.body.userEmail, 
-                    dateEvent: req.body.date,
-					placeEvent: req.body.place, 
-					descriptionEvent: req.body.description
+                    dateEvent: req.body.dateEvent,
+					placeEvent: req.body.placeEvent, 
+					descriptionEvent: req.body.descriptionEvent,
+                    photo: req.body.photo
                 })
                 newJson = JSON.stringify(obj);
                 fs.writeFile('./data/bookingEvent.json', newJson, 'utf8', (err) => {
