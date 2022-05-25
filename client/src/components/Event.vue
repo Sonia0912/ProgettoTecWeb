@@ -20,7 +20,7 @@
 			</div>
 			<div class="infoEvent">
 				<div>Available seats: <span class="seatEvent">{{ info.totSeat - info.bookedSeat }}</span></div>
-				<div><button class="bookEvent" @click="booking(info.name, index)">Book</button></div>
+				<div><button class="bookEvent" @click="booking(info, index)">Book</button></div>
 			</div>
 		</div>
 	</div>
@@ -47,8 +47,12 @@
 					})
 				} else {
 					let booking = {
-						nameEvent: event,
-						userEmail: localStorage.getItem('email')
+						nameEvent: event.name,
+						userEmail: localStorage.getItem('email'), 
+						dateEvent: event.date,
+						placeEvent: event.place, 
+						descriptionEvent: event.description
+
 					}
 					axios.post('http://localhost:3000/bookingEvent', booking).then(res => {
 						console.log(res)

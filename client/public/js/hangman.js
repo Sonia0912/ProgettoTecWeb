@@ -10,12 +10,9 @@ if (localStorage.getItem('token') != null) {
     }
   }).then(res=>{
        punteggioUtente =  res.score
-       console.log(punteggioUtente)
   })
 
 }
-
-
 var tentativi = 0; 
 var punteggioPartita = 100;
 var guessWord;
@@ -24,12 +21,6 @@ var blurPhoto = 10;
 var usedWord = new Set();
 var guessedWord = new Set();
 let isTextNode = (_, el) => el.nodeType === Node.TEXT_NODE;
-
-
-//regole per il punteggio: 
-// se indovina al primo tentativo sono 100 pti
-// ogni lettera indovinare togli 5 punti
-// ogni lettera sbagliata togli 10 punti
 
 window.onload = animalRequest();
 
@@ -41,6 +32,15 @@ function clearVariable(){
   usedWord.clear();
   guessedWord.clear();
   $('.www').remove()
+}
+
+// When the user clicks anywhere outside of the divResult, close it
+window.onclick = function (event) {
+  
+    // if ($('#divResult').is(":visible")) {
+    //     $('#divResult').contents().filter(isTextNode).remove();
+    //     $('#divResult').hide();
+    // }
 }
 
 $('#btnRules').on("click",function () {
@@ -136,7 +136,7 @@ function hideWord(word){
             $('#textResult').text("WINNER!");
             $('#letter').val("");
             punteggioPartita = punteggioPartita + 100;
-            $('#quizScore').text(punteggioPartita);
+            $('#hangmanCurrentScore').text(punteggioPartita);
             clearWord(guessWord);
             clearVariable();
             $('#animalPhoto').css("filter","blur("+blurPhoto+"px)")
@@ -149,7 +149,7 @@ function hideWord(word){
             $('#textResult').text("try again and you will be luckier")
              $('#letter').val("");
              punteggioPartita = punteggioPartita - 10;
-             $('#quizScore').text(punteggioPartita);
+             $('#hangmanCurrentScore').text(punteggioPartita);
 
            }
       }else if(userInput.length == 1){
@@ -160,11 +160,11 @@ function hideWord(word){
               $('#textResult').text("You have just guess the letter: " + userInput)
               tentativi++; 
               punteggioPartita = punteggioPartita - 10;
-              $('#quizScore').text(punteggioPartita);
+              $('#hangmanCurrentScore').text(punteggioPartita);
               $('#letter').val("");
               changeImgHangMan();
             }else{
-              $('#quizScore').text(punteggioPartita);
+              $('#hangmanCurrentScore').text(punteggioPartita);
               blurPhoto = blurPhoto - 2;
               $('#animalPhoto').css("filter","blur("+blurPhoto+"px)")
               error = false;
@@ -188,8 +188,8 @@ function hideWord(word){
             writeWordInsert(userInput);
             usedWord.add(userInput);
             tentativi++; 
-            punteggioPartita = punteggioPartita - 10;
-            $('#quizScore').text(punteggioPartita);
+            punteggioPartita = punteggioPartita - 5;
+            $('#hangmanCurrentScore').text(punteggioPartita);
             $('#letter').val("");
             changeImgHangMan();
           }
@@ -208,7 +208,7 @@ function hideWord(word){
         if(count === $('#wordToGuess').text().length){
           $('#divResult').show();
           $('#textResult').text("WINNER!")
-          $('#quizScore').text(punteggioPartita);
+          $('#hangmanCurrentScore').text(punteggioPartita);
           clearWord(guessWord);
           clearVariable();
           $('#animalPhoto').css("filter","blur("+blurPhoto+"px)")
@@ -227,14 +227,14 @@ function hideWord(word){
 
    function saveResult(punteggio){
 
-
+    punteggio = punteggio + punteggioUtente;
     if (localStorage.getItem('token') != null) {
       $.ajax({
         url: 'http://localhost:3000/hangman',
         type: 'post',
         data: {
             email: localStorage.getItem('email'),
-            scoreUser: punteggio
+            scoreUser: punteggio 
         },
         headers: {
             token: localStorage.getItem('token')

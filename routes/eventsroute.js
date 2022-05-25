@@ -29,7 +29,10 @@ router.post('/bookingEvent',async (req, res) => {
                 eventName = req.body.nameEvent;
                 obj.push({
                     nameEvent: req.body.nameEvent,
-                    userEmail: req.body.userEmail
+                    userEmail: req.body.userEmail, 
+                    dateEvent: req.body.date,
+					placeEvent: req.body.place, 
+					descriptionEvent: req.body.description
                 })
                 newJson = JSON.stringify(obj);
                 fs.writeFile('./data/bookingEvent.json', newJson, 'utf8', (err) => {
