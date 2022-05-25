@@ -92,7 +92,6 @@ $("#confirmDeleteButton").on("click", function() {
         selectedRow.remove().draw();
         $('#modalDeleteVolunteering').hide();
     }).fail(function() {
-        console.log("Delete failed");
         $('#modalDeleteVolunteering').hide();
     })
 })

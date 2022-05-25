@@ -80,62 +80,12 @@ $(function() {
         getAvailableTimes();
     });
 
-    // Quando clicca su Submit
-    /* $("#jobSubmit").on("click", function() {
-        var formCompleted = checkComplete();
-        if(formCompleted) {
-            $.ajax({
-                url: 'http://localhost:3000/addInterview',
-                type: 'post',
-                data: {
-                    position: $('#jobPosition').val(),
-                    shelter: $('#jobShelter').val(),
-                    cv: $('#cv').val(),
-                    date: $("#txtDate").val(),
-                    time: $("#interviewTime").val()
-                },
-                headers: {
-                    token: localStorage.getItem('token')
-                },
-            })
-            .done(function() {
-                console.log("prima")
-                emptyForm();
-                console.log("dopo")
-            })
-            .fail(function(err) {
-                $("#serverErrorVol").html("Sorry something went wrong (" + err.status + ")")
-            })
-        } else {
-            $("#formNotCompleted").html("Please fill in all the fields");
-        }
-    }) */
-
     function checkPositionSelected() {
         if($('#jobPosition').val() && $('#jobShelter').val()) {
             return true;
         }
         return false;
     }
-
-/*     function checkComplete() {
-        if($('#jobPosition').val() && $('#jobShelter').val() && $('#cv').val() && $("#txtDate").val() && $("#interviewTime").val()) {
-            return true;
-        }
-        return false;
-    } */
-
-/*     function emptyForm() {
-        $("#jobPosition").empty();
-        $("#jobShelter").empty();
-        $("#requirements").empty();
-        $("#positionNotSelected").empty();
-        $("#cv").val('');
-        $("#txtDate").val('');
-        $("#interviewTime").empty();
-        $("#formNotCompleted").empty();
-        $("#txtDate").datepicker("destroy");
-    } */
 
     function getAvailableTimes() {
         var availableTimes = interviewTimes;

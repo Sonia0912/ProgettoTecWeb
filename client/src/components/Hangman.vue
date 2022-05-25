@@ -70,7 +70,6 @@ export default {
                 this.isAuth = true;
                 axios.get("http://localhost:3000/hangmanScore/email/" + localStorage.email)
                 .then((res) => {
-                    console.log(res.data)
                     this.score = res.data.score
                 })
             }

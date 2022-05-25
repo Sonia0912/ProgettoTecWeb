@@ -77,8 +77,7 @@ $('#closeRules').on("click",function () {
   }
 
 function hideWord(word){
-
-  console.log("hide " + word)
+  console.log("Word to guess: " + word)
   for(let i =0; i < word.length; i++){
     if(word[i] == 'a' || word[i] == 'e' || word[i] == 'i' || word[i] == 'o' || word[i] == 'u' ){
       $('#w'+i).text("+")

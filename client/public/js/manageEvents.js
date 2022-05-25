@@ -75,7 +75,6 @@ $("#confirmDeleteButton").on("click", function () {
         selectedRow.remove().draw();
         $('#modalDeleteEvent').hide();
     }).fail(function () {
-        console.log("Delete failed");
         $('#modalDeleteEvent').hide();
     })
 })
