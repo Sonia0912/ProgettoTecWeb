@@ -197,6 +197,12 @@ router.delete('/deleteBooking/:idVisit', function(req, res) {
     res.send("OK");
 })
 
+router.get('/getVisits', function(req, res) {
+    var contents = fs.readFileSync('./data/visits.json', 'utf8');
+    obj = JSON.parse(contents);
+    res.json(obj.reverse());
+})
+
 function formatDayTime(visit) {
     let arr = visit.time.split(':');
     if(arr[1].length === 1) {

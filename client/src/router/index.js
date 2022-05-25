@@ -84,6 +84,16 @@ const routes = [
     component: () => import('../views/ManageEventsView.vue')
   },
   {
+    path: '/manage-volunteering',
+    name: 'ManageVolunteering',
+    component: () => import('../views/ManageVolunteeringView.vue')
+  },
+  {
+    path: '/appointments',
+    name: 'Appointments',
+    component: () => import('../views/AppointmentsView.vue')
+  },
+  {
     path: '/users',
     name: 'Users',
     component: () => import('../views/UsersView.vue')

@@ -1052,7 +1052,7 @@ button {
      grid-column-end: 4;
      margin: auto 12px;
 }
-#inputName, #inputSurname{
+#inputName, #inputSurname, #inputPassword{
      grid-column-start: 3;
      grid-column-end: 4;
      margin: auto 10px;
@@ -1183,7 +1183,7 @@ button {
      color: #0f4332;
 }
 
-#addPet {
+#addPet, #addVol {
      margin: 0 auto;
      padding: 10px 15px;
      border-radius: 10px;
@@ -1191,7 +1191,7 @@ button {
      color: white;
 }
 
-#addPetBtn {
+#addPetBtn, #addVolBtn {
      padding: 10px 15px;
      border-radius: 10px;
      background-color: #f43e99;
@@ -1199,32 +1199,33 @@ button {
      float: right;
 }
 
-#addPet:hover, #addPetBtn:hover {
+#addPet:hover, #addPetBtn:hover, #addVolBtn:hover {
      background-color: #ff89c4;
 }
 
-.deletePet {
+.deletePet, .deleteEvent, .deleteVol {
      padding: 4px 8px;
      color: white;
      background-color: #dc3545;
      border-radius: 7px;
 }
 
-#petsList_wrapper {
+#petsList_wrapper, #volsList_wrapper {
      width: fit-content;
      margin: 20px auto 0px auto;
 }
 
-#petsList_length, #petsList_filter {
+#petsList_length, #petsList_filter, #volsList_length, #volsList_filter {
      padding-bottom: 20px;
 }
 
-#petsList_info, #petsList_paginate {
+#petsList_info, #petsList_paginate, #volsList_info, #volsList_paginate {
      padding-bottom: 20px;
      padding-top: 20px;
 }
 
-#petsList_filter label input, #petsList_length label select, #petsList_paginate span a {
+#petsList_filter label input, #petsList_length label select, #petsList_paginate span a,
+#volsList_filter label input, #volsList_length label select, #volsList_paginate span a {
      background-color: white;
 }
 
@@ -1251,7 +1252,7 @@ button {
      width: fit-content;
      margin: 0 auto;
      padding: 0px 20px;
-     border: 1px solid #aaaaaa;
+     border: 1px solid #cdcdcd;
      border-radius: 10px;
 }
 
@@ -1262,7 +1263,7 @@ button {
      display: grid;
      grid-template-columns: auto auto auto auto;
      max-width: 500px;
-     border: 1px solid #aaaaaa;
+     border: 1px solid #cdcdcd;
      border-radius: 10px;
 }
 
@@ -1309,6 +1310,18 @@ button {
      transition: 1s;
 }
 
+.newVolField {
+     margin-bottom: 20px;
+}
+
+#newVolForm {
+     background-color: white;
+     padding: 20px;
+     border-radius: 10px;
+     border: 1px solid #cdcdcd;
+     margin: 20px 0px;
+}
+
 /*
      Manage-Event
 */
@@ -1330,15 +1343,8 @@ button {
      float: right;
 }
 
-#addEvent:hover, #addPetBtn:hover {
+#addEvent:hover, #addPetBtn:hover, #addVolBtn:hover {
      background-color: #ff89c4;
-}
-
-.deleteEvent {
-     padding: 4px 8px;
-     color: white;
-     background-color: #dc3545;
-     border-radius: 7px;
 }
 
 #eventsList_wrapper {
@@ -1382,7 +1388,7 @@ button {
      width: fit-content;
      margin: 0 auto;
      padding: 0px 20px;
-     border: 1px solid #aaaaaa;
+     border: 1px solid #cdcdcd;
      border-radius: 10px;
 }
 
@@ -1393,7 +1399,7 @@ button {
      display: grid;
      grid-template-columns: auto auto auto auto;
      max-width: 500px;
-     border: 1px solid #aaaaaa;
+     border: 1px solid #cdcdcd;
      border-radius: 10px;
 }
 
@@ -1527,7 +1533,7 @@ button {
           width: unset;
           margin: 0 20px;
      }
-     #usersList_wrapper, #petsList_wrapper {
+     #usersList_wrapper, #petsList_wrapper, #volsList_wrapper {
           width: unset;
      }
 }
@@ -1559,7 +1565,7 @@ button {
      .summary img {
           height: 80px;
           width: 80px;
-      }
+     }
      .bookingForm {
           width: 400px;
      }
@@ -1611,7 +1617,7 @@ button {
           margin: 5px;
           padding: 3px;
      }
-     #inputName, #inputSurname {
+     #inputName, #inputSurname, #inputPassword {
           width: 120px;
      }
 }

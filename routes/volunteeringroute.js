@@ -14,19 +14,39 @@ router.get('/volunteering', function(req, res) {
     });
 });
 
-router.get('/interviews', function(req, res) {
-    fs.readFile('./data/interviewsPerDay.json', 'utf8', function readFileCallback(err, data) {
+router.post('/addVolunteering', function(req, res) {
+    console.log(req.body)
+    fs.readFile('./data/volunteering.json', 'utf8', function readFileCallback(err, data) {
         if(err) {
             console.log("ERROR READING FILE: " + err);
         } else {
             obj = JSON.parse(data);
-            res.json(obj);
+            obj.push({
+                id: Date.now().toString(),
+                position: req.body.position,
+                shelter: req.body.shelter,
+                requirements: req.body.requirements
+            });
+            json = JSON.stringify(obj);
+            fs.writeFile('./data/volunteering.json', json, 'utf8', (err) => {
+                if (!err) {
+                  console.log('Volunteering position added to the database');
+                }
+            });
         }
     });
+    res.status(204).send("OK");
 })
 
-router.post('/addVolunteering', function(req, res) {
-
+router.get('/getInterviews', function(req, res) {
+    fs.readFile('./data/interviews.json', 'utf8', function readFileCallback(err, data) {
+        if(err) {
+            console.log("ERROR READING FILE: " + err);
+        } else {
+            obj = JSON.parse(data);
+            res.json(obj.reverse());
+        }
+    });
 })
 
 router.post('/addInterview', function(req, res) {
@@ -48,6 +68,7 @@ router.post('/addInterview', function(req, res) {
             } else {
                 obj = JSON.parse(data);
                 obj.push({
+                    id: Date.now().toString(),
                     username: user.email,
                     position: req.body.position,
                     shelter: req.body.shelter,
@@ -100,6 +121,65 @@ router.post('/addInterview', function(req, res) {
             }
         });        
     })  
+})
+
+router.delete('/deleteVolunteering/:position/:shelter', function(req, res) {
+    var contents = fs.readFileSync('./data/volunteering.json', 'utf8');
+    obj = JSON.parse(contents);
+    remainingObj = [];
+    for(let i = 0; i < obj.length; i++) {
+        if(obj[i].position != req.params.position || obj[i].shelter != req.params.shelter) {
+            remainingObj.push(obj[i]);
+        }
+    }
+    json = JSON.stringify(remainingObj);
+    fs.writeFile('./data/volunteering.json', json, 'utf8', (err) => {
+        if (!err) {
+          console.log('Volunteering position deleted');
+        }
+    });
+    res.send("OK");
+})
+
+router.put('/changeStatus/:status/:id', function(req, res) {
+    fs.readFile('./data/interviews.json', 'utf8', function readFileCallback(err, data) {
+        if(err) {
+            console.log("ERROR READING FILE: " + err);
+        } else {
+            obj = JSON.parse(data);
+            for(let i = 0; i < obj.length; i++) {
+                if(obj[i].id === req.params.id) {
+                    obj[i].status = req.params.status;
+                    break;
+                }
+            }
+            json = JSON.stringify(obj);
+            fs.writeFile('./data/interviews.json', json, 'utf8', (err) => {
+                if (!err) {
+                  console.log('Status of the interview updated');
+                  res.send("OK")
+                }
+            });
+        }
+    });
+})
+
+router.get('/myinterviews/:loggedEmail', function(req, res) {
+    fs.readFile('./data/interviews.json', 'utf8', function readFileCallback(err, data) {
+        if(err) {
+            console.log("ERROR READING FILE: " + err);
+        } else {
+            obj = JSON.parse(data);
+            var myBookings = [];
+            for(let i = 0; i < obj.length; i++) {
+                if(obj[i].username === req.params.loggedEmail) {
+                    myBookings.push(obj[i]);
+                }
+            }
+            var myBookingsOrdered = myBookings.reverse();
+            res.json(myBookingsOrdered)
+        }
+    });
 })
 
 function formatDate(date) {

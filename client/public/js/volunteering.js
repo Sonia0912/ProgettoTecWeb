@@ -7,7 +7,7 @@ $(function() {
     const interviewTimes = ["9:00", "10:00", "11:00", "12:00"];
 
     promises.push($.ajax({url: 'http://localhost:3000/volunteering', method: 'GET'}));
-    promises.push($.ajax({url: 'http://localhost:3000/interviews', method: 'GET'}));
+    promises.push($.ajax({url: 'http://localhost:3000/getInterviews', method: 'GET'}));
 
     Promise.all(promises)
     .then((results) => {

@@ -13,7 +13,9 @@ $(function() {
     })
 });
 
-$('#newPetForm').submit(function() {
+$('#newPetForm').submit(function(e) {
+    e.preventDefault();
+    this.submit();
     var newPet = {
         name: $("#newPetName").val(),
         age: $("#newPetAge").val(),
@@ -21,6 +23,9 @@ $('#newPetForm').submit(function() {
         shelter: $("#newPetShelter").val()
     }
     table.row.add(newPet).draw(false);
+    setTimeout(function(){
+        emptyForm();
+    }, 100);
 })
 
 function createTable() {
@@ -49,6 +54,16 @@ function createTable() {
             }
         ]
     } );
+}
+
+function emptyForm() {
+    $("#newPetName").val('');
+    $("#newPetDescription").val('');
+    $("#newPetAge").val('');
+    $("#newPetPhoto").val('');
+    $("#dog").prop("checked", true);
+    $("#female").prop("checked", true);
+    $("#newPetForm").hide();
 }
 
 // When the user clicks anywhere outside of the modal, close it

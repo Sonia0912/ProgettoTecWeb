@@ -19,8 +19,8 @@
               <span v-if="isAdmin">
                 <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/manage-adoptions">Manage adoptions</router-link>
                 <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/manage-events">Manage events</router-link>
-                <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/manage-interviews">Manage interviews</router-link>
-                <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/volunteering-positions">Volunteering positions</router-link>
+                <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/manage-volunteering">Manage volunteering</router-link>
+                <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/appointments">Appointments</router-link>
                 <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/users">Users</router-link>
               </span>
           </div>

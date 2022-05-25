@@ -22,7 +22,7 @@
                     <!-- Description -->
                     <div class="newPetField">
                         <div>Description:</div>
-                        <textarea name="description" placeholder="A description of this pet..." maxlength="200" required></textarea>
+                        <textarea name="description" placeholder="A description of this pet..." maxlength="200" id="newPetDescription" required></textarea>
                     </div>
                     <!-- Photo -->
                     <div class="newPetField">Photo URI:

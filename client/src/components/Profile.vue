@@ -14,7 +14,7 @@
                 <input id="inputSurname" v-model="surname">
 
                 <span id="passwordSpan" class="fontProfile">Password:</span>
-                <input type="password" id="inputSurname" v-model="password">
+                <input type="password" id="inputPassword" v-model="password">
 
                 <span id="quizSpan" class="fontProfile">Quiz score:</span> 
                 <span id="email">{{ quizScore }}</span>
