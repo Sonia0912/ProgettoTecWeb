@@ -52,10 +52,13 @@
 
 <style scoped>
     button {
-        background-color: #60cead;
-        border-radius: 10px;
+        background-color: #1b284d;
+        border-radius: 5px;
         padding: 5px 10px;
         color: white;
         margin-top: 20px;
+    }
+    button:hover {
+        background-color: #2b417d;
     }
 </style>

@@ -93,7 +93,10 @@ function generateQuestion() {
             }
         }  
 
-    });
+    })
+    .catch(err => {
+        $("#serverErrorQuiz").html("Sorry something went wrong (" + err.status + ")")
+    })
 }
 
 function resetDefaultValues() {
@@ -223,8 +226,6 @@ function showResult(buttonIndex) {
 
 function updateScore(correctAnswer) {
     if(!scoreUpdated && correctAnswer && localStorage.getItem('token') != null) {
-        var oldScore =  parseInt($("#quizScore").text());
-        /* $("#quizScore").html(oldScore + 10); */
         $.ajax({
             url: 'http://localhost:3000/quiz/email/' + localStorage.email,
             type: 'PUT'

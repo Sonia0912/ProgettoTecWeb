@@ -2,6 +2,7 @@
     <div id="adoptionBooking" class="centeredGrid blueBackground">
 
         <div class="title">Book a visit with {{ $route.params.petName }}</div>
+        <div class="serverError">{{ error }}</div>
         
         <div class="summary">
             <img v-bind:src="photo">
@@ -39,10 +40,10 @@
         components: { Datepicker },
         created() {
             if(localStorage.getItem('token') === null) {
-                    this.$router.push({
-                        name: 'Login', 
-                        params: { error: 'unauthorized' }
-                    });
+                this.$router.push({
+                    name: 'Login', 
+                    params: { error: 'unauthorized' }
+                });
             }
         },
         setup() {
@@ -68,7 +69,8 @@
                 photo: '',
                 description: '',
                 shelter: '',
-                border: "unset"
+                border: "unset",
+                error: ''
             }
         },
         mounted() {
@@ -80,7 +82,7 @@
                 this.description = res.data.description
                 this.shelter = res.data.shelter
             })
-            .catch((e) => { console.log(e) })
+            .catch((err) => { this.error = "Sorry, something went wrong (" + err.message + ")" })
             // get dates with more than 5 bookings for that pet
             var fullDates = [];
             axios.get('http://localhost:3000/fullDates/' + this.$route.params.petName)
@@ -90,7 +92,7 @@
                     fullDates.push(new Date(new Date().setMonth((res.data[i].month - 1), res.data[i].day)));
                 }
             })
-            .catch((e) => { console.log(e) })
+            .catch((err) => { this.error = "Sorry, something went wrong (" + err.message + ")" })
             this.disabledDates = fullDates;
         },
         methods: {
@@ -115,9 +117,10 @@
                             month: month,
                             year: year,
                             time: selectedTime
-                        },
+                        }
                     };
-                    axios(options);
+                    axios(options)
+                    .catch((err) => { this.error = "Sorry, something went wrong (" + err.message + ")" });
                     this.$router.push({
                         name: 'MyBookings'
                     });

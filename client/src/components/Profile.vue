@@ -1,6 +1,7 @@
 <template>
     <div id="profileContainer" class="blueCurtainBackground">
         <div class="title">Profile</div>
+        <div class="serverError">{{ error }}</div>
         <div id="profileGridContainer">
             <div id="layoutProfile">
 
@@ -46,7 +47,8 @@ export default {
             surname: '',
             password: '',
             quizScore: 0,
-            hangmanScore: 0
+            hangmanScore: 0,
+            error: ''
         }
     },
     methods: {
@@ -70,17 +72,23 @@ export default {
                 password: this.password
             }
             axios.post('http://localhost:3000/profile', user)
+            .catch(err => {
+                this.error = "Sorry, something went wrong (" + err.message + ")"
+            })
         }
     },
     mounted() {
         axios.get("http://localhost:3000/profile", { headers: { token: localStorage.getItem('token') } })
-            .then(res => {
-                this.email = res.data.user.email;
-                this.name = res.data.user.name;
-                this.surname = res.data.user.surname;
-                this.quizScore = res.data.user.quizScore;
-                this.hangmanScore = res.data.user.hangmanScore;
-            })
+        .then(res => {
+            this.email = res.data.user.email;
+            this.name = res.data.user.name;
+            this.surname = res.data.user.surname;
+            this.quizScore = res.data.user.quizScore;
+            this.hangmanScore = res.data.user.hangmanScore;
+        })
+        .catch(err => {
+            this.error = "Sorry, something went wrong (" + err.message + ")"
+        })
     }
 }
 </script>
