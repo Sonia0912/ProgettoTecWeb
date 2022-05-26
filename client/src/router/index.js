@@ -79,6 +79,11 @@ const routes = [
     component: () => import('../views/MyBookingsView.vue')
   },
   {
+    path: '/leaderboard',
+    name: 'Leaderboard',
+    component: () => import('../views/LeaderboardView.vue')
+  },
+  {
     path: '/manage-adoptions',
     name: 'ManageAdoptions',
     component: () => import('../views/ManageAdoptionsView.vue')
