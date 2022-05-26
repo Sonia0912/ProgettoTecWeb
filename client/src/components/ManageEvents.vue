@@ -60,7 +60,7 @@
                     <th>Name</th>
                     <th>Place</th>
                     <th>Date</th>
-                    <th>Avaible Seat</th>
+                    <th>Booked Seat</th>
                     <th>Tot Seat</th>
                     <th></th>
                 </tr>

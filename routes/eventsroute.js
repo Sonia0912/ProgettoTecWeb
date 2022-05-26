@@ -79,7 +79,7 @@ router.post('/bookingEvent',async (req, res) => {
 router.get('/getEvents', function(req, res) {
     var content = fs.readFileSync('./data/events.json', 'utf8');
     obj = JSON.parse(content);
-    obj[0].avaibleSeat = obj[0].totSeat - obj[0].bookedSeat;
+   // obj[0].avaibleSeat = obj[0].totSeat - obj[0].bookedSeat;
     
     res.json(obj);
 });
@@ -97,7 +97,7 @@ router.post('/addEvent', function(req, res) {
                 price: req.body.price,
                 description: req.body.description,
                 totSeat: req.body.totSeat,
-                bookedSeat:0,
+                bookedSeat: 0,
                 category:req.body.category,
                 photo:req.body.photo
             });
@@ -135,6 +135,23 @@ router.delete('/deleteEvent/:name', function(req, res) {
         }
     });
     res.send("OK");
+})
+
+router.get('/myevents/:loggedEmail', function(req, res) {
+    fs.readFile('./data/bookingEvent.json', 'utf8', function readFileCallback(err, data) {
+        if(err) {
+            console.log("ERROR READING FILE: " + err);
+        } else {
+            obj = JSON.parse(data);
+            var myevents = [];
+            for(let i = 0; i < obj.length; i++) {
+                if(obj[i].userEmail === req.params.loggedEmail) {
+                    myevents.push(obj[i]);
+                }
+            }
+            res.json(myevents)
+        }
+    });
 })
 
 module.exports = router;

@@ -24,7 +24,7 @@ function createTable() {
             { data: 'name' },
             { data: 'place' },
             { data: 'date' },
-            { data: 'avaibleSeat'},
+            { data: 'bookedSeat'},
             { data: 'totSeat'},
             { data: null }
         ],
@@ -38,26 +38,36 @@ function createTable() {
             {
                 "width": "170px", "targets": 1
             },
-            // {
-            //     targets: 3,
-            //     createdRow: function (row, data, index) {
-            //     console.log(data[3])
-            //         if (data[3] == 0) {
-            //             $('td', row).eq(1).addClass('notAvaibleEvent');
-            //         }
-            //     }
-            // }
-        ]
+            {
+                "width": "100px", "targets": 2
+            }
+        ],
+        "createdRow": function (row, data, index) {
+            console.log(data)
+                if (data.bookedSeat == data.totSeat) {
+                    $(row).addClass('notAvaibleEvent');
+                }
+            }
     });
 }
 
-
+function emptyForm() {
+    $("#newEvent").val('');
+    // $("#newVolShelter").val('');
+    // $("#missingReq").empty();
+    // $('input[name="requirements"]').each(function() {
+    //     this.checked = false;
+    // });
+    // $("#newVolForm").hide();
+}
 
 $('#newEventForm').submit(function (e) {
     var newEvent = {
         name: $("#newEventName").val(),
         place: $("#newEventPlace").val(),
-        date: $("#newEventDate").val()
+        date: $("#newEventDate").val(),
+        totSeat: $('#newEventSeats').val(),
+        bookedSeat: 0
     }
     table.row.add(newEvent).draw(false);
 
