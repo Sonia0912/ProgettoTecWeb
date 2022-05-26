@@ -1,11 +1,11 @@
 <template>
-    <div class="verticalForm">
+    <div class="verticalForm blueBackground">
         <h2>Sing up</h2>
         <div class="errorMessage">{{error}}</div>
-        <input type="email" name="email" placeholder="E-mail" id="email" v-model="email">
-        <input type="text" name="name" placeholder="Name" id="name" v-model="name">
-        <input type="text" name="surname" placeholder="Surname" id="surname" v-model="surname">
-        <input type="password" name="password" placeholder="Password" id="password" v-model="password">
+        <input type="email" name="email" placeholder="E-mail" id="emailRegister" v-model="email">
+        <input type="text" name="name" placeholder="Name" id="nameRegister" v-model="name">
+        <input type="text" name="surname" placeholder="Surname" id="surnameRegister" v-model="surname">
+        <input type="password" name="password" placeholder="Password" id="passwordRegister" v-model="password">
         <button @click='signUp()'>Register</button>
     </div>  
 </template>
@@ -49,3 +49,13 @@
         },
     }
 </script>
+
+<style scoped>
+    button {
+        background-color: #60cead;
+        border-radius: 10px;
+        padding: 5px 10px;
+        color: white;
+        margin-top: 20px;
+    }
+</style>

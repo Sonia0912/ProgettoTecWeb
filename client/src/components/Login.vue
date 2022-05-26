@@ -1,5 +1,5 @@
 <template>
-    <div class="verticalForm">
+    <div class="verticalForm blueBackground">
         <span v-if="this.$route.params.error === 'unauthorized'">
             <h2>Sign in to use this service</h2>
         </span>
@@ -10,8 +10,8 @@
             <h2>Sign in</h2>
         </span>
         <div class="errorMessage">{{error}}</div>
-        <input type="email" name="email" placeholder="E-mail" id="email" v-model="email">
-        <input type="password" name="password" placeholder="Password" id="password" v-model="password">
+        <input type="email" name="email" placeholder="E-mail" id="emailLogin" v-model="email">
+        <input type="password" name="password" placeholder="Password" id="passwordLogin" v-model="password">
         <button @click="signIn">Log in</button>
     </div>
   
@@ -73,3 +73,13 @@
         }
     }
 </script>
+
+<style scoped>
+    button {
+        background-color: #60cead;
+        border-radius: 10px;
+        padding: 5px 10px;
+        color: white;
+        margin-top: 20px;
+    }
+</style>
