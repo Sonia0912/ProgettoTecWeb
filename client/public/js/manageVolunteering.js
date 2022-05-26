@@ -38,7 +38,10 @@ function createTable() {
         scrollX: true,
         ajax: {
             url: 'http://localhost:3000/volunteering',
-            dataSrc: ''
+            dataSrc: '',
+            error: function(err) {
+                $("#serverErrorManageVol").html("Sorry something went wrong (" + err.status + ")")
+            }
         },
         columns: [ 
             { data: 'position' },
@@ -91,7 +94,8 @@ $("#confirmDeleteButton").on("click", function() {
     }).done(function() {
         selectedRow.remove().draw();
         $('#modalDeleteVolunteering').hide();
-    }).fail(function() {
+    }).fail(function(err) {
+        $("#serverErrorManageVol").html("Sorry something went wrong (" + err.status + ")")
         $('#modalDeleteVolunteering').hide();
     })
 })

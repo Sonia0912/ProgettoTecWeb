@@ -32,6 +32,7 @@ app.use(require('./routes/adoptionroute'));
 app.use(require('./routes/eventsroute'));
 app.use(require('./routes/adminroute'));
 app.use(require('./routes/volunteeringroute'));
+app.use(require('./routes/leaderboardroute'));
 
 const PORT = 3000;
 

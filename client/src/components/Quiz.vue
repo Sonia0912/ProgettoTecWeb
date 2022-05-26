@@ -6,6 +6,7 @@
               <div class="col-md-8">
                 <div id="divQuiz">
                     <div class="title">Quiz</div>
+                    <div id="serverErrorQuiz" class="serverError"></div>
                     <span v-if="isAuth">
                         <div class="score">Your score: <span id="quizScore">{{ score }}</span></div>
                     </span>                    

@@ -137,14 +137,46 @@ router.post('/addPet', function(req, res) {
     res.status(204).send("OK");
 })
 
-router.delete('/deletePet/:type/:name', function(req, res) { 
+// When the admin deletes a pet
+router.delete('/deletePet/:type/:name', function(req, res) {
+    // Deletes in dog.json or cat.json
     var contents = fs.readFileSync('./data/' + req.params.type + '.json', 'utf8');
     obj = JSON.parse(contents);
     remainingObj = obj.filter(data => data.name != req.params.name);
     json = JSON.stringify(remainingObj);
     fs.writeFile('./data/' + req.params.type + '.json', json, 'utf8', (err) => {
         if (!err) {
-          console.log('Pet deleted');
+          console.log('Pet deleted (1)');
+        }
+    });
+    // Deletes in visits.json
+    var contents = fs.readFileSync('./data/visits.json', 'utf8');
+    obj = JSON.parse(contents);
+    remainingObj = [];
+    for(let i = 0; i < obj.length; i++) {
+        if(obj[i].petName != req.params.name) {
+            remainingObj.push(obj[i]);
+        }
+    }
+    json = JSON.stringify(remainingObj);
+    fs.writeFile('./data/visits.json', json, 'utf8', (err) => {
+        if (!err) {
+          console.log('Pet deleted (2)');
+        }
+    });
+    // Deletes in visitsPerDay.json
+    var contents = fs.readFileSync('./data/visitsPerDay.json', 'utf8');
+    obj = JSON.parse(contents);
+    remainingObj = [];
+    for(let i = 0; i < obj.length; i++) {
+        if(obj[i].petName != req.params.name) {
+            remainingObj.push(obj[i]);
+        }
+    }
+    json = JSON.stringify(remainingObj);
+    fs.writeFile('./data/visitsPerDay.json', json, 'utf8', (err) => {
+        if (!err) {
+          console.log('Pet deleted (3)');
         }
     });
     res.send("OK");
@@ -169,6 +201,7 @@ router.get('/myvisits/:loggedEmail', function(req, res) {
     });
 })
 
+// When a user deletes a visit with a pet
 router.delete('/deleteBooking/:idVisit', function(req, res) { 
     var contents = fs.readFileSync('./data/visits.json', 'utf8');
     obj = JSON.parse(contents);

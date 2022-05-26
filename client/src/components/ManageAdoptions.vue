@@ -1,6 +1,7 @@
 <template>
     <div class="pinkLeafBackground">
         <div class="title pink">Manage adoptions</div>
+        <div id="serverErrorManageAdop" class="serverError"></div>
 
         <div class="centeredGrid">
             <button id="addPet">New pet</button>

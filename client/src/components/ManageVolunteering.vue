@@ -1,6 +1,7 @@
 <template>
     <div class="pinkLeafBackground"> 
         <div class="title pink">Manage volunteering</div>
+        <div id="serverErrorManageVol" class="serverError"></div>
 
         <!-- New volunteering position -->
         <div class="centeredGrid">
@@ -90,6 +91,14 @@
 <script>
     export default {
         name: "manageVolunteering",
+        created() {
+            if(localStorage.getItem('token') === null || localStorage.getItem('isAdmin') === null) {
+                this.$router.push({
+                    name: 'Login', 
+                    params: { error: 'notadmin' }
+                });
+            }
+        },
         mounted() {
             let Script = document.createElement("script");
             Script.setAttribute("src", "./js/manageVolunteering.js");

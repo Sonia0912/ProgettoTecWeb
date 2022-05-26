@@ -224,11 +224,16 @@ function showResult(buttonIndex) {
 function updateScore(correctAnswer) {
     if(!scoreUpdated && correctAnswer && localStorage.getItem('token') != null) {
         var oldScore =  parseInt($("#quizScore").text());
-        $("#quizScore").html(oldScore + 10);
+        /* $("#quizScore").html(oldScore + 10); */
         $.ajax({
             url: 'http://localhost:3000/quiz/email/' + localStorage.email,
             type: 'PUT'
-        });
+        })
+        .then((res) => {
+            console.log(res)
+            $("#quizScore").html(res.score);
+        })
+        .catch((err) => $("#serverErrorQuiz").html("Sorry something went wrong (" + err.status + ")"));
     }
     scoreUpdated = true;
 }

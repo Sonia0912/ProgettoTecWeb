@@ -33,7 +33,10 @@ function createTable() {
         scrollX: true,
         ajax: {
             url: 'http://localhost:3000/getPets',
-            dataSrc: ''
+            dataSrc: '',
+            error: function(err) {
+                $("#serverErrorManageAdop").html("Sorry something went wrong (" + err.status + ")")
+            }
         },
         columns: [ 
             { data: 'name' },
@@ -88,7 +91,8 @@ $("#confirmDeleteButton").on("click", function() {
     }).done(function() {
         selectedRow.remove().draw();
         $('#modalDeletePet').hide();
-    }).fail(function() {
+    }).fail(function(err) {
+        $("#serverErrorManageAdop").html("Sorry something went wrong (" + err.status + ")")
         $('#modalDeletePet').hide();
     })
 })
