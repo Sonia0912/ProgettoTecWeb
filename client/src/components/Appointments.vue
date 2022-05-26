@@ -59,15 +59,22 @@
             }
         },
         created() {
-            var promises = [];
-            promises.push(axios.get('http://localhost:3000/getVisits'));
-            promises.push(axios.get('http://localhost:3000/getInterviews'));
-            Promise.all(promises)
-            .then((results) => {
-                this.visits = results[0].data;
-                this.interviews = results[1].data;
-            })
-            .catch(err => this.error = "Sorry, something went wrong (" + err.status + ")");
+            if(localStorage.getItem('token') === null || localStorage.getItem('isAdmin') === null) {
+                this.$router.push({
+                    name: 'Login', 
+                    params: { error: 'notadmin' }
+                });
+            } else {
+                var promises = [];
+                promises.push(axios.get('http://localhost:3000/getVisits'));
+                promises.push(axios.get('http://localhost:3000/getInterviews'));
+                Promise.all(promises)
+                .then((results) => {
+                    this.visits = results[0].data;
+                    this.interviews = results[1].data;
+                })
+                .catch(err => this.error = "Sorry, something went wrong (" + err.status + ")");
+            }
         },
         methods: {
             changeStatus(id, accepted) {

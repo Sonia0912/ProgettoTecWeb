@@ -10,7 +10,7 @@
 
         <!-- Quiz -->
         <div id="quizLeadContainer" v-if="typeOfGame === 0"> 
-            You are #{{this.myQuizPosition}}
+            <span v-if="!isAdmin">You are #{{this.myQuizPosition}}</span>
             <table id="quizLeaderboard">
                 <tr v-for="(user, index) in quizToDisplay" :key="user.name" :class="{myScoreRow: myQuizPosition === index + 1 }">
                     <td>#{{index + 1}}</td>
@@ -23,7 +23,7 @@
 
         <!-- Hangman -->
         <div id="hangmanLeadContainer" v-if="typeOfGame === 1"> 
-            You are #{{this.myHangmanPosition}}
+            <span v-if="!isAdmin">You are #{{this.myHangmanPosition}}</span>
             <table id="hangmanLeaderboard">
                 <tr v-for="(user, index) in hangmanToDisplay" :key="user.name" :class="{myScoreRow: myHangmanPosition === index + 1 }">
                     <td>#{{index + 1}}</td>
@@ -52,36 +52,45 @@ export default {
             myHangmanPosition: -1,
             isHiddenQuiz: false,
             isHiddenHang: false,
+            isAdmin: false,
             error: ''
         }
     },
     created() {
-        var promises = [];
-        promises.push(axios.get('http://localhost:3000/quizleaderboard'));
-        promises.push(axios.get('http://localhost:3000/hangmanleaderboard'));
-        Promise.all(promises)
-        .then((results) => {
-            this.quizLeaderboard = results[0].data;
-            this.hangmanLeaderboard = results[1].data;
-            for(let i = 0; i < this.quizLeaderboard.length; i++) {
-                if(this.quizLeaderboard[i].name === localStorage.getItem("email")) {
-                    this.myQuizPosition = i + 1;
+        if (localStorage.getItem('token') === null) {
+            this.$router.push("login")
+        } else {
+            var promises = [];
+            promises.push(axios.get('http://localhost:3000/quizleaderboard'));
+            promises.push(axios.get('http://localhost:3000/hangmanleaderboard'));
+            Promise.all(promises)
+            .then((results) => {
+                this.quizLeaderboard = results[0].data;
+                this.hangmanLeaderboard = results[1].data;
+                for(let i = 0; i < this.quizLeaderboard.length; i++) {
+                    if(this.quizLeaderboard[i].name === localStorage.getItem("email")) {
+                        this.myQuizPosition = i + 1;
+                    }
                 }
-            }
-            for(let i = 0; i < this.hangmanLeaderboard.length; i++) {
-                if(this.hangmanLeaderboard[i].name === localStorage.getItem("email")) {
-                    this.myHangmanPosition = i + 1;
+                for(let i = 0; i < this.hangmanLeaderboard.length; i++) {
+                    if(this.hangmanLeaderboard[i].name === localStorage.getItem("email")) {
+                        this.myHangmanPosition = i + 1;
+                    }
                 }
+                // mostra solo i primi 5 inizialmente
+                this.quizToDisplay = this.quizLeaderboard.slice(0, 5);
+                this.hangmanToDisplay = this.hangmanLeaderboard.slice(0, 5);
+                if(this.hangmanLeaderboard.length === this.hangmanToDisplay.lenght) {
+                    this.isHiddenQuiz = true;
+                    this.isHiddenHang = true;
+                }
+            })
+            .catch(err => this.error = "Sorry, something went wrong (" + err.message + ")");
+            // Se e' un admin non mostro la scritta You are #
+            if(localStorage.getItem('isAdmin') != null) {
+                this.isAdmin = true;
             }
-            // mostra solo i primi 5 inizialmente
-            this.quizToDisplay = this.quizLeaderboard.slice(0, 5);
-            this.hangmanToDisplay = this.hangmanLeaderboard.slice(0, 5);
-            if(this.hangmanLeaderboard.length === this.hangmanToDisplay.lenght) {
-                this.isHiddenQuiz = true;
-                this.isHiddenHang = true;
-            }
-        })
-        .catch(err => this.error = "Sorry, something went wrong (" + err.message + ")");
+        }
     },
     methods: {
         loadMoreQuiz() {

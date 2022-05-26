@@ -122,7 +122,9 @@ router.post('/addInterview', function(req, res) {
     })  
 })
 
+// A volunteering position is deleted by the admin
 router.delete('/deleteVolunteering/:position/:shelter', function(req, res) {
+    // Delete in volunteering.json
     var contents = fs.readFileSync('./data/volunteering.json', 'utf8');
     obj = JSON.parse(contents);
     remainingObj = [];
@@ -134,9 +136,40 @@ router.delete('/deleteVolunteering/:position/:shelter', function(req, res) {
     json = JSON.stringify(remainingObj);
     fs.writeFile('./data/volunteering.json', json, 'utf8', (err) => {
         if (!err) {
-          console.log('Volunteering position deleted');
+          console.log('Volunteering position deleted (1)');
         }
     });
+    // Delete in interviews.json
+    var contents = fs.readFileSync('./data/interviews.json', 'utf8');
+    obj = JSON.parse(contents);
+    remainingObj = [];
+    for(let i = 0; i < obj.length; i++) {
+        if(obj[i].position != req.params.position || obj[i].shelter != req.params.shelter) {
+            remainingObj.push(obj[i]);
+        }
+    }
+    json = JSON.stringify(remainingObj);
+    fs.writeFile('./data/interviews.json', json, 'utf8', (err) => {
+        if (!err) {
+          console.log('Volunteering position deleted (2)');
+        }
+    });
+    // Delete in interviewsPerDay.json
+    var contents = fs.readFileSync('./data/interviewsPerDay.json', 'utf8');
+    obj = JSON.parse(contents);
+    remainingObj = [];
+    for(let i = 0; i < obj.length; i++) {
+        if(obj[i].position != req.params.position || obj[i].shelter != req.params.shelter) {
+            remainingObj.push(obj[i]);
+        }
+    }
+    json = JSON.stringify(remainingObj);
+    fs.writeFile('./data/interviewsPerDay.json', json, 'utf8', (err) => {
+        if (!err) {
+            console.log('Volunteering position deleted (3)');
+        }
+    });
+
     res.send("OK");
 })
 
