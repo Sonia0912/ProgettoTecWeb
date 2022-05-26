@@ -24,6 +24,8 @@ function createTable() {
             { data: 'name' },
             { data: 'place' },
             { data: 'date' },
+            { data: 'avaibleSeat'},
+            { data: 'totSeat'},
             { data: null }
         ],
         columnDefs: [
@@ -35,10 +37,21 @@ function createTable() {
             },
             {
                 "width": "170px", "targets": 1
-            }
+            },
+            // {
+            //     targets: 3,
+            //     createdRow: function (row, data, index) {
+            //     console.log(data[3])
+            //         if (data[3] == 0) {
+            //             $('td', row).eq(1).addClass('notAvaibleEvent');
+            //         }
+            //     }
+            // }
         ]
     });
 }
+
+
 
 $('#newEventForm').submit(function (e) {
     var newEvent = {
