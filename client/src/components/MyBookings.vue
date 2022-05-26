@@ -17,9 +17,7 @@
                 <div class="summaryInfoContainer">
                     <div class="summaryInfo summaryName">{{ info.petName }}</div>
                     <div class="summaryInfo">
-                        <span>{{ info.day }}</span>
-                        <span>{{ info.month }}</span>
-                        <span>{{ info.year }}</span>
+                        <span>{{ info.date }}</span>
                     </div>
                     <div class="summaryInfo">{{ info.time }}</div>
                     <div class="summaryInfo">{{ info.shelter }}</div>

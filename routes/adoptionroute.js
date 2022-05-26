@@ -36,23 +36,6 @@ router.get('/infoPet/:type/:name', function(req, res) {
     res.json(pet);
 });
 
-router.get('/fullDates/:petName', function(req, res) {
-    fs.readFile('./data/visitsPerDay.json', 'utf8', function readFileCallback(err, data) {
-        if(err) {
-            console.log("ERROR READING FILE: " + err);
-        } else {
-            var obj = JSON.parse(data);
-            var shelterFullDates = [];
-            for(let i = 0; i < obj.length; i++) {
-                if(obj[i].petName === req.params.petName && obj[i].totVisits >= 5) {
-                    shelterFullDates.push(obj[i]);
-                }
-            }
-            res.json(shelterFullDates);
-        }
-    });
-});
-
 router.post('/adoptionBook', function(req, res) {
     fs.readFile('./data/visits.json', 'utf8', function readFileCallback(err, data) {
         if(err) {
@@ -65,9 +48,7 @@ router.post('/adoptionBook', function(req, res) {
                 petName: req.body.petName,
                 shelter: req.body.shelter,
                 photo: req.body.photo,
-                day: req.body.day,
-                month: req.body.month,
-                year: req.body.year,
+                date: req.body.date,
                 time: req.body.time
             });
             json = JSON.stringify(obj);
@@ -86,26 +67,30 @@ router.post('/adoptionBook', function(req, res) {
             var found = false;
             // update the number of bookings for that day and pet
             for (var i = 0; i < obj.length; i++) {
-                if (obj[i].petName === req.body.petName && obj[i].day === req.body.day && obj[i].month === req.body.month) {
+                if (obj[i].petName === req.body.petName && obj[i].date === req.body.date) {
                     obj[i].totVisits += 1;
+                    obj[i].times.push(req.body.time)
                     found = true;
                     break;
                 }
             }
+            // add the new booking to the database
             if(!found) {
-                // add the new booking to the database
+                var timesArr = [];
+                timesArr.push(req.body.time)
                 obj.push({
                     petName: req.body.petName,
-                    day: req.body.day,
+                    date: req.body.date,
                     month: req.body.month,
                     year: req.body.year,
-                    totVisits: 1
+                    times: timesArr
                 });
             }
             json = JSON.stringify(obj);
             fs.writeFile('./data/visitsPerDay.json', json, 'utf8', (err) => {
                 if (!err) {
                   console.log('Number of visits updated');
+                  res.status(204).send("OK")
                 }
             });
         }
@@ -191,8 +176,7 @@ router.get('/myvisits/:loggedEmail', function(req, res) {
             var myBookings = [];
             for(let i = 0; i < obj.length; i++) {
                 if(obj[i].username === req.params.loggedEmail) {
-                    objFormatted = formatDayTime(obj[i]);
-                    myBookings.push(objFormatted);
+                    myBookings.push(obj[i]);
                 }
             }
             var myBookingsOrdered = myBookings.reverse();
@@ -216,15 +200,15 @@ router.delete('/deleteBooking/:idVisit', function(req, res) {
     var contents2 = fs.readFileSync('./data/visitsPerDay.json', 'utf8');
     obj2 = JSON.parse(contents2);
     for(let i = 0; i < obj2.length; i++) {
-        if(obj2[i].petName === visitToDelete[0].petName && obj2[i].day === visitToDelete[0].day && obj2[i].month === visitToDelete[0].month && obj2[i].year === visitToDelete[0].year) {
-            obj2[i].totVisits -= 1;
+        if(obj2[i].petName === visitToDelete[0].petName && obj2[i].date === visitToDelete[0].date) {
+            obj2[i].times = obj2[i].times.filter(item => item !== visitToDelete[0].time)
             break;
         }
     }
     json2 = JSON.stringify(obj2);
     fs.writeFile('./data/visitsPerDay.json', json2, 'utf8', (err) => {
         if (!err) {
-          console.log('Number of visits updated');
+          console.log('Times of the visit updated');
         }
     });
     res.send("OK");
@@ -236,51 +220,21 @@ router.get('/getVisits', function(req, res) {
     res.json(obj.reverse());
 })
 
-function formatDayTime(visit) {
-    let arr = visit.time.split(':');
-    if(arr[1].length === 1) {
-        let formattedTime = arr[0] + ":0" + arr[1]
-        visit.time = formattedTime;
-    }
-    switch(visit.month) {
-        case 1:
-            visit.month = "January"
-            break;
-        case 2:
-            visit.month = "February"
-            break;
-        case 3:
-            visit.month = "March"
-            break;
-        case 4:
-            visit.month = "April"
-            break;
-        case 5:
-            visit.month = "May"
-            break;
-        case 6:
-            visit.month = "June"
-            break;
-        case 7:
-            visit.month = "July"
-            break;
-        case 8:
-            visit.month = "August"
-            break;
-        case 9:
-            visit.month = "September"
-            break;
-        case 10:
-            visit.month = "October"
-            break;
-        case 11:
-            visit.month = "November"
-            break;
-        case 12:
-            visit.month = "December"
-            break;
-    }
-    return visit;
-}
+router.get('/visits/:petName', function(req, res) {
+    fs.readFile('./data/visitsPerDay.json', 'utf8', function readFileCallback(err, data) {
+        if(err) {
+            console.log("ERROR READING FILE: " + err);
+        } else {
+            obj = JSON.parse(data);
+            var bookedVisits = [];
+            for(let i = 0; i < obj.length; i++) {
+                if(obj[i].petName === req.params.petName) {
+                    bookedVisits.push(obj[i]);
+                }
+            }
+            res.json(bookedVisits)
+        }
+    });
+})
 
 module.exports = router;
