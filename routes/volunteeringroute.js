@@ -15,7 +15,6 @@ router.get('/volunteering', function(req, res) {
 });
 
 router.post('/addVolunteering', function(req, res) {
-    console.log(req.body)
     fs.readFile('./data/volunteering.json', 'utf8', function readFileCallback(err, data) {
         if(err) {
             console.log("ERROR READING FILE: " + err);
@@ -157,7 +156,7 @@ router.put('/changeStatus/:status/:id', function(req, res) {
             fs.writeFile('./data/interviews.json', json, 'utf8', (err) => {
                 if (!err) {
                   console.log('Status of the interview updated');
-                  res.send("OK")
+                  res.json(obj.reverse())
                 }
             });
         }

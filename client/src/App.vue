@@ -38,8 +38,8 @@
                         <li class="nav-item"><router-link class="nav-link" to="/adoption">Adoption</router-link></li>
                         <li class="nav-item"><router-link class="nav-link" to="/volunteering">Volunteering</router-link></li>
                         <li class="nav-item"><router-link class="nav-link" to="/events">Events</router-link></li>
-                        <li class="nav-item"><router-link class="nav-link" to="/funfacts">Fun facts</router-link></li>
-                        <li class="nav-item"><router-link class="nav-link" to="/funnypets">Funny pets</router-link></li>
+                        <li class="nav-item"><router-link class="nav-link" to="/funfacts">Fun Facts</router-link></li>
+                        <li class="nav-item"><router-link class="nav-link" to="/cats-and-dogs">Cats & Dogs</router-link></li>
                         <li class="nav-item"><router-link class="nav-link" to="/topvideoanimal">Top 10 Videos</router-link></li>
                         <li class="nav-item dropdown">
                             <router-link class="nav-link dropdown-toggle" id="navbarDropdown" to="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Games</router-link>
@@ -87,8 +87,9 @@
                 </div>
                 <div class="footer__section">
                     <span class="footer__title">To have fun</span>
-                    <router-link to="/funfacts" class="footer__link">Fun facts</router-link>
-                    <router-link to="/funnypets" class="footer__link">Funny pets</router-link>
+                    <router-link to="/funfacts" class="footer__link">Fun Facts</router-link>
+                    <router-link to="/cats-and-dogs" class="footer__link">Cats & Dogs</router-link>
+                    <router-link to="/topvideoanimal" class="footer__link">Top 10 Videos</router-link>
                     <router-link to="/quiz" class="footer__link">Quiz</router-link>
                     <router-link to="/hangman" class="footer__link">Hangman</router-link>
                 </div>

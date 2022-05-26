@@ -1013,17 +1013,23 @@ button {
      display: none;
      z-index: 2;
      position: fixed;
-     right: 20vw;
-     left: 20vw;
+     margin: 0 auto;
      top:30vh;
-     background-color: rgba(59, 157, 248, 0.405);
+     background-color: rgba(59, 157, 248, 0.5);
      border-radius: 20px;
-     padding: 10px;
+     padding: 0px 15px 10px 15px;
+     max-width: 200px;
 }
 #closeResult{
-     border-radius: 10px;
      z-index: 2;
-
+     background-color: transparent;
+     font-size: 25px;
+     font-weight: 600;
+     float: right;
+     height: 30px;
+}
+#textResult {
+     float: left;
 }
 
 /*
@@ -1333,18 +1339,20 @@ button {
 
 
 /*
-     TOP10 Video
+     TOP 10 Video
 */
 
 #countryVideo{
      border-radius: 10px;
      position: relative;
-     right: 10vw;
-     left: 20vw;
      max-width: 20vw;
-     margin:20px;
+     margin: 20px auto;
+     border: unset;
+     height: 35px;
+     min-width: 200px;
+     padding: 5px;
 }
-#videoPet{
+.videoPet{
      border-radius: 10px;
      width: 420px; 
      height: 315px;
@@ -1357,22 +1365,20 @@ button {
      display: inline-block;
      width: 1.33333333em;
      line-height: 1em;
-   }
-   .fi:before {
+}
+.fi:before {
      content: '\00a0';
-   }
-   .fi.fis {
+}
+.fi.fis { 
      width: 1em;
-   }
-   #numVideo{
-        background-color: rgb(255, 30, 0);
-        border-radius: 20px;
-        justify-content: center;
-        font-family: 'Nanum Myeongjo', serif;
-        max-width: 25px;
-        margin: 10px;
-        padding: 5px;
-   }
+}
+.numVideo{
+     justify-content: center;
+     margin: 10px;
+     padding: 5px;
+     font-size: 25px;
+     font-weight: 600;
+}
 
 
 
@@ -1549,14 +1555,10 @@ button {
 }
 
 @media  screen and (max-width: 400px) {
-    
-
-    #videoPet{
-     
-     width: 300px;
-     height: 200px;
-}
-
+    .videoPet{     
+          width: 300px;
+          height: 200px;
+     }
 }
      
 @media screen and (max-width: 350px) {

@@ -225,7 +225,6 @@ function hideWord(word){
 
 
    function saveResult(punteggio){
-
     punteggio = punteggio + punteggioUtente;
     if (localStorage.getItem('token') != null) {
       $.ajax({
@@ -238,28 +237,18 @@ function hideWord(word){
         headers: {
             token: localStorage.getItem('token')
         },
-    });
-
+      });
     }
-    
-
-  }
-    
-
-
+   }
 
    function writeWordInsert(insertWord){
-
      if(usedWord.has(insertWord)){
       $('#divResult').show();
-      $('#textResult').text("You have just insered the letter:" + insertWord);
+      $('#textResult').text("You have already inserted the letter: " + insertWord);
       //punteggio = punteggio - 5;
      }else{
-      $('#usedLetters').append("<span class=www>"+ insertWord + "</span>"); 
-       
-     }
-     
-    
+      $('#usedLetters').append("<span class=www>"+ insertWord + "</span>");      
+     } 
    }
 
  function changeImgHangMan(){
@@ -267,6 +256,5 @@ function hideWord(word){
     $("#imgHangman").attr("src","/images/hangman/facile"+9+".png");
    }else{
     $("#imgHangman").attr("src","/images/hangman/facile"+tentativi+".png");
-   }
-   
+   } 
  }

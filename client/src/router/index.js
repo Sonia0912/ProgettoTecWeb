@@ -19,7 +19,7 @@ const routes = [
     component: () => import('../views/VolunteeringView.vue')
   },
   {
-    path: '/funnypets',
+    path: '/cats-and-dogs',
     name: 'FunnyPets',
     component: () => import('../views/FunnyPetsView.vue')
   },

@@ -4,7 +4,6 @@
 
             <div id="spanRules">
                 <button id="btnRules"> ? </button>
-
                 <!-- Modal -->
                 <div id="rulesPopUp" class="modal">
                     <span id="closeRules" class="close" title="Close Modal">&times;</span>
@@ -23,22 +22,20 @@
                         </div>
                     </form>
                 </div>
-            </div>
+            </div>                
 
-                
-
-            <div id="divResult">
-                <button id="closeResult"> X </button>
-                <div id="textResult"> </div>
-            </div>
+<!--             <div id="divResult" class="modal">  -->
+                <div id="divResult">
+                    <button id="closeResult">&times;</button>
+                    <div id="textResult"></div>
+                </div>
+<!--             </div> -->
 
             <div>
                 <div class="title">Hangman Game</div>
                  <div class="serverError">{{ error }}</div>
                 <span>
-           
                     <div v-if="isAuth" id="scoreHangman">Your total score: <span id="quizScore"> {{ score }}</span></div>
-
                     <div id="scoreHangman">Current score: <span id="hangmanCurrentScore">100</span></div>
                 </span>
                 <div id="HangmanBackgroud">

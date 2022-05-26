@@ -73,12 +73,8 @@
             changeStatus(id, accepted) {
                 var status = accepted ? "approved" : "rejected";
                 axios.put('http://localhost:3000/changeStatus/' + status + '/' + id)
-                .then(() => {
-                    axios.get('http://localhost:3000/getInterviews')
-                    .then(res => {
-                        this.interviews = res.data;
-                    })
-                    .catch(err => {this.error = "Sorry, something went wrong (" + err.message + ")"})
+                .then((res) => {
+                    this.interviews = res.data;
                 }
                 )
                 .catch(err => {this.error = "Sorry, something went wrong (" + err.message + ")"})
