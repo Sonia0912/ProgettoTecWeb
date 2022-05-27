@@ -1,6 +1,7 @@
 <template>
     <div class="pinkLeafBackground">
         <div class="title pink">Manage events</div>
+        <div id="serverErrorManageEvent" class="serverError"></div>
 
         <div class="centeredGrid">
             <button id="addEvent">New event</button>
@@ -12,7 +13,7 @@
                     </div>
                     <!-- Date -->
                     <div class="newEventField">Date:
-                        <input type="date" name="date" id="newEventDate" v-model="date" required />
+                        <input type="text" readonly name="date" id="newEventDate" v-model="date" required />
                     </div>
                     <!-- Place -->
                     <div class="newEventField">Place:
@@ -27,7 +28,7 @@
                     <!-- Description -->
                     <div class="newEventField">
                         <div>Description:</div>
-                        <textarea v-model="description" name="description" placeholder="A description of this event..." required></textarea>
+                        <textarea v-model="description" id="descriptionEvent" name="description" placeholder="A description of this event..." required></textarea>
                     </div>
                     <!-- Seats -->
                     <div class="newEventField">Seats:

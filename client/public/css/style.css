@@ -842,6 +842,9 @@ button {
 #myVisits, #myEvents, #myInterviews {
      margin: 50px 0px;
 }
+#myEvents{
+     max-width: 80vw;
+}
 
 /*
      VOLUNTEERING
@@ -1015,6 +1018,7 @@ button {
      position: fixed;
      margin: 0 auto;
      top:30vh;
+     right: 30vw;
      background-color: rgba(59, 157, 248, 0.5);
      border-radius: 20px;
      padding: 0px 15px 10px 15px;
@@ -1155,7 +1159,8 @@ button {
      padding: 5px 10px;
      overflow: auto;
      max-height: 25vh;
-     min-width: 250px;
+     max-width: 500px;
+     min-width: 200px;
 }
 
 .infoEvent{
@@ -1283,6 +1288,7 @@ button {
      border: 1px solid #cdcdcd;
      border-radius: 10px;
 }
+
 
 #colForm1 {
      grid-column-start: 1;
@@ -1557,6 +1563,12 @@ button {
      }
 }
 
+@media screen and (max-width: 450px) {
+     #newEventForm {
+          display: unset;
+     }
+
+}
 @media  screen and (max-width: 400px) {
     .videoPet{     
           width: 300px;
@@ -1595,5 +1607,12 @@ button {
      }
      #bookVolunteering textarea {
           min-width: 250px;
+     }
+}
+@media screen and (max-width: 250px) {
+     .descriptionEvent {
+          
+          min-width: auto;
+          
      }
 }

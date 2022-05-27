@@ -9,6 +9,9 @@ $(function () {
             $('#newEventForm').hide();
         } else {
             $('#newEventForm').show();
+            $('#newEventDate').datepicker({
+                minDate: 1
+            })
         }
     })
 });
@@ -24,8 +27,8 @@ function createTable() {
             { data: 'name' },
             { data: 'place' },
             { data: 'date' },
-            { data: 'bookedSeat'},
-            { data: 'totSeat'},
+            { data: 'bookedSeat' },
+            { data: 'totSeat' },
             { data: null }
         ],
         columnDefs: [
@@ -44,24 +47,29 @@ function createTable() {
         ],
         "createdRow": function (row, data, index) {
             console.log(data)
-                if (data.bookedSeat == data.totSeat) {
-                    $(row).addClass('notAvaibleEvent');
-                }
+            if (data.bookedSeat == data.totSeat) {
+                $(row).addClass('notAvaibleEvent');
             }
+        }
     });
 }
 
 function emptyForm() {
-    $("#newEvent").val('');
-    // $("#newVolShelter").val('');
-    // $("#missingReq").empty();
-    // $('input[name="requirements"]').each(function() {
-    //     this.checked = false;
-    // });
-    // $("#newVolForm").hide();
+    $("#newEventName").val('');
+    $("#newEventDate").val('');
+    $("#newEventDate").val('');
+    $("#newEventPlace").val('');
+    $("#newEventPrice").val('');
+    $('#newEventPrice').val('');
+    $('#descriptionEvent').val('');
+    $('#newEventSeats').val('');
+    $('#newEventPhoto').val('');
+    $('#newEventCategory').val('');
+    $("#newEventForm").hide();
 }
 
 $('#newEventForm').submit(function (e) {
+
     var newEvent = {
         name: $("#newEventName").val(),
         place: $("#newEventPlace").val(),
@@ -70,6 +78,9 @@ $('#newEventForm').submit(function (e) {
         bookedSeat: 0
     }
     table.row.add(newEvent).draw(false);
+    setTimeout(function () {
+        emptyForm();
+    }, 100);
 
 
 });
@@ -98,7 +109,11 @@ $("#confirmDeleteButton").on("click", function () {
         selectedRow.remove().draw();
         $('#modalDeleteEvent').hide();
     }).fail(function () {
+
+        $("#serverErrorManageEvent").html("Sorry something went wrong (" + err.status + ")")
         $('#modalDeleteEvent').hide();
+
+
     })
 })
 
