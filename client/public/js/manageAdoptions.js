@@ -15,17 +15,29 @@ $(function() {
 
 $('#newPetForm').submit(function(e) {
     e.preventDefault();
-    this.submit();
-    var newPet = {
-        name: $("#newPetName").val(),
-        age: $("#newPetAge").val(),
-        type: $('input[name="type"]:checked').val(),
-        shelter: $("#newPetShelter").val()
-    }
-    table.row.add(newPet).draw(false);
-    setTimeout(function(){
-        emptyForm();
-    }, 100);
+    //this.submit();
+    var form = $(this);
+    var url = form.attr('action'); //get submit url [replace url here if desired]
+    $.ajax({
+         type: "POST",
+         url: url,
+         data: form.serialize(), // serializes form input
+         success: () => {
+            var newPet = {
+                name: $("#newPetName").val(),
+                age: $("#newPetAge").val(),
+                type: $('input[name="type"]:checked').val(),
+                shelter: $("#newPetShelter").val()
+            }
+            table.row.add(newPet).draw(false);
+            setTimeout(function(){
+                emptyForm();
+            }, 100);
+         },
+         error: function(err){
+             $("#addPetError").html(err.responseJSON.error)
+         }
+    });
 })
 
 function createTable() {

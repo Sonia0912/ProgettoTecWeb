@@ -53,6 +53,7 @@
                     </div>
                 </div>
                 <div id="newPetSubmit">
+                    <div id="addPetError"></div>
                     <button type="submit" id="addPetBtn">Add</button>
                 </div>
             </form>

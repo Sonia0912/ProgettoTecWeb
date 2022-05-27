@@ -103,23 +103,31 @@ router.post('/addPet', function(req, res) {
             console.log("ERROR READING FILE: " + err);
         } else {
             obj = JSON.parse(data);
-            obj.push({
-                name: req.body.name,
-                age: req.body.age,
-                gender: req.body.gender,
-                photo: req.body.photo,
-                description: req.body.description,
-                shelter: req.body.shelter
-            });
-            json = JSON.stringify(obj);
-            fs.writeFile('./data/' + req.body.type + '.json', json, 'utf8', (err) => {
-                if (!err) {
-                  console.log('Pet added to the database');
-                }
-            });
+            var pet = obj.find(pet => pet.name === req.body.name);
+            if(pet) {
+                return res.status(409).json({
+                    title: "Existing pet name",
+                    error: "This name is already used"
+                })
+            } else {
+                obj.push({
+                    name: req.body.name,
+                    age: req.body.age,
+                    gender: req.body.gender,
+                    photo: req.body.photo,
+                    description: req.body.description,
+                    shelter: req.body.shelter
+                });
+                json = JSON.stringify(obj);
+                fs.writeFile('./data/' + req.body.type + '.json', json, 'utf8', (err) => {
+                    if (!err) {
+                      console.log('Pet added to the database');
+                      res.status(204).send("OK");
+                    }
+                });
+            }
         }
     });
-    res.status(204).send("OK");
 })
 
 // When the admin deletes a pet
