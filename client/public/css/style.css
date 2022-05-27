@@ -1389,22 +1389,6 @@ button {
      font-weight: 600;
 }
 
-
-
-/*
-     ERROR
-*/
-
-#urlNotFoundText {
-     padding: 50px;
-     background-color: #d7e7ff;
-}
-
-#urlNotFoundText img {
-     max-height: 200px;
-     margin-top: 20px;
-}
-
 .past-events-list .event-item:nth-child(2n) {
      padding-left: 10px;
 }
@@ -1560,6 +1544,9 @@ button {
      }
      #inputName, #inputSurname, #inputPassword {
           width: 120px;
+     }
+     #urlNotFoundText img {
+          max-height: 150px;
      }
 }
 

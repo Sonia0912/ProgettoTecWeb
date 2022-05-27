@@ -1,6 +1,7 @@
 <template>
     <div class="pinkLeafBackground">
         <div class="title pink">Users</div>
+        <div id="serverErrorMUsers" class="serverError"></div>
         <table id="usersList">
             <thead>
                 <tr>

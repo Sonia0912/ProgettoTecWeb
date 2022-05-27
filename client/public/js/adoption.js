@@ -70,7 +70,7 @@ Promise.all(promises)
     loadPets(false);
     $(".cat").hide();
 })
-.catch((err) => console.log(err));
+.catch((err) => $("#serverErrorAdop").html("Sorry something went wrong (" + err.status + ")"));
 
 // filter by type
 $("#filterDog").on("click", function() {

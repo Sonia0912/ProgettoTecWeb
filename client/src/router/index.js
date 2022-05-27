@@ -34,6 +34,11 @@ const routes = [
     component: () => import('../views/QuizView.vue')
   },
   {
+    path: '/memegenerator',
+    name: 'MemeGenerator',
+    component: () => import('../views/MemeGeneratorView.vue')
+  },
+  {
     path: '/hangman',
     name: 'Hangman',
     component: () => import('../views/HangmanView.vue')

@@ -1,6 +1,7 @@
 <template>
     <div class="blueBackground">
         <div class="title">Find your pet</div>
+        <div id="serverErrorAdop" class="serverError"></div>
         <div class="subtitle">At AnimalHouse we care about our pets' well being. If you intend to adopt one of our pets, please book an appoiment within the next week.</div>
         <div class="centeredGrid">
             <div class="filter">

@@ -48,6 +48,17 @@ router.get('/getInterviews', function(req, res) {
     });
 })
 
+router.get('/getInterviewsPerDay', function(req, res) {
+    fs.readFile('./data/interviewsPerDay.json', 'utf8', function readFileCallback(err, data) {
+        if(err) {
+            console.log("ERROR READING FILE: " + err);
+        } else {
+            obj = JSON.parse(data);
+            res.json(obj.reverse());
+        }
+    });
+})
+
 router.post('/addInterview', function(req, res) {
     var token = req.headers.token;
     jwt.verify(token, process.env.SESSION_SECRET, (err, decoded) => {

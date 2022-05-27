@@ -16,7 +16,10 @@ function getFunnyDog() {
         })
         .then(animal => {
             $('#fundog').attr("src", animal["message"]);
-        });
+        })
+        .catch(err => {
+            $("#serverErrorDogs").html("Sorry, something went wrong (" + err.status + ")");
+        })
 }
 
 function getFunnyCat() {
@@ -26,6 +29,9 @@ function getFunnyCat() {
     })
     .then(animal => {
         $('#funcat').attr("src", animal[0]["url"]);
-    });
+    })
+    .catch(err => {
+        $("#serverErrorCats").html("Sorry, something went wrong (" + err.status + ")");
+    })
 }
 

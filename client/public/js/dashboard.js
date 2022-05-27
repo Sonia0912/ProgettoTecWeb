@@ -1,5 +1,8 @@
 $(function() {
-    $.getJSON('http://localhost:3000/posts', getPosts);
+    $.getJSON('http://localhost:3000/posts', getPosts)        
+    .fail(function(err) {
+        $("#serverErrorDash").html("Sorry, something went wrong (" + err.status + ")")
+    });
   
     $('.post-form').on("submit", function(e) {
         e.preventDefault();
@@ -19,8 +22,8 @@ $(function() {
                 success: (res) => {
                     getLastPost(res);
                 },
-                error: () => {
-                    $("#errorPost").html("Sorry, something went wrong");
+                error: (err) => {
+                    $("#serverErrorDash").html("Sorry, something went wrong (" + err.status + ")");
                 } 
             });
             $('#imgUploaded').removeAttr('src');
@@ -102,6 +105,9 @@ $(window).on("scroll", function() {
             if(posts.length < 5) {
                 $(window).off('scroll'); 
             }
+        })
+        .fail(function(err) {
+            $("#serverErrorDash").html("Sorry, something went wrong (" + err.status + ")")
         });
     }
 });

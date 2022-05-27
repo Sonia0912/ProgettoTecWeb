@@ -1,6 +1,7 @@
 <template>
     <div class="centeredGrid blueCurtainBackground">
         <div class="title">Dashboard</div>
+        <div id="serverErrorDash" class="serverError"></div>
         <form class="post-form" id="newPost" action="/posts" method="post">
             <div><textarea type="text" name="text" placeholder="Tell us something about your pets..." id="text" required></textarea></div>
             <div><img id="imgUploaded" /></div>

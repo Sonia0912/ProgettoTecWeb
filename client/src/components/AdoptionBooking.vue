@@ -2,6 +2,7 @@
     <div id="adoptionBooking" class="centeredGrid blueBackground">
 
         <div class="title">Book a visit with {{ $route.params.petName }}</div>
+        <div id="serverErrorBookAdop" class="serverError">{{ error }}</div>
         
         <div class="summary">
             <img v-bind:src="photo">
@@ -17,10 +18,10 @@
 
         <div class="bookingForm">
             <div class="formTitle">Pick a day and time within the next week:</div>
-            <Datepicker v-model="date" placeholder="Select a date" :minDate="minDate" :maxDate="maxDate" :disabledWeekDays="[6, 0]" :disabledDates="disabledDates"
-            :minTime="{ hours: 9 }" :maxTime="{ hours: 16, minutes: 30 }"
-            required preventMinMaxNavigation></Datepicker>
-            <div class="formOpenings">* We're open from Monday to Friday, 9:00 - 16:30</div>
+            <input type="text" id="visitDate" val="mm/dd/yyyy" readonly />
+            <select name="time" id="visitTime"></select>
+            <div class="formOpenings">* We're open from Monday to Friday, 13:00 - 17:00</div>
+            <div id="dateUnavailable"></div>
             <div class="formTitle">Shelter:</div>
             <div class="formShelter">{{shelter}}</div>
             <button @click="book()">Book</button>
@@ -31,32 +32,15 @@
 
 <script>
     import axios from 'axios'
-    import Datepicker from '@vuepic/vue-datepicker';
-    import '@vuepic/vue-datepicker/dist/main.css'
-    import { ref } from 'vue';
+    import $ from 'jquery'
     export default {
         name: "adoptionBooking",
-        components: { Datepicker },
         created() {
             if(localStorage.getItem('token') === null) {
-                    this.$router.push({
-                        name: 'Login', 
-                        params: { error: 'unauthorized' }
-                    });
-            }
-        },
-        setup() {
-            // dates to disable by default
-            const date = ref();
-            const minDate = ref(new Date());     
-            const maxDate = ref(new Date().setDate(new Date().getDate() + 7)); 
-            const today = new Date();
-            var disabledDates = [today];
-            return {
-                date,
-                minDate,
-                maxDate,
-                disabledDates
+                this.$router.push({
+                    name: 'Login', 
+                    params: { error: 'unauthorized' }
+                });
             }
         },
         data() {
@@ -68,10 +52,15 @@
                 photo: '',
                 description: '',
                 shelter: '',
-                border: "unset"
+                border: "unset",
+                error: ''
             }
         },
         mounted() {
+            let Script = document.createElement("script");
+            Script.setAttribute("src", "../../js/adoptionBooking.js");
+            document.head.appendChild(Script);
+            // Get the info of the selected pet
             axios.get('http://localhost:3000/infoPet/' + this.$route.params.petType + '/' +  this.$route.params.petName)
             .then((res) => {
                 this.age = res.data.age
@@ -80,51 +69,42 @@
                 this.description = res.data.description
                 this.shelter = res.data.shelter
             })
-            .catch((e) => { console.log(e) })
-            // get dates with more than 5 bookings for that pet
-            var fullDates = [];
-            axios.get('http://localhost:3000/fullDates/' + this.$route.params.petName)
-            .then((res) => {
-                // disable those dates
-                for(let i = 0; i < res.data.length; i++) {
-                    fullDates.push(new Date(new Date().setMonth((res.data[i].month - 1), res.data[i].day)));
-                }
-            })
-            .catch((e) => { console.log(e) })
-            this.disabledDates = fullDates;
+            .catch((err) => { this.error = "Sorry, something went wrong (" + err.message + ")" })
         },
         methods: {
             book() {
-                if(this.date != null) {
-                    const day = this.date.getDate(); 
-                    const month = this.date.getMonth() + 1;
-                    const year = this.date.getFullYear();
-                    const hour = this.date.getHours();
-                    const minute = this.date.getMinutes();
-                    const selectedTime = `${hour}:${minute}`;  
-
-                    const options = {
-                        method: 'post',
-                        url: 'http://localhost:3000/adoptionBook',
-                        data: {
-                            username: localStorage.getItem('email'),
-                            petName: this.name,
-                            shelter: this.shelter,
-                            photo: this.photo,
-                            day: day,
-                            month: month,
-                            year: year,
-                            time: selectedTime
-                        },
-                    };
-                    axios(options);
-                    this.$router.push({
-                        name: 'MyBookings'
-                    });
+                if($("#visitTime").val() && $("#visitDate").val()) {
+                    var data = {
+                        username: localStorage.getItem('email'),
+                        petName: this.name,
+                        shelter: this.shelter,
+                        photo: this.photo,
+                        date: $("#visitDate").val(),
+                        time: $("#visitTime").val()
+                    }
+                    var myRouter = this.$router;
+                    axios.post('http://localhost:3000/adoptionBook', data)
+                    .then(() => {
+                        $("#visitDate").val('');
+                        $("#visitTime").empty();
+                        myRouter.push({
+                            name: 'MyBookings'
+                        });
+                    })
+                    .catch((err) => { this.error = "Sorry, something went wrong (" + err.message + ")" });
                 } else {
-                    alert("Please select a date")
+                    alert("Please select a date and time")
                 }
             }
         }
     }
 </script>
+
+<style scoped>
+#visitTime, #visitDate {
+    border: unset;
+    padding: 8px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+</style>

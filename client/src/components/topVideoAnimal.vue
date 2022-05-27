@@ -1,8 +1,7 @@
 <template>
     <div class="centeredGrid leafPattern">
         <div class="title" id="containerTop10Video">Top 10</div>
-        <div class="subtitle">Here you can find the daily top 10 videos about animals on YouTube filtered by country.
-        </div>
+        <div class="subtitle">Here you can find the daily top 10 videos about animals on YouTube filtered by country.</div>
         <select v-model="country" @change="getTop10of($event)" id="countryVideo" required>
             <option value="IT">ITALY</option>
             <option value="US">USA</option>

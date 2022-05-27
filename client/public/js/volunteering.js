@@ -7,7 +7,7 @@ $(function() {
     const interviewTimes = ["9:00", "10:00", "11:00", "12:00"];
 
     promises.push($.ajax({url: 'http://localhost:3000/volunteering', method: 'GET'}));
-    promises.push($.ajax({url: 'http://localhost:3000/getInterviews', method: 'GET'}));
+    promises.push($.ajax({url: 'http://localhost:3000/getInterviewsPerDay', method: 'GET'}));
 
     Promise.all(promises)
     .then((results) => {
@@ -90,6 +90,8 @@ $(function() {
     function getAvailableTimes() {
         var availableTimes = interviewTimes;
         for(let i = 0; i < interviewsItems.length; i++) {
+            console.log("db: " + interviewsItems[i].date )
+            console.log("input: " + $("#txtDate").val())
             if(interviewsItems[i].date === $("#txtDate").val() && interviewsItems[i].position === $('#jobPosition').val() && interviewsItems[i].shelter === $('#jobShelter').val()) {
                 var toRemove = interviewsItems[i].bookedTimes;
                 availableTimes = interviewTimes.filter( function( el ) {

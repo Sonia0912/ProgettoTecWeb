@@ -16,9 +16,7 @@
                 <div class="visitShelter">{{visit.shelter}}</div>
                 <div class="visitUsername">{{visit.username}}</div>
                 <div class="visitDateContainer"> 
-                    <span class="visitDay">{{visit.day}}</span>.
-                    <span class="visitMonth">{{visit.month}}</span>.
-                    <span class="visitYear">{{visit.year}}</span>
+                    <span class="visitDate">{{visit.date}}</span>
                     <span class="visitTime">{{visit.time}}</span>
                 </div>
             </div>
@@ -140,7 +138,7 @@
     padding-bottom: 5px;
     border-bottom: 1px solid #1b284d;
 }
-.ivDate, .visitYear {
+.ivDate, .visitDate {
     margin-right: 8px;
 }
 .statusBtnContainer {
