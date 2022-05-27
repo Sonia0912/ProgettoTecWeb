@@ -20,7 +20,7 @@
             <div class="carousel-item">
               <img src="../../public/images/hero/hero1.jpg" class="d-block w-100">
               <div class="carousel-caption d-md-block">
-                <h5>Our dream is to spread awareness about animals lives</h5>
+                <h5>Our dream is to help all dogs and cats in need</h5>
               </div>
             </div>
             <div class="carousel-item">
@@ -55,8 +55,24 @@
                   <div id="aboutDiv">
                       <div class="title">About us</div>
                       <div class="paragraph">
-                          <div class="subParagraph">AnimalHouse is the result of a collaborative effort between two leading animal welfare groups, the Humane Society of the United States and Maddie's Fund, and the leading producer of public service advertising (PSA) campaigns, The Ad Council.</div>
-                          <div class="subParagraph">Our goal is to make shelters the first place potential adopters turn when looking to get a new pet, ensuring that all healthy and treatable pets find loving homes. We do this by breaking down misconceptions surrounding shelter pets and celebrating the unique bond between every shelter pet and parent.</div>
+                          <div class="subParagraph">AnimalHouse's goal is to make shelters the first place potential adopters turn when looking to get a new pet, ensuring that all healthy and treatable pets find loving homes. We do this by breaking down misconceptions surrounding shelter pets and celebrating the unique bond between every shelter pet and parent.</div>
+                          <div class="subParagraph">
+                            At the moment we have 3 different shelters in New York:
+                            <ul>
+                              <li>King's Street, 30 - NY</li>
+                              <li>Park Avenue, 29 - NY</li>
+                              <li>Bay Avenue, 31 - NY</li>
+                            </ul>
+                          </div>
+                          <div class="subParagraph">
+                            You only need to create an account to benefit from the services we offer:
+                            <ul>
+                              <li>Adoption</li>
+                              <li>Volunteering</li>
+                              <li>Events</li>
+                            </ul>
+                              Come meet our pets!
+                          </div>
                       </div>
                   </div>
               </div>
