@@ -40,7 +40,13 @@
                     }
                     axios.post('http://localhost:3000/register', newUser)
                     .then(
-                        this.$router.push("login")
+                        (res) => {
+                            console.log(res)
+                            this.$router.push("login")
+                        },
+                        err => {
+                            this.error = err.response.data.error
+                        }     
                     )
                 } else {
                     this.error = "Please fill in all the fields"

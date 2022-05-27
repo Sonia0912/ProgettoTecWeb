@@ -38,22 +38,31 @@ router.post('/register', async (req, res) => {
                 console.log("ERROR READING FILE: " + err);
             } else {
                 obj = JSON.parse(data);
-                obj.users.push({
-                    id: Date.now().toString(),
-                    name: req.body.name,
-                    surname: req.body.surname,
-                    email: req.body.email,
-                    password: hashedPassword,
-                    admin: false,
-                    quizScore: 0,
-                    hangmanScore: 0
-                });
-                json = JSON.stringify(obj);
-                fs.writeFile('./data/users.json', json, 'utf8', (err) => {
-                    if (!err) {
-                      console.log('User added to the database');
-                    }
-                });
+                var user = obj.users.find(user => user.email === req.body.email);
+                if(user) {
+                    return res.status(409).json({
+                        title: "Existing email",
+                        error: "This email is already used"
+                    })
+                } else {
+                    obj.users.push({
+                        id: Date.now().toString(),
+                        name: req.body.name,
+                        surname: req.body.surname,
+                        email: req.body.email,
+                        password: hashedPassword,
+                        admin: false,
+                        quizScore: 0,
+                        hangmanScore: 0
+                    });
+                    json = JSON.stringify(obj);
+                    fs.writeFile('./data/users.json', json, 'utf8', (err) => {
+                        if (!err) {
+                          console.log('User added to the database');
+                          return res.status(200).send("OK")
+                        }
+                    });
+                }
             }
         });
     } catch (e) {
