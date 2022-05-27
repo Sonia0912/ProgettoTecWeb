@@ -46,8 +46,7 @@
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <router-link class="dropdown-item" to="/quiz">Quiz</router-link>
                                 <router-link class="dropdown-item" to="/hangman">Hangman</router-link>
-                                <!-- <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#!">Something else here</a> -->
+                                <router-link class="dropdown-item" to="/memegenerator">Meme Generator</router-link>
                             </div>
                         </li>
                     </ul>
@@ -92,6 +91,7 @@
                     <router-link to="/topvideoanimal" class="footer__link">Top 10 Videos</router-link>
                     <router-link to="/quiz" class="footer__link">Quiz</router-link>
                     <router-link to="/hangman" class="footer__link">Hangman</router-link>
+                    <router-link to="/memegenerator" class="footer__link">Meme Generator</router-link>
                 </div>
             </div>
           </footer>
