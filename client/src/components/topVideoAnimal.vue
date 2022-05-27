@@ -2,18 +2,20 @@
     <div class="centeredGrid leafPattern">
         <div class="title" id="containerTop10Video">Top 10</div>
         <div class="subtitle">Here you can find the daily top 10 videos about animals on YouTube filtered by country.</div>
-        <select v-model="country" @change="getTop10of($event)" id="countryVideo" required>
+        <select @change="getTop10of($event)" id="countryVideo" required>
             <option value="IT">ITALY</option>
             <option value="US">USA</option>
             <option value="ES">SPAIN</option>
             <option value="GB">GREAT BRITAIN</option>
             <option value="FI">FINLAND</option>
         </select>
-        <div v-for="(video, index) in videos" v-bind:value="video" :key="video.id" class="centeredGrid funnypets">
-            <div v-if="video">
-                <div class="numVideo">{{ index + 1 }}° {{ video.title }}</div>
-                <iframe class="videoPet" :src="video.link" allowfullscreen></iframe>
-                <div id="viewsVideo">{{video.view}}</div>
+        <div class="centeredGrid topTen"> 
+            <div v-for="(video, index) in videos" v-bind:value="video" :key="video.id" class="funnyVideo">
+                <div class="titleVideo"><span class="number">#{{ index + 1 }} </span> {{ video.title }}</div>
+                <div>
+                    <iframe class="videoPet" :src="video.link" allowfullscreen></iframe>
+                    <div class="viewsVideo"><img src="../../public/icons/views.png">{{video.view}}</div>
+                </div>
             </div>
         </div>
     </div>
@@ -37,7 +39,8 @@ export default {
                     res.data.items.forEach(el => {
                         this.videos.push({
                             link: "https://www.youtube.com/embed/" + el.id,
-                            title: el.snippet.title
+                            title: el.snippet.title,
+                            view: el.statistics.viewCount
                         });
                     })
                 }).catch(error => {
@@ -62,3 +65,76 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.centeredGrid.topTen {
+    max-width: 600px;
+    justify-items: center;
+    margin: 0 auto;
+}
+
+.funnyVideo {
+    display: grid;
+    justify-items: center;
+    margin-bottom: 30px;
+}
+
+#countryVideo{
+     border-radius: 10px;
+     position: relative;
+     max-width: 20vw;
+     margin: 20px auto;
+     border: unset;
+     height: 35px;
+     min-width: 200px;
+     padding: 5px;
+}
+
+.number {
+    font-weight: 900;
+}
+
+.videoPet{
+    border-radius: 10px;
+    width: 500px;
+    height: 300px;
+}
+
+.titleVideo{
+     justify-content: center;
+     margin: 10px;
+     padding: 5px;
+     font-size: 25px;
+     font-weight: 600;
+}
+
+.viewsVideo {
+    font-size: 23px;
+    justify-self: start;
+}
+
+.topTen img {
+    height: 25px;
+    margin-right: 5px;
+}
+
+@media  screen and (max-width: 520px) {
+    .titleVideo{
+        font-size: 20px;
+    }
+    .viewsVideo {
+        font-size: 18px;
+    }
+    .videoPet{     
+        width: 300px;
+        height: 200px;
+    }
+}
+
+@media  screen and (max-width: 320px) {
+    .videoPet{     
+        width: 260px;
+        height: 150px;
+    }
+}
+</style>
