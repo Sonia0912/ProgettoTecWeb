@@ -550,6 +550,8 @@ button {
 
 .fact {
      background-color: white;
+     display: flexbox;
+     flex-direction: column;
      border-radius: 10px;
      padding: 20px;
      width: fit-content;
@@ -560,6 +562,12 @@ button {
      display: flex;
      justify-content: center;
      align-items: center;
+}
+.publishFactBtn{
+     margin-top: 10px;
+     background-color: #1b284d;
+     color: white;
+     border-radius: 5px;
 }
 
 .searchFact button {

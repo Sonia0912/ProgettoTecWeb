@@ -53,6 +53,7 @@ app.use(require('./routes/adminroute'));
 app.use(require('./routes/volunteeringroute'));
 app.use(require('./routes/leaderboardroute'));
 app.use(require('./routes/memeroute'));
+app.use(require('./routes/funfactsroute'));
 
 const PORT = 3000;
 
