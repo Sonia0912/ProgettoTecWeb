@@ -90,8 +90,6 @@ $(function() {
     function getAvailableTimes() {
         var availableTimes = interviewTimes;
         for(let i = 0; i < interviewsItems.length; i++) {
-            console.log("db: " + interviewsItems[i].date )
-            console.log("input: " + $("#txtDate").val())
             if(interviewsItems[i].date === $("#txtDate").val() && interviewsItems[i].position === $('#jobPosition').val() && interviewsItems[i].shelter === $('#jobShelter').val()) {
                 var toRemove = interviewsItems[i].bookedTimes;
                 availableTimes = interviewTimes.filter( function( el ) {

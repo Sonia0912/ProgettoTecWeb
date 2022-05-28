@@ -4,7 +4,6 @@ const axios = require('axios');
 const FormData = require('form-data');
 
 router.post('/memegenerator', function(req, res) {
-    console.log(req.body)
     const formData = new FormData();
     formData.append('topText', req.body.topText);
     formData.append('bottomText', req.body.bottomText);

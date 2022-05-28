@@ -725,6 +725,7 @@ button {
 
  .summaryInfoContainer {
      margin-left: 10px;
+     margin-right: 10px;
      align-self: flex-start;
  }
 
@@ -762,17 +763,6 @@ button {
  .formOpenings {
      font-size: 14px;
      margin-top: 5px;
- }
-
- .dp__input_wrap input {
-     border: unset;
-     border-radius: 10px;
-     padding-top: 8px;
-     padding-bottom: 8px;
- }
-
- .dp__input_wrap input:hover {
-     border: 1px solid #9198ae;
  }
 
  .bookingForm button {
@@ -1462,13 +1452,22 @@ button {
      #urlNotFoundText img {
           max-height: 150px;
      }
+     .summary img {
+          height: 60px;
+          width: 60px;
+     }
+     .summary {
+          font-size: 13px;
+     }
+     .summaryName {
+          font-size: 18px;
+     }
 }
 
 @media screen and (max-width: 450px) {
      #newEventForm {
           display: unset;
      }
-
 }
      
 @media screen and (max-width: 350px) {
@@ -1503,11 +1502,14 @@ button {
      #bookVolunteering textarea {
           min-width: 250px;
      }
+     .visitSummary {
+          max-width: 270px;
+          padding: 10px;
+     }
 }
+
 @media screen and (max-width: 250px) {
-     .descriptionEvent {
-          
+     .descriptionEvent {  
           min-width: auto;
-          
      }
 }

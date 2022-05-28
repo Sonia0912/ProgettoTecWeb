@@ -68,7 +68,6 @@ router.post('/adoptionBook', function(req, res) {
             // update the number of bookings for that day and pet
             for (var i = 0; i < obj.length; i++) {
                 if (obj[i].petName === req.body.petName && obj[i].date === req.body.date) {
-                    obj[i].totVisits += 1;
                     obj[i].times.push(req.body.time)
                     found = true;
                     break;
@@ -81,8 +80,6 @@ router.post('/adoptionBook', function(req, res) {
                 obj.push({
                     petName: req.body.petName,
                     date: req.body.date,
-                    month: req.body.month,
-                    year: req.body.year,
                     times: timesArr
                 });
             }
@@ -241,6 +238,79 @@ router.get('/visits/:petName', function(req, res) {
                 }
             }
             res.json(bookedVisits)
+        }
+    });
+})
+
+router.put('/modifyVisit', function(req, res) {
+    // modifico la visita in visits.json
+    fs.readFile('./data/visits.json', 'utf8', function readFileCallback(err, data) {
+        if(err) {
+            console.log("ERROR READING FILE: " + err);
+        } else {
+            obj = JSON.parse(data);
+            var oldTime = '';
+            var oldDate = '';
+            for(let i = 0; i < obj.length; i++) {
+                if(obj[i].id === req.body.id) {
+                    oldTime = obj[i].time;
+                    oldDate = obj[i].date;
+                    obj[i].date = req.body.date;
+                    obj[i].time = req.body.time;
+                    break;
+                }
+            }
+            var myBookings = [];
+            for(let i = 0; i < obj.length; i++) {
+                if(obj[i].username === req.body.username) {
+                    myBookings.push(obj[i]);
+                }
+            }
+            var myBookingsOrdered = myBookings.reverse();
+            json = JSON.stringify(obj);
+            fs.writeFile('./data/visits.json', json, 'utf8', (err) => {
+                if (!err) {
+                    console.log('Day and time of the visit modified');
+                    // modifico il giorno e gli orari in visitsPerDay.json
+                    fs.readFile('./data/visitsPerDay.json', 'utf8', function readFileCallback(err, data) {
+                        if(err) {
+                            console.log("ERROR READING FILE: " + err);
+                        } else {
+                            obj2 = JSON.parse(data);
+                            var found = false;
+                            console.log("LUNGHEZZA: " + obj2.length)
+                            for(let i = 0; i < obj2.length; i++) {
+                                if(obj2[i].petName === req.body.petName && obj2[i].date === req.body.date) {
+                                    obj2[i].times.push(req.body.time);
+                                    found = true;
+                                }
+                                console.log("ORARIO NUOVO: " + req.body.date)
+                                console.log("ORARIO CANCELLATO: " + oldDate)
+                                console.log("ORARIO TROVATO: " + obj2[i].date)
+                                if(obj2[i].date === oldDate) {
+                                    obj2[i].times = obj2[i].times.filter(t => t != oldTime)
+                                }
+                            }
+                            if(!found) {
+                                var timesArr = [];
+                                timesArr.push(req.body.time);
+                                obj2.push({
+                                    petName: req.body.petName,
+                                    date: req.body.date,
+                                    times: timesArr
+                                })
+                            }
+                            json2 = JSON.stringify(obj2);
+                            fs.writeFile('./data/visitsPerDay.json', json2, 'utf8', (err) => {
+                                if (!err) {
+                                    console.log('Times of the visit updated');
+                                    res.json(myBookingsOrdered);
+                                }
+                            });
+                        }
+                    });
+                }
+            });
         }
     });
 })
