@@ -40,19 +40,16 @@
         <!-- Events -->
         <div v-if="typeOfBooking === 1" id="myEvents">
             <div v-if="events.length === 0" class="subtitle">You haven't booked any event yet</div>
-            <div class="eventItem" v-for="info in events" :id="info.name" :key="info.userEmail">
-                <figure class="figureEvent" v-if="info.photo">
-                    <span id="nameEvent">{{ info.nameEvent }}</span>
-                    <router-link to="/events"> <img :src="info.photo" class="imgEvent"> </router-link>
-                </figure>
-                <div class="EventInfoContainer">
-                    <div class="evDate">{{ info.dateEvent }}</div>
-                    <div class="evPlace">{{ info.placeEvent }}</div>
-                    <div class="descriptionEvent">{{ info.descriptionEvent }}</div>
+            <div class="summary" v-for="info in events" :id="info.name" :key="info.userEmail">
+                <router-link to="/events"><img :src="info.photo"></router-link>
+                <div class="summaryInfoContainer">
+                    <div class="summaryInfo summaryName">{{ info.nameEvent }}</div>
+                    <div class="summaryInfo">{{ info.dateEvent }}</div>
+                    <div class="summaryInfo">{{ info.placeEvent }}</div>
+                    <div class="summaryInfo summaryEventDescription">{{ info.descriptionEvent }}</div>
                 </div>
             </div>
         </div>
-
 
         <!-- Interviews -->
         <div v-if="typeOfBooking === 2" id="myInterviews">

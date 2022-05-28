@@ -13,7 +13,7 @@
 					<h2 class="nameEvent">{{ info.name }}</h2>
 					<span class="dateEvent">{{ info.date }}</span>
 					<address class="addressEvent">{{ info.place }}</address>
-					<div class="divPriceEvent"> Price: <span class="priceEvent"> {{ info.price }}</span></div>
+					<div class="divPriceEvent"> Price: <span class="priceEvent"> {{ info.price }} $</span></div>
 					<h6>Description:</h6>
 					<div class="descriptionEvent">{{ info.description }}</div>
 				</article>

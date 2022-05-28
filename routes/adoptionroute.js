@@ -278,15 +278,11 @@ router.put('/modifyVisit', function(req, res) {
                         } else {
                             obj2 = JSON.parse(data);
                             var found = false;
-                            console.log("LUNGHEZZA: " + obj2.length)
                             for(let i = 0; i < obj2.length; i++) {
                                 if(obj2[i].petName === req.body.petName && obj2[i].date === req.body.date) {
                                     obj2[i].times.push(req.body.time);
                                     found = true;
                                 }
-                                console.log("ORARIO NUOVO: " + req.body.date)
-                                console.log("ORARIO CANCELLATO: " + oldDate)
-                                console.log("ORARIO TROVATO: " + obj2[i].date)
                                 if(obj2[i].date === oldDate) {
                                     obj2[i].times = obj2[i].times.filter(t => t != oldTime)
                                 }

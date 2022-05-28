@@ -750,6 +750,10 @@ button {
      margin-top: 10px;
  }
 
+.summaryEventDescription {
+     font-style: italic;
+}
+
  .bookingForm {
      margin: 10px auto 40px auto;
      width: 500px;
@@ -1103,7 +1107,7 @@ button {
      align-items: center;
      justify-items: center;
      border-radius: 10px;
-     height: 40vw;
+     height: fit-content;
      padding: 5px 10px;
      overflow: auto;
      max-height: 25vh;
