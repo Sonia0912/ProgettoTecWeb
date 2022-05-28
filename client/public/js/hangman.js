@@ -26,6 +26,8 @@ window.onload = animalRequest();
 
 function clearVariable(){
   tentativi = 0;
+  punteggioPartita = 100;
+  $('#hangmanCurrentScore').val(100);
   guessWord = "";
   error = true; 
   blurPhoto = 10;
@@ -114,7 +116,6 @@ function hideWord(word){
      if(tentativi >= 9){
       $('#divResult').show();
        $('#textResult').text("YOU ARE A LOSER!");
-         
          clearWord(guessWord);
          animalRequest();
          clearVariable();
