@@ -9,35 +9,35 @@
                 <div id="colForm1">
                     <!-- Name -->
                     <div class="newEventField">Name:
-                        <input type="text" name="name" id="newEventName" v-model="name" required />
+                        <input type="text" name="name" id="newEventName" required />
                     </div>
                     <!-- Date -->
                     <div class="newEventField">Date:
-                        <input type="text" readonly name="date" id="newEventDate" v-model="date" required />
+                        <input type="text" readonly name="date" id="newEventDate" required />
                     </div>
                     <!-- Place -->
                     <div class="newEventField">Place:
-                        <input type="text" name="place" id="newEventPlace" v-model="place" required />
+                        <input type="text" name="place" id="newEventPlace" required />
                     </div>
                     <!-- Price -->
                     <div class="newEventField">Price:
-                        <input type="number" min="0" max="1000" name="price" id="newEventPrice" v-model="price" required />
+                        <input type="number" min="0" max="1000" name="price" id="newEventPrice" required />
                     </div>
                 </div>
                 <div id="colForm2">
                     <!-- Description -->
                     <div class="newEventField">
                         <div>Description:</div>
-                        <textarea v-model="description" id="descriptionEvent" name="description" placeholder="A description of this event..." required></textarea>
+                        <textarea id="descriptionEvent" name="description" placeholder="A description of this event..." required></textarea>
                     </div>
                     <!-- Seats -->
                     <div class="newEventField">Seats:
-                        <input type="number" min="0" max="1000" name="totSeat" id="newEventSeats" v-model="seats" required />
+                        <input type="number" min="0" max="1000" name="totSeat" id="newEventSeats" required />
                     </div>
                     <!-- Category -->
                     <div class="newEventField">
                         <div>Category:</div>
-                        <select v-model="category" name="category" id="newEventCategory" required>
+                        <select name="category" id="newEventCategory" required>
                             <option value="Festival">Festival</option>
                             <option value="Competition">Competition</option>
                             <option value="Show">Show</option>

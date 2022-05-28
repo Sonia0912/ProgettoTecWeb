@@ -46,7 +46,6 @@ function createTable() {
             }
         ],
         "createdRow": function (row, data, index) {
-            console.log(data)
             if (data.bookedSeat == data.totSeat) {
                 $(row).addClass('notAvaibleEvent');
             }

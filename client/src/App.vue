@@ -7,21 +7,21 @@
           <div class="sidebar-heading border-bottom bg-light">AnimalHouse</div>
           <div class="list-group list-group-flush">
               <span v-if="isAuth">
-                <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/dashboard">Dashboard</router-link>
-                <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/profile">Profile</router-link>
-                <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/leaderboard">Leaderboard</router-link>
-                <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/mybookings">My bookings</router-link>
+                <router-link class="list-group-item list-group-item-action list-group-item-light p-3" @click="toggleSide" id="linkDashboard" to="/dashboard">Dashboard</router-link>
+                <router-link class="list-group-item list-group-item-action list-group-item-light p-3" @click="toggleSide" id="linkProfile" to="/profile">Profile</router-link>
+                <router-link class="list-group-item list-group-item-action list-group-item-light p-3" @click="toggleSide" id="linkLeaderboard" to="/leaderboard">Leaderboard</router-link>
+                <router-link class="list-group-item list-group-item-action list-group-item-light p-3" @click="toggleSide" id="linkBookings" to="/mybookings">My bookings</router-link>
               </span>
               <span v-else>
-                <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/login">Log in</router-link>
-                <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/register">Register</router-link>
+                <router-link class="list-group-item list-group-item-action list-group-item-light p-3" @click="toggleSide" id="linkLogin" to="/login">Log in</router-link>
+                <router-link class="list-group-item list-group-item-action list-group-item-light p-3" @click="toggleSide" id="linkRegister" to="/register">Register</router-link>
               </span>
               <span v-if="isAdmin">
-                <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/manage-adoptions">Manage adoptions</router-link>
-                <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/manage-events">Manage events</router-link>
-                <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/manage-volunteering">Manage volunteering</router-link>
-                <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/appointments">Appointments</router-link>
-                <router-link class="list-group-item list-group-item-action list-group-item-light p-3" to="/users">Users</router-link>
+                <router-link class="list-group-item list-group-item-action list-group-item-light p-3" @click="toggleSide" id="linkMAdoptions" to="/manage-adoptions">Manage adoptions</router-link>
+                <router-link class="list-group-item list-group-item-action list-group-item-light p-3" @click="toggleSide" id="linkMEvents" to="/manage-events">Manage events</router-link>
+                <router-link class="list-group-item list-group-item-action list-group-item-light p-3" @click="toggleSide" id="linkMVolunteering" to="/manage-volunteering">Manage volunteering</router-link>
+                <router-link class="list-group-item list-group-item-action list-group-item-light p-3" @click="toggleSide" id="linkMAppointments" to="/appointments">Appointments</router-link>
+                <router-link class="list-group-item list-group-item-action list-group-item-light p-3" @click="toggleSide" id="linkUsers" to="/users">Users</router-link>
               </span>
           </div>
       </div>
@@ -43,7 +43,7 @@
                         <li class="nav-item"><router-link class="nav-link" to="/topvideoanimal">Top 10 Videos</router-link></li>
                         <li class="nav-item dropdown">
                             <router-link class="nav-link dropdown-toggle" id="navbarDropdown" to="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Games</router-link>
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-menu dropdown-menu-end" id="dropdownGames" aria-labelledby="navbarDropdown">
                                 <router-link class="dropdown-item" to="/quiz">Quiz</router-link>
                                 <router-link class="dropdown-item" to="/hangman">Hangman</router-link>
                                 <router-link class="dropdown-item" to="/memegenerator">Meme Generator</router-link>
@@ -143,6 +143,11 @@
       window.addEventListener('isAdmin-localstorage-true', () => {
           this.isAdmin = true;
       }); 
+    },
+    methods: {
+      toggleSide() {
+        document.body.classList.toggle('sb-sidenav-toggled');
+      }
     }
   }
 </script>

@@ -10,11 +10,13 @@
   "dependencies": {
     "@vuepic/vue-datepicker": "^3.2.1",
     "axios": "^0.27.2",
+    "bootstrap": "^5.1.3",
+    "bootstrap-vue": "^2.22.0",
     "core-js": "^3.8.3",
     "datatables.net": "^1.12.0",
     "datatables.net-dt": "^1.12.0",
     "jsonwebtoken": "^8.5.1",
-    "vue": "^3.2.13",
+    "vue": "^3.2.36",
     "vue-persistent-state": "^0.2.1",
     "vue-router": "^4.0.3",
     "vuex": "^4.0.2"
