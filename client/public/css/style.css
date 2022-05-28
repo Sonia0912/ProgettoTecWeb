@@ -794,9 +794,6 @@ button {
 #myVisits, #myEvents, #myInterviews {
      margin: 50px 0px;
 }
-#myEvents{
-     max-width: 80vw;
-}
 
 /*
      VOLUNTEERING
@@ -1514,7 +1511,7 @@ button {
      #bookVolunteering textarea {
           min-width: 250px;
      }
-     .visitSummary {
+     .visitSummary, .eventSummary{
           max-width: 270px;
           padding: 10px;
      }

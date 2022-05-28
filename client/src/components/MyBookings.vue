@@ -40,7 +40,7 @@
         <!-- Events -->
         <div v-if="typeOfBooking === 1" id="myEvents">
             <div v-if="events.length === 0" class="subtitle">You haven't booked any event yet</div>
-            <div class="summary" v-for="info in events" :id="info.name" :key="info.userEmail">
+            <div class="summary eventSummary" v-for="info in events" :id="info.name" :key="info.userEmail">
                 <router-link to="/events"><img :src="info.photo"></router-link>
                 <div class="summaryInfoContainer">
                     <div class="summaryInfo summaryName">{{ info.nameEvent }}</div>
