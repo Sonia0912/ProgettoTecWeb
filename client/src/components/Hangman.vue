@@ -24,19 +24,19 @@
                 </div>
             </div>                
 
-<!--             <div id="divResult" class="modal">  -->
-                <div id="divResult">
+
+                <div id="divResult" class="modal" >
                     <button id="closeResult">&times;</button>
                     <div id="textResult"></div>
                 </div>
-<!--             </div> -->
+
 
             <div>
                 <div class="title">Hangman Game</div>
                  <div class="serverError">{{ error }}</div>
                 <span>
-                    <div v-if="isAuth" id="scoreHangman">Your total score: <span id="quizScore"> {{ score }}</span></div>
-                    <div id="scoreHangman">Current score: <span id="hangmanCurrentScore">100</span></div>
+                    <div v-if="isAuth" class="scoreHangman">Your total score: <span id="hangmanScore"> </span></div>
+                    <div class="scoreHangman">Current score: <span id="hangmanCurrentScore"></span></div>
                 </span>
                 <div id="HangmanBackgroud">
                     <img src="/images/hangman/facile0.png" id="imgHangman">

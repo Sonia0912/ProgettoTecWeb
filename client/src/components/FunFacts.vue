@@ -17,7 +17,7 @@
 
             <!-- CAT FACTS -->
             <div v-if="typeOfFacts === 0" id="catFacts">
-             <!-- v-scroll="scrollFunction(this.type[0])"> -->
+                <!-- v-scroll="scrollFunction(this.type[0])"> -->
                 <div class="fact" v-for="f in factsCats" :key="f.text">
                     {{ f.text }}
                     <button v-if="login" class="publishFactBtn" @click="postOnDashboard(f.text)"> Post </button>
@@ -25,7 +25,7 @@
                 <div id="otherFacts"></div>
             </div>
             <!-- DOG FACTS -->
-            <div v-if="typeOfFacts === 1" id="dogFacts" >
+            <div v-if="typeOfFacts === 1" id="dogFacts">
                 <div class="fact" v-for="d in factsDogs" :key="d.text">
                     {{ d.text }}
                     <button v-if="login" class="publishFactBtn" @click="postOnDashboard(d.text)"> Post </button>
@@ -36,7 +36,7 @@
             <div v-if="typeOfFacts === 2" id="snailFacts">
                 <div class="fact" v-for="s in factsSnail" :key="s.text">
                     {{ s.text }}
-                    <button v-if="login" class="publishFactBtn" > Post </button>
+                    <button v-if="login" class="publishFactBtn"> Post </button>
                 </div>
                 <div id="otherFacts"></div>
             </div>
@@ -54,6 +54,7 @@
 
 <script>
 import axios from 'axios'
+import $ from 'jquery'
 export default {
     name: "funfacts",
     data() {
@@ -70,7 +71,6 @@ export default {
     },
     created() {
 
-
         if (localStorage.getItem('token') != null) {
             this.login = true;
         }
@@ -86,39 +86,43 @@ export default {
 
         Promise.all(promises)
             .then(res => {
-
-                this.factsCats = res[0].data
+       
+                this.factsCats = (res[0].data); 
                 this.factsDogs = res[1].data;
                 this.factsSnail = res[2].data;
                 this.factsHorse = res[3].data;
-
             })
             .catch(err => {
                 this.error = "Sorry, something went wrong (" + err.message + ")"
             })
+        
+        window.addEventListener("scroll",this.handlerScroll);
     },
     mounted() {
-        let Script = document.createElement("script");
-        Script.setAttribute("src", "./js/funfacts.js");
-        document.head.appendChild(Script);
-    //window.addEventListener('scroll', this.scrollFunction(this.typeOfFacts));
+        // let Script = document.createElement("script");
+        // Script.setAttribute("src", "./js/funfacts.js");
+        // document.head.appendChild(Script);
+        //window.addEventListener('scroll', this.scrollFunction(this.typeOfFacts));
+    },
+    unmounted(){
+            window.removeEventListener("scroll",this.handlerScroll);
     },
     methods: {
         postOnDashboard(facts) {
-            var data='';
-            if(facts.text){
-                data = {        
-                text: facts.text,
-                img: ''
-            }
-            }else{
+            var data = '';
+            if (facts.text) {
                 data = {
-                text: facts,
-                img: ''
-            }
+                    text: facts.text,
+                    img: ''
+                }
+            } else {
+                data = {
+                    text: facts,
+                    img: ''
+                }
 
             }
-            
+
             axios.post('http://localhost:3000/posts', data, {
                 headers: {
                     'token': localStorage.getItem('token')
@@ -130,6 +134,51 @@ export default {
                     })
                 )
                 .catch(err => this.error = "Sorry, something went wrong (" + err.message + ")")
+        }, 
+        handlerScroll(){
+             var pippo = "cat";
+            if(this.typeOfFacts === 1){
+                pippo = "dog";
+            }else if ( this.typeOfFacts === 2){
+                pippo = "snail";
+            }else if(this.typeOfFacts === 3){
+                pippo = "horse";
+            }
+
+    
+            var scrollHeight = $(document).height();
+            var scrollPosition = $(window).height() + $(window).scrollTop();
+           if (scrollPosition + 550 >= scrollHeight) {
+
+                axios.get('http://localhost:3000/moreFacts/' + pippo)
+                .then (facts => {
+                    //console.log(facts.data)
+
+                    if (pippo === "cat") {
+                        for( let i = 0; i < facts.length -1; i ++){
+                            //alert("sono qui")
+                        this.factsCats.push(facts.data);
+                        }
+                        
+                    } else if (pippo === "dog") {
+                       for( let i = 0; i < facts.length -1; i ++){
+                        this.factsDogs.push(facts.data[i].text);
+                        }
+                    } else if (pippo === "snail") {
+                       for( let i = 0; i < facts.length -1; i ++){
+                        this.factsSnail.push(facts.data[i].text);
+                        }
+                    } else {
+                       for( let i = 0; i < facts.length -1; i ++){
+                        this.factsHorse.push(facts.data[i].text);
+                        }
+                    }
+                })
+                    .catch(function (err) {
+                        $(".serverError").html("Sorry, something went wrong (" + err + ")")
+                    });
+            }
+
         }
     }
 }
@@ -139,7 +188,8 @@ export default {
 #factsTypes {
     margin: 0 auto;
 }
-.funFactsContainer{
+
+.funFactsContainer {
     overflow: scroll;
 }
 

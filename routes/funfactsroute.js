@@ -3,17 +3,24 @@ var router = express.Router();
 const axios = require('axios');
 
 router.get('/getFactsOf/:type', function(req, res) {
-    axios.get('https://cat-fact.herokuapp.com/facts/random?animal_type='+req.params.type+'&amount=10') 
+    axios.get('https://cat-fact.herokuapp.com/facts/random?animal_type='+req.params.type+'&amount=5') 
     .then(resp => {
-        res.json(resp.data)})
+        var facts = resp.data.map(function(i){
+            return i.text;
+        })
+        console.log(facts)
+        res.json(facts)})
     .catch(err => console.log("ERROR: " + err.message))
 })
 
 router.get('/moreFacts/:type', function(req, res) {
     console.log("sono qui " + req.params.type)
-    axios.get('https://cat-fact.herokuapp.com/facts/random?animal_type='+req.params.type+'&amount=10') 
+    axios.get('https://cat-fact.herokuapp.com/facts/random?animal_type='+req.params.type+'&amount=5') 
     .then(resp => {
-        res.json(resp.data)})
+        var facts = resp.data.map(function(i){
+            return i.text;
+        })
+        res.json(facts)})
     .catch(err => console.log("ERROR: " + err.message))
 })
 

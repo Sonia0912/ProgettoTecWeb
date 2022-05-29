@@ -870,6 +870,7 @@ button {
 }
 
 #animalPhoto{
+     filter: blur(10px);
      height: 25vh;
      grid-column-start: 2;
      grid-column-end: 4;
@@ -877,7 +878,6 @@ button {
      grid-row-end: 3;
      max-width: 45vw;
      max-height: 45vh;
-     filter:blur(10px);   
 }
 
 #wordToGuess{
@@ -901,7 +901,7 @@ button {
      min-height: 10vw;
 }
 
-#scoreHangman{
+.scoreHangman{
      text-align: center;
 }
 
@@ -963,15 +963,30 @@ button {
 }
 #divResult{
      display: none;
+     position: fixed; /* Stay in place */
      z-index: 2;
-     position: fixed;
-     margin: 0 auto;
+    
+     max-width: 30vh; 
+     max-height: 50vw; 
      top:30vh;
-     right: 30vw;
+     right: 10vw;
+     left: 10vw;
      background-color: rgba(59, 157, 248, 0.5);
      border-radius: 20px;
      padding: 0px 15px 10px 15px;
-     max-width: 200px;
+     align-self: center;
+     margin: 10px;
+     justify-content: center;
+     color: white;
+     box-shadow: 10px 10px lightblue;
+
+
+}
+.lost{
+     background-color: rgba(248, 78, 59, 0.5) !important;
+}
+.winner{
+     background-color: rgba(59, 248, 72, 0.5) !important;
 }
 #closeResult{
      z-index: 2;

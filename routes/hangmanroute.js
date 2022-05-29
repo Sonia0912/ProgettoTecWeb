@@ -19,10 +19,12 @@ router.post('/hangman', function (req, res) {
             console.log("ERROR READING FILE: " + err);
         } else {
             obj = JSON.parse(data);
+            var scoreUser = 0;
             for (var i = 0; i < obj.users.length; i++) {
                 if (obj.users[i].email === req.body.email) {
                     
                     obj.users[i].hangmanScore = parseInt(req.body.scoreUser);
+                    scoreUser = obj.users[i].hangmanScore;
                     break;
                 }
             }   
@@ -30,6 +32,7 @@ router.post('/hangman', function (req, res) {
             fs.writeFile('./data/users.json', jsonFile, 'utf8', (err) => {
                 if (!err) {
                     console.log('Score Hangman updated');
+                    res.json({score:scoreUser});
                 }
             });
         }
