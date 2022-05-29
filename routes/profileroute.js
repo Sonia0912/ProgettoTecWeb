@@ -54,6 +54,7 @@ router.post('/profile',async (req, res) => {
             fs.writeFile('./data/users.json', newJson, 'utf8', (err) => {
                 if (!err) {
                   console.log('Info Profile Update');
+                  res.send("ok");
                 }
             });
         }
