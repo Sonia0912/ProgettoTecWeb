@@ -541,48 +541,6 @@ button {
 }
 
 /*
-     FUN FACTS
-*/
-
-.funFactsContainer {
-     text-align: center;
-}
-
-.fact {
-     background-color: white;
-     display: flexbox;
-     flex-direction: column;
-     border-radius: 10px;
-     padding: 20px;
-     width: fit-content;
-     max-width: 600px;
-     height: fit-content;
-     overflow: auto;
-     margin: 30px auto 0px auto;
-     display: flex;
-     justify-content: center;
-     align-items: center;
-}
-.publishFactBtn{
-     margin-top: 10px;
-     background-color: #1b284d;
-     color: white;
-     border-radius: 5px;
-}
-
-.searchFact button {
-     margin-left: 20px;
-     border-radius: 5px;
-     padding: 5px 10px;
-     background-color:#fd7e14;
-     color: white;
-}
-
-.searchFact button:hover {
-     background-color:#ffa053;
-}
-
-/*
      ADOPTION
 */
 
@@ -1379,9 +1337,6 @@ button {
      .carousel-caption.d-md-block h5 {
           font-size: 24px;
      }
-     .fact {
-          width: 60vw;
-     }
 }
 
 @media screen and (max-width: 650px) {
@@ -1460,9 +1415,6 @@ button {
      #myVisits, #myEvents, #myInterviews {
           margin: 25px 0px;
      }
-     .fact {
-          width: 80vw;
-     }
      #bookVolunteering textarea {
           min-width: 300px;
      }
@@ -1519,9 +1471,6 @@ button {
      }
      #newPetForm, #newEventForm {
           display: unset;
-     }
-     .searchFact button {
-          margin-top: 10px;
      }
      #bookVolunteering textarea {
           min-width: 250px;

@@ -18,33 +18,33 @@
             <!-- CAT FACTS -->
             <div v-if="typeOfFacts === 0" id="catFacts">
                 <!-- v-scroll="scrollFunction(this.type[0])"> -->
-                <div class="fact" v-for="f in factsCats" :key="f.text">
-                    {{ f.text }}
-                    <button v-if="login" class="publishFactBtn" @click="postOnDashboard(f.text)"> Post </button>
+                <div class="fact" v-for="f in factsCats" :key="f">
+                    {{ f }}
+                    <button v-if="loggedIn" class="publishFactBtn" @click="postOnDashboard(f)"> Post </button>
                 </div>
                 <div id="otherFacts"></div>
             </div>
             <!-- DOG FACTS -->
             <div v-if="typeOfFacts === 1" id="dogFacts">
-                <div class="fact" v-for="d in factsDogs" :key="d.text">
-                    {{ d.text }}
-                    <button v-if="login" class="publishFactBtn" @click="postOnDashboard(d.text)"> Post </button>
+                <div class="fact" v-for="d in factsDogs" :key="d">
+                    {{ d }}
+                    <button v-if="loggedIn" class="publishFactBtn" @click="postOnDashboard(d)"> Post </button>
                 </div>
                 <div id="otherFacts"></div>
             </div>
             <!-- SNAIL FACTS  -->
             <div v-if="typeOfFacts === 2" id="snailFacts">
-                <div class="fact" v-for="s in factsSnail" :key="s.text">
-                    {{ s.text }}
-                    <button v-if="login" class="publishFactBtn"> Post </button>
+                <div class="fact" v-for="s in factsSnail" :key="s">
+                    {{ s }}
+                    <button v-if="loggedIn" class="publishFactBtn" @click="postOnDashboard(s)"> Post </button>
                 </div>
                 <div id="otherFacts"></div>
             </div>
             <!-- HORSE FACTS  -->
             <div v-if="typeOfFacts === 3" id="horseFacts">
-                <div class="fact" v-for="h in factsHorse" :key="h.text">
-                    {{ h.text }}
-                    <button v-if="login" class="publishFactBtn" @click="postOnDashboard(h.text)"> Post </button>
+                <div class="fact" v-for="h in factsHorse" :key="h">
+                    {{ h }}
+                    <button v-if="loggedIn" class="publishFactBtn" @click="postOnDashboard(h)"> Post </button>
                 </div>
                 <div id="otherFacts"></div>
             </div>
@@ -65,29 +65,28 @@ export default {
             factsHorse: [],
             error: '',
             typeOfFacts: 0,
-            login: false,
-            type: ["cat", "dog", "snail", "horse"]
+            loggedIn: false,
+            scrollable: true
         }
     },
     created() {
-
         if (localStorage.getItem('token') != null) {
-            this.login = true;
+            this.loggedIn = true;
         }
+
         var promises = []
         //Cat Facts
-        promises.push(axios.get("https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=10"));
+        promises.push(axios.get("http://localhost:3000/getFactsOf/cat"));
         //Dog Facts
-        promises.push(axios.get("http://localhost:3000/getFactsOf/" + this.type[1]));
+        promises.push(axios.get("http://localhost:3000/getFactsOf/dog"));
         //Snail Facts
-        promises.push(axios.get("http://localhost:3000/getFactsOf/" + this.type[2]));
+        promises.push(axios.get("http://localhost:3000/getFactsOf/snail"));
         //Horse Facts
-        promises.push(axios.get("http://localhost:3000/getFactsOf/" + this.type[3]));
+        promises.push(axios.get("http://localhost:3000/getFactsOf/horse"));
 
         Promise.all(promises)
             .then(res => {
-       
-                this.factsCats = (res[0].data); 
+                this.factsCats = res[0].data; 
                 this.factsDogs = res[1].data;
                 this.factsSnail = res[2].data;
                 this.factsHorse = res[3].data;
@@ -96,89 +95,65 @@ export default {
                 this.error = "Sorry, something went wrong (" + err.message + ")"
             })
         
-        window.addEventListener("scroll",this.handlerScroll);
+        window.addEventListener("scroll", this.handleScroll);
     },
-    mounted() {
-        // let Script = document.createElement("script");
-        // Script.setAttribute("src", "./js/funfacts.js");
-        // document.head.appendChild(Script);
-        //window.addEventListener('scroll', this.scrollFunction(this.typeOfFacts));
-    },
-    unmounted(){
-            window.removeEventListener("scroll",this.handlerScroll);
+    unmounted() {
+        window.removeEventListener("scroll", this.handleScroll);
     },
     methods: {
         postOnDashboard(facts) {
-            var data = '';
-            if (facts.text) {
-                data = {
-                    text: facts.text,
-                    img: ''
-                }
-            } else {
-                data = {
-                    text: facts,
-                    img: ''
-                }
-
+            var data = {
+                text: facts,
+                img: ''
             }
-
             axios.post('http://localhost:3000/posts', data, {
                 headers: {
                     'token': localStorage.getItem('token')
                 }
             })
-                .then(() =>
-                    this.$router.push({
-                        name: 'Dashboard'
-                    })
-                )
-                .catch(err => this.error = "Sorry, something went wrong (" + err.message + ")")
+            .then(() => this.$router.push({ name: 'Dashboard' }))
+            .catch(err => this.error = "Sorry, something went wrong (" + err.message + ")")
         }, 
-        handlerScroll(){
-             var pippo = "cat";
-            if(this.typeOfFacts === 1){
-                pippo = "dog";
-            }else if ( this.typeOfFacts === 2){
-                pippo = "snail";
-            }else if(this.typeOfFacts === 3){
-                pippo = "horse";
+        handleScroll() {
+            if(this.scrollable) {
+                this.scrollable = false;
+                var type = "cat";
+                if(this.typeOfFacts === 1) {
+                    type = "dog";
+                }else if ( this.typeOfFacts === 2) {
+                    type = "snail";
+                }else if(this.typeOfFacts === 3) {
+                    type = "horse";
+                }
+                var scrollHeight = $(document).height();
+                var scrollPosition = $(window).height() + $(window).scrollTop();
+                if (scrollPosition + 280 >= scrollHeight) {
+                    axios.get('http://localhost:3000/getFactsOf/' + type)
+                    .then (facts => {
+                        if (type === "cat") {
+                            for(let i = 0; i < facts.data.length; i++) {
+                                this.factsCats.push(facts.data[i]);
+                            } 
+                        } else if (type === "dog") {
+                            for(let i = 0; i < facts.data.length; i++) {
+                                this.factsDogs.push(facts.data[i]);
+                            }
+                        } else if (type === "snail") {
+                            for(let i = 0; i < facts.data.length; i++) {
+                                this.factsSnail.push(facts.data[i]);
+                            }
+                        } else {
+                            for(let i = 0; i < facts.data.length; i++) {
+                                this.factsHorse.push(facts.data[i]);
+                            }
+                        }
+                    })
+                    .catch(err => this.error = "Sorry, something went wrong (" + err.message + ")");
+                }
+                setTimeout(function(){
+                    this.scrollable = true;
+                }, 1000);
             }
-
-    
-            var scrollHeight = $(document).height();
-            var scrollPosition = $(window).height() + $(window).scrollTop();
-           if (scrollPosition + 550 >= scrollHeight) {
-
-                axios.get('http://localhost:3000/moreFacts/' + pippo)
-                .then (facts => {
-                    //console.log(facts.data)
-
-                    if (pippo === "cat") {
-                        for( let i = 0; i < facts.length -1; i ++){
-                            //alert("sono qui")
-                        this.factsCats.push(facts.data);
-                        }
-                        
-                    } else if (pippo === "dog") {
-                       for( let i = 0; i < facts.length -1; i ++){
-                        this.factsDogs.push(facts.data[i].text);
-                        }
-                    } else if (pippo === "snail") {
-                       for( let i = 0; i < facts.length -1; i ++){
-                        this.factsSnail.push(facts.data[i].text);
-                        }
-                    } else {
-                       for( let i = 0; i < facts.length -1; i ++){
-                        this.factsHorse.push(facts.data[i].text);
-                        }
-                    }
-                })
-                    .catch(function (err) {
-                        $(".serverError").html("Sorry, something went wrong (" + err + ")")
-                    });
-            }
-
         }
     }
 }
@@ -189,28 +164,59 @@ export default {
     margin: 0 auto;
 }
 
-.funFactsContainer {
-    overflow: scroll;
-}
-
 #factsTypes button {
     padding: 8px 14px;
     margin: 10px;
     background-color: rgb(255, 255, 255, 0.3);
-    color: #60cead;
-    border: 2px solid #60cead;
+    color: #fd7e14;
+    border: 2px solid #fd7e14;
     border-radius: 40px;
     letter-spacing: 2px;
 }
 
-.fact {
-    min-width: 350px;
-    max-width: 350px;
+.active {
+    background-color: #fd7e14 !important;
+    color: white !important;
 }
 
-.active {
-    background-color: #60cead !important;
-    color: white !important;
+.funFactsContainer {
+     text-align: center;
+     overflow: unset;
+}
+
+.fact {
+     background-color: white;
+     display: flexbox;
+     flex-direction: column;
+     border-radius: 10px;
+     padding: 20px;
+     width: 40vw;
+     max-width: 600px;
+     height: fit-content;
+     overflow: auto;
+     margin: 30px auto 0px auto;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+}
+
+.publishFactBtn{
+     margin-top: 10px;
+     background-color: #1b284d;
+     color: white;
+     border-radius: 5px;
+}
+
+@media screen and (max-width: 768px) {
+    .fact {
+        width: 60vw;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .fact {
+        width: 80vw;
+    }
 }
 
 @media screen and (max-width: 350px) {
