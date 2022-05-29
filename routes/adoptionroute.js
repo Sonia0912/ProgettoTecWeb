@@ -283,7 +283,7 @@ router.put('/modifyVisit', function(req, res) {
                                     obj2[i].times.push(req.body.time);
                                     found = true;
                                 }
-                                if(obj2[i].date === oldDate) {
+                                if(obj2[i].petName === req.body.petName && obj2[i].date === oldDate) {
                                     obj2[i].times = obj2[i].times.filter(t => t != oldTime)
                                 }
                             }

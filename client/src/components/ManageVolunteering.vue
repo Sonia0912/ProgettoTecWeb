@@ -5,7 +5,7 @@
 
         <!-- New volunteering position -->
         <div class="centeredGrid">
-            <button id="addVol">New pet</button>
+            <button id="addVol">New position</button>
             <form id="newVolForm" action="http://localhost:3000/addVolunteering" method="post">
                 <div id="colForm1">
                     <!-- Position -->

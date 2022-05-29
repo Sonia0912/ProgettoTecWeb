@@ -48,13 +48,15 @@
                 </div>
                 <div id="otherFacts"></div>
             </div>
+
+            <button id="loadMoreFacts" @click="loadMore">&#8595;</button>
+
         </div>
     </div>
 </template>
 
 <script>
 import axios from 'axios'
-import $ from 'jquery'
 export default {
     name: "funfacts",
     data() {
@@ -85,26 +87,20 @@ export default {
         promises.push(axios.get("http://localhost:3000/getFactsOf/horse"));
 
         Promise.all(promises)
-            .then(res => {
-                this.factsCats = res[0].data; 
-                this.factsDogs = res[1].data;
-                this.factsSnail = res[2].data;
-                this.factsHorse = res[3].data;
-            })
-            .catch(err => {
-                this.error = "Sorry, something went wrong (" + err.message + ")"
-            })
-        
-        window.addEventListener("scroll", this.handleScroll);
-    },
-    unmounted() {
-        window.removeEventListener("scroll", this.handleScroll);
+        .then(res => {
+            this.factsCats = res[0].data; 
+            this.factsDogs = res[1].data;
+            this.factsSnail = res[2].data;
+            this.factsHorse = res[3].data;
+        })
+        .catch(err => {
+            this.error = "Sorry, something went wrong (" + err.message + ")"
+        })
     },
     methods: {
         postOnDashboard(facts) {
             var data = {
-                text: facts,
-                img: ''
+                text: facts
             }
             axios.post('http://localhost:3000/posts', data, {
                 headers: {
@@ -114,46 +110,36 @@ export default {
             .then(() => this.$router.push({ name: 'Dashboard' }))
             .catch(err => this.error = "Sorry, something went wrong (" + err.message + ")")
         }, 
-        handleScroll() {
-            if(this.scrollable) {
-                this.scrollable = false;
-                var type = "cat";
-                if(this.typeOfFacts === 1) {
-                    type = "dog";
-                }else if ( this.typeOfFacts === 2) {
-                    type = "snail";
-                }else if(this.typeOfFacts === 3) {
-                    type = "horse";
-                }
-                var scrollHeight = $(document).height();
-                var scrollPosition = $(window).height() + $(window).scrollTop();
-                if (scrollPosition + 280 >= scrollHeight) {
-                    axios.get('http://localhost:3000/getFactsOf/' + type)
-                    .then (facts => {
-                        if (type === "cat") {
-                            for(let i = 0; i < facts.data.length; i++) {
-                                this.factsCats.push(facts.data[i]);
-                            } 
-                        } else if (type === "dog") {
-                            for(let i = 0; i < facts.data.length; i++) {
-                                this.factsDogs.push(facts.data[i]);
-                            }
-                        } else if (type === "snail") {
-                            for(let i = 0; i < facts.data.length; i++) {
-                                this.factsSnail.push(facts.data[i]);
-                            }
-                        } else {
-                            for(let i = 0; i < facts.data.length; i++) {
-                                this.factsHorse.push(facts.data[i]);
-                            }
-                        }
-                    })
-                    .catch(err => this.error = "Sorry, something went wrong (" + err.message + ")");
-                }
-                setTimeout(function(){
-                    this.scrollable = true;
-                }, 1000);
+        loadMore() {
+            var type = "cat";
+            if(this.typeOfFacts === 1) {
+                type = "dog";
+            }else if ( this.typeOfFacts === 2) {
+                type = "snail";
+            }else if(this.typeOfFacts === 3) {
+                type = "horse";
             }
+            axios.get('http://localhost:3000/getFactsOf/' + type)
+            .then (facts => {
+                if (type === "cat") {
+                    for(let i = 0; i < facts.data.length; i++) {
+                        this.factsCats.push(facts.data[i]);
+                    } 
+                } else if (type === "dog") {
+                    for(let i = 0; i < facts.data.length; i++) {
+                        this.factsDogs.push(facts.data[i]);
+                    }
+                } else if (type === "snail") {
+                    for(let i = 0; i < facts.data.length; i++) {
+                        this.factsSnail.push(facts.data[i]);
+                    }
+                } else {
+                    for(let i = 0; i < facts.data.length; i++) {
+                        this.factsHorse.push(facts.data[i]);
+                    }
+                }
+            })
+            .catch(err => this.error = "Sorry, something went wrong (" + err.message + ")");         
         }
     }
 }
@@ -205,6 +191,15 @@ export default {
      background-color: #1b284d;
      color: white;
      border-radius: 5px;
+}
+
+#loadMoreFacts {
+    background-color: #fd7e14;
+    color: white;
+    margin-top: 20px;
+    border-radius: 5px;
+    padding: 0 13px;
+    font-size: 25px;
 }
 
 @media screen and (max-width: 768px) {

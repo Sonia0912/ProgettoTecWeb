@@ -1,4 +1,3 @@
-
 $(function() {
   animalRequest();
   setTotalScore();
@@ -7,7 +6,7 @@ $(function() {
 
 });
 
-
+// mostra il punteggio totale dell'utente
 function setTotalScore() {
   if (localStorage.getItem('token') != null) {
     $.ajax({
@@ -20,8 +19,6 @@ function setTotalScore() {
       punteggioUtente = res.score;
       $('#hangmanScore').text(res.score);
     })
-
-
   }
 }
 
@@ -36,10 +33,7 @@ var usedWord = new Set();
 var guessedWord = new Set();
 var isTextNode = (_, el) => el.nodeType === Node.TEXT_NODE;
 
-
-
 function clearVariable() {
-
   this.tentativi = 0;
   this.punteggioPartita = 100;
   $('#letter').val("");
@@ -49,15 +43,9 @@ function clearVariable() {
   this.blurPhoto = 10;
   this.usedWord.clear();
   this.guessedWord.clear();
-  $('.www').remove()
-
-}
-
-function setDifficulty() {
-  if ($('#difficulty').val() === 'difficult') {
-    this.difficult = true;
-    clearVariable();
-    animalRequest()
+  $('.www').remove();
+  for (let i = 0; i < word.length; i++) {
+    $('#w' + i).remove();
   }
 }
 
@@ -78,6 +66,7 @@ $('#btnRules').on("click", function () {
   }
 
 });
+
 $('#closeResult').on("click", function () {
   $('#divResult').contents().filter(isTextNode).remove();
   $('#divResult').hide();
@@ -95,7 +84,6 @@ $('#closeRules').on("click", function () {
 
 
 function animalRequest() {
-
   $.ajax({
     type: 'GET',
     url: 'https://zoo-animal-api.herokuapp.com/animals/rand/'
@@ -122,6 +110,7 @@ function getWordToGuess(animalJSON) {
   let wordToGuess = name.split(' ').slice(-1);
   word = wordToGuess[wordToGuess.length - 1].toLowerCase();
   guessWord = word;
+
   $('#wordToGuess').empty();
   for (let i = 0; i < word.length; i++) {
     $('#wordToGuess').append("<span class=ww id=w" + i + ">" + word.charAt(i) + "</span>");
@@ -134,46 +123,35 @@ function getWordToGuess(animalJSON) {
 }
 
 function restart(win) {
-
-  if (win) {
+  if(win) {
     saveResult();
-    setTotalScore();
-   
+    //setTotalScore(); 
   }
   $('#animalPhoto').css("filter", "blur(" + 10 + "px)")
- 
-  clearWord(guessWord);
   clearVariable();
   animalRequest();
   changeImgHangMan();
-
-}
-
-function clearWord(word) {
-  for (let i = 0; i < word.length; i++) {
-    $('#w' + i).remove();
-  }
 }
 
 function guess() {
 
+  let userInput = $('#letter').val().toLowerCase();
+  if(userInput.length === 0) return;
+
   if (tentativi >= 9) {
     $('#divResult').addClass("lost");
     $('#divResult').show();
-    $('#textResult').text("YOU ARE A LOSER! The word was: " + guessWord);
+    $('#textResult').text("Game over! The word was: " + guessWord);
     restart(false);
     return;
   } else {
-
-    //chechk  only the first letter insered by user
     error = true;
-    let userInput = $('#letter').val().toLowerCase();
-
+    // Se inserisce la parola
     if (userInput.length > 1) {
       if (guessWord == userInput) {
         $('#divResult').addClass("winner");
         $('#divResult').show();
-        $('#textResult').text("CONGRATULATION, YOU ARE WINNER!");
+        $('#textResult').text("Congratulations, you won!");
         restart(true);
         return;
       } else {
@@ -182,17 +160,16 @@ function guess() {
         $('#letter').val("");
         punteggioPartita = punteggioPartita - 10;
         $('#hangmanCurrentScore').text(punteggioPartita);
-
       }
-    } else if (userInput.length == 1) {
-
+    }
+    // Se inserisce una lettera
+    else if (userInput.length == 1) {
       if (guessWord.includes(userInput)) {
         if (guessedWord.has(userInput)) {
           $('#divResult').show();
-          $('#textResult').text("You have just guess the letter: " + userInput)
+          $('#textResult').text("You have already guessed the letter: " + userInput)
           tentativi++;
           punteggioPartita = punteggioPartita - 10;
-          
           $('#hangmanCurrentScore').text(punteggioPartita);
           $('#letter').val("");
           changeImgHangMan();
@@ -200,17 +177,7 @@ function guess() {
           $('#hangmanCurrentScore').text(punteggioPartita);
           error = false;
         }
-
-        //DUPLICATI?
         guessedWord.add(userInput);
-
-        // if (guessedWord.has(userInput)) {
-        //   $('#divResult').show();
-        //   $('#textResult').text("You have just guessed this word " + userInput);
-        // } else {
-          
-        // }
-
         //aggiunge la lettera indovinata alla parola
         for (let j = 0; j < guessWord.length; j++) {
           if (guessWord[j] == userInput) {
@@ -218,7 +185,7 @@ function guess() {
           }
         }
       } else {
-        //WHEN THE LETTER INSERTED IS NOT GUESSED
+        // WHEN THE LETTER INSERTED IS NOT GUESSED
         writeWordInsert(userInput);
         usedWord.add(userInput);
         tentativi++;
@@ -230,19 +197,17 @@ function guess() {
       $('#letter').val("");
     }
 
-
-    //check user win
+    // check user win
     let count = 0;
     for (let k = 0; k < $('#wordToGuess').text().length; k++) {
       if ($('#wordToGuess').text().charAt(k) != "+" && $('#wordToGuess').text().charAt(k) != "-") {
         count++;
       }
     }
-
     if (count === $('#wordToGuess').text().length) {
       $('#divResult').addClass("winner");
       $('#divResult').show();
-      $('#textResult').text("CONGRATULATION, YOU ARE WINNER!");
+      $('#textResult').text("Congratulations, you won!");
       restart(true);
       return;
     }
@@ -253,9 +218,10 @@ function guess() {
 }
 
 
-
+// aggiorna il punteggio totale a fine partita
 function saveResult() {
-    var newPunteggio = this.punteggioPartita + this.punteggioUtente;
+  var newPunteggio = this.punteggioPartita + this.punteggioUtente;
+  punteggioUtente = newPunteggio;
   if (localStorage.getItem('token') != null) {
     $.ajax({
       url: 'http://localhost:3000/hangman',
@@ -267,10 +233,10 @@ function saveResult() {
       headers: {
         token: localStorage.getItem('token')
       },
-    }).then(function(res){
-      this.punteggioUtente = res.score
-      $('#hangmanScore').text(this.punteggioUtente);
-    });
+    }).then(function() {
+      $('#hangmanScore').text(punteggioUtente);
+    })
+    .catch(err => $("#serverErrorHangman").html("Sorry, something went wrong (" + err.status + ")"));
       
   }
 

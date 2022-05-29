@@ -4,15 +4,19 @@
             <div class="title">Funny cats</div>
             <div id="serverErrorCats" class="serverError"></div>
             <img id="funcat">
-            <button id="anotherFuncat">Next one</button>
-            <button class="postBtn" id="postCatBtn" @click="postOnDashboradCat()"  v-if="postable">Post</button>
+            <div> 
+                <button class="postBtn" @click="postOnDashboradCat()"  v-if="postable">Post</button>
+                <button id="anotherFuncat">Next one</button>
+            </div>
         </div>
         <div class="centeredGrid funnypets">
             <div class="title">Funny dogs</div>
             <div id="serverErrorDogs" class="serverError"></div>
             <img id="fundog">
-            <button id="anotherFundog">Next one</button>
-            <button class="postBtn" id="postDogBtn" @click="postOnDashboradDog()"  v-if="postable">Post</button>
+            <div> 
+                <button class="postBtn" @click="postOnDashboradDog()"  v-if="postable">Post</button>   
+                <button id="anotherFundog">Next one</button> 
+            </div>
         </div>
     </div>
 </template>
@@ -81,22 +85,38 @@ export default {
 </script>
 
 <style scoped>
+.funnypets {
+    justify-items: center;
+}
+
 .funnypets img {
     max-height: 300px;
     margin: 0 auto 20px auto;
 }
 
-.funnypets button {
+#anotherFuncat, #anotherFundog {
     width: fit-content;
-    padding: 10px;
+    padding: 8px;
     margin: 0px auto;
     background-color: #fd7e14;
     border-radius: 10px;
     color: white;
 }
 
-.funnypets button:hover {
+#anotherFuncat:hover, #anotherFundog:hover {
     background-color: #fb9746;
+}
+
+.postBtn {
+    margin-top: 10px;
+    background-color: #1b284d;
+    color: white;
+    width: fit-content;
+    padding: 8px;
+    margin: 0px auto;
+    color: white;
+    border-radius: 10px;
+    margin-right: 10px;
 }
 
 @media screen and (max-width: 480px) {
