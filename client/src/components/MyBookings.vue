@@ -18,8 +18,10 @@
                     <div class="summaryInfo summaryName">{{ info.petName }}</div>
 
                     <div v-if="toModify != index" class="summaryInfo"><span>{{ info.date }}</span></div>
-                    <Datepicker v-model="date" v-if="toModify === index" id="dateInput" class="summaryModify" placeholder="Select a date" :enableTimePicker="false"
-                    :minDate="minDate" :maxDate="maxDate" :disabledWeekDays="[6, 0]" @update:modelValue="checkTimes(info.petName)" required preventMinMaxNavigation></Datepicker>
+                    <Datepicker v-model="date" v-if="toModify === index" id="dateInput" class="summaryModify"
+                        placeholder="Select a date" :enableTimePicker="false" :minDate="minDate" :maxDate="maxDate"
+                        :disabledWeekDays="[6, 0]" @update:modelValue="checkTimes(info.petName)" required
+                        preventMinMaxNavigation></Datepicker>
 
                     <div v-if="toModify != index" class="summaryInfo">{{ info.time }}</div>
                     <select v-if="toModify === index && !noFreeTimes" v-model="selectedTime" class="summaryModify">
@@ -31,8 +33,10 @@
                 </div>
                 <div class="deleteVisitContainer">
                     <button v-if="toModify != index" @click="goToModify(index)" class="modifyVisitBtn">✎</button>
-                    <button v-if="toModify != index" @click="askToDelete(info.id, index)" class="deleteVisitBtn">&#10006;</button>
-                    <button v-if="toModify === index" @click="applyChanges(info.id, info.petName)" class="saveVisitBtn">&#10004;</button>
+                    <button v-if="toModify != index" @click="askToDelete(info.id, index)"
+                        class="deleteVisitBtn">&#10006;</button>
+                    <button v-if="toModify === index" @click="applyChanges(info.id, info.petName)"
+                        class="saveVisitBtn">&#10004;</button>
                 </div>
             </div>
         </div>
@@ -55,7 +59,8 @@
         <div v-if="typeOfBooking === 2" id="myInterviews">
             <div v-if="interviews.length === 0" class="subtitle">You haven't booked any interview yet</div>
             <div v-for="iv in interviews" :id="iv.id" :key="iv.id"
-                :class="{ approved: iv.status === 'approved', rejected: iv.status === 'rejected' }" class="interviewItem">
+                :class="{ approved: iv.status === 'approved', rejected: iv.status === 'rejected' }"
+                class="interviewItem">
                 <div class="ivStatus">Status: {{ iv.status }}</div>
                 <div class="ivPosition">{{ iv.position }}</div>
                 <div class="ivShelter">{{ iv.shelter }}</div>
@@ -100,8 +105,8 @@ export default {
     components: { Datepicker },
     setup() {
         const date = ref();
-        const minDate = ref(new Date());     
-        const maxDate = ref(new Date().setDate(new Date().getDate() + 7)); 
+        const minDate = ref(new Date());
+        const maxDate = ref(new Date().setDate(new Date().getDate() + 7));
         const today = new Date();
         var disabledDates = [today];
         return {
@@ -139,12 +144,12 @@ export default {
         promises.push($.ajax({ url: 'http://localhost:3000/myinterviews/' + loggedEmail, method: 'GET' }));
         promises.push($.ajax({ url: 'http://localhost:3000/myevents/' + loggedEmail, method: 'GET' }));
         Promise.all(promises)
-        .then((results) => {
-            this.visits = results[0];
-            this.interviews = results[1];
-            this.events = results[2];
-        })
-        .catch(err => this.error = "Sorry, something went wrong (" + err.status + ")");
+            .then((results) => {
+                this.visits = results[0];
+                this.interviews = results[1];
+                this.events = results[2];
+            })
+            .catch(err => this.error = "Sorry, something went wrong (" + err.status + ")");
     },
     methods: {
         askToDelete(id, index) {
@@ -171,7 +176,7 @@ export default {
         },
         applyChanges(id, petName) {
             // se il form e' completo lo manda al server altrimenti annulla
-            if(this.date != null && this.selectedTime != '') {
+            if (this.date != null && this.selectedTime != '') {
                 // formatto la nuova data
                 var month = this.date.getMonth() + 1
                 month = month < 10 ? "0" + month : month
@@ -185,8 +190,8 @@ export default {
                     username: localStorage.getItem('email')
                 }
                 axios.put('http://localhost:3000/modifyVisit', data)
-                .then(res => this.visits = res.data)
-                .catch(err => this.error = "Sorry, something went wrong (" + err.message + ")")
+                    .then(res => this.visits = res.data)
+                    .catch(err => this.error = "Sorry, something went wrong (" + err.message + ")")
             }
             this.noFreeTimes = false;
             this.availableTimes = [];
@@ -200,24 +205,24 @@ export default {
             var newDate = month + "/" + day + "/" + this.date.getFullYear()
             // controllo quali siano gli orari disponibili
             axios.get('http://localhost:3000/visits/' + petName)
-            .then(res => {
-                var availableTimes = this.visitDefaultTimes;
-                for(let i = 0; i < res.data.length; i++) {
-                    if(res.data[i].date === newDate) {
-                        var toRemove = res.data[i].times;
-                        availableTimes = this.visitDefaultTimes.filter( function( el ) {
-                            return !toRemove.includes( el );
-                        } );
-                        break;
+                .then(res => {
+                    var availableTimes = this.visitDefaultTimes;
+                    for (let i = 0; i < res.data.length; i++) {
+                        if (res.data[i].date === newDate) {
+                            var toRemove = res.data[i].times;
+                            availableTimes = this.visitDefaultTimes.filter(function (el) {
+                                return !toRemove.includes(el);
+                            });
+                            break;
+                        }
                     }
-                }
-                if(availableTimes.length === 0) {
-                    this.noFreeTimes = true;
-                } else {
-                    this.availableTimes = availableTimes;
-                }
-            })
-            .catch(err => this.error = "Sorry, something went wrong (" + err.message + ")")
+                    if (availableTimes.length === 0) {
+                        this.noFreeTimes = true;
+                    } else {
+                        this.availableTimes = availableTimes;
+                    }
+                })
+                .catch(err => this.error = "Sorry, something went wrong (" + err.message + ")")
         }
     }
 }
@@ -264,7 +269,9 @@ export default {
     margin-right: 10%;
 }
 
-.deleteVisitBtn, .modifyVisitBtn, .saveVisitBtn {
+.deleteVisitBtn,
+.modifyVisitBtn,
+.saveVisitBtn {
     color: white;
     border-radius: 5px;
     padding: 3px 8px;

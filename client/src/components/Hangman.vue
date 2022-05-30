@@ -54,25 +54,13 @@
             </div>
         </div>
     </div>
-<!-- 
-    <audio controls autoplay>
-	<source src="/client/public/mp3/winner.mp3" type="audio/mp3">   
-	Your browser does not support the audio tag.
-</audio> -->
+
 </template>
 
 <script>
 import axios from 'axios'
-// import useSound from 'vue-use-sound'
-// import sound from '../../mp3/winner.mp3';
 export default {
     name: "hangman",
-//     setup() {
-//     const [play] = useSound(sound)
-//     return {
-//       play,
-//     }
-//   },
     data() {
         return {
             isAuth: false,

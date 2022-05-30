@@ -2,15 +2,17 @@
     <div id="urlNotFoundText">
         <h1>We're sorry</h1>
         <img src="../../public/images/error-dog.png">
-        <div>The url "{{currentUrl}}" doesn't exist.</div>
-        <div><router-link to="/">&laquo; Go to Home</router-link></div>
+        <div>The url "{{ currentUrl }}" doesn't exist.</div>
+        <div>
+            <router-link to="/">&laquo; Go to Home</router-link>
+        </div>
     </div>
 </template>
 
 <script>
 export default {
     name: "error",
-    data () {
+    data() {
         return {
             currentUrl: ''
         }

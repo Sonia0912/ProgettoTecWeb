@@ -1,5 +1,5 @@
 <template>
-    <div class="pinkLeafBackground"> 
+    <div class="pinkLeafBackground">
         <div class="title pink">Manage volunteering</div>
         <div id="serverErrorManageVol" class="serverError"></div>
 
@@ -49,7 +49,8 @@
                         <label for="req6"> Medical experience</label><br>
                         <input type="checkbox" id="req7" name="requirements" value="Good with childer">
                         <label for="req7"> Good with childer</label><br>
-                        <input type="checkbox" id="req8" name="requirements" value="Ability to walk unaided on rough terrain">
+                        <input type="checkbox" id="req8" name="requirements"
+                            value="Ability to walk unaided on rough terrain">
                         <label for="req8"> Ability to walk unaided on rough terrain</label>
                     </div>
                     <div id="missingReq"></div>
@@ -89,26 +90,27 @@
 </template>
 
 <script>
-    export default {
-        name: "manageVolunteering",
-        created() {
-            if(localStorage.getItem('token') === null || localStorage.getItem('isAdmin') === null) {
-                this.$router.push({
-                    name: 'Login', 
-                    params: { error: 'notadmin' }
-                });
-            }
-        },
-        mounted() {
-            let Script = document.createElement("script");
-            Script.setAttribute("src", "./js/manageVolunteering.js");
-            document.head.appendChild(Script);
+export default {
+    name: "manageVolunteering",
+    created() {
+        if (localStorage.getItem('token') === null || localStorage.getItem('isAdmin') === null) {
+            this.$router.push({
+                name: 'Login',
+                params: { error: 'notadmin' }
+            });
         }
+    },
+    mounted() {
+        let Script = document.createElement("script");
+        Script.setAttribute("src", "./js/manageVolunteering.js");
+        document.head.appendChild(Script);
     }
+}
 </script>
 
 <style scoped>
-input, label {
+input,
+label {
     margin-bottom: 10px;
 }
 
@@ -120,78 +122,87 @@ label {
     margin-bottom: 10px;
 }
 
-.cancelbtn, .deletebtn {
-  float: left;
-  width: 30%;
-  border-radius: 10px;
-  padding: 10px 0px;
+.cancelbtn,
+.deletebtn {
+    float: left;
+    width: 30%;
+    border-radius: 10px;
+    padding: 10px 0px;
 }
 
 .cancelbtn {
-  background-color: #ccc;
-  color: black;
-  margin-left: 10%;
+    background-color: #ccc;
+    color: black;
+    margin-left: 10%;
 }
 
 .deletebtn {
-  background-color: #dc3545;
-  color: white;
-  float: right;
-  margin-right: 10%;
+    background-color: #dc3545;
+    color: white;
+    float: right;
+    margin-right: 10%;
 }
 
 .container {
-  padding: 16px;
-  text-align: center;
+    padding: 16px;
+    text-align: center;
 }
 
 /* The Modal (background) */
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgba(26, 26, 43, 0.5);
-  padding-top: 50px;
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgba(26, 26, 43, 0.5);
+    padding-top: 50px;
 }
 
 /* Modal Content/Box */
 .modal-content {
-  background-color: #fefefe;
-  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-  border: 1px solid #888;
-  width: fit-content; /* Could be more or less, depending on screen size */
+    background-color: #fefefe;
+    margin: 5% auto 15% auto;
+    /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: fit-content;
+    /* Could be more or less, depending on screen size */
 }
 
 /* The Modal Close Button (x) */
 .close {
-  position: absolute;
-  right: 35px;
-  top: 15px;
-  font-size: 40px;
-  font-weight: bold;
-  color: #f1f1f1;
+    position: absolute;
+    right: 35px;
+    top: 15px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #f1f1f1;
 }
 
 .close:hover,
 .close:focus {
-  color: #f44336;
-  cursor: pointer;
+    color: #f44336;
+    cursor: pointer;
 }
 
 /* Clear floats */
 .clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
+    content: "";
+    clear: both;
+    display: table;
 }
 
 @media screen and (max-width: 480px) {
-     .modal-content {
+    .modal-content {
         margin: 30% 10px 20% 10px;
     }
 }

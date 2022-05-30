@@ -8,13 +8,13 @@ router.post('/login', (req, res, next) => {
     var contents = fs.readFileSync('./data/users.json', 'utf8');
     obj = JSON.parse(contents);
     var user = obj.users.find(user => user.email === req.body.email);
-    if(!user) {
+    if (!user) {
         return res.status(401).json({
             title: "user not found",
             error: "No user was found with that e-mail"
         })
     }
-    if(!bcrypt.compareSync(req.body.password, user.password)) {
+    if (!bcrypt.compareSync(req.body.password, user.password)) {
         return res.status(401).json({
             title: "login failed",
             error: "The password is incorrect"
@@ -34,12 +34,12 @@ router.post('/register', async (req, res) => {
         const hashedPassword = await bcrypt.hash(req.body.password, 10)
 
         fs.readFile('./data/users.json', 'utf8', function readFileCallback(err, data) {
-            if(err) {
+            if (err) {
                 console.log("ERROR READING FILE: " + err);
             } else {
                 obj = JSON.parse(data);
                 var user = obj.users.find(user => user.email === req.body.email);
-                if(user) {
+                if (user) {
                     return res.status(409).json({
                         title: "Existing email",
                         error: "This email is already used"
@@ -58,8 +58,8 @@ router.post('/register', async (req, res) => {
                     json = JSON.stringify(obj);
                     fs.writeFile('./data/users.json', json, 'utf8', (err) => {
                         if (!err) {
-                          console.log('User added to the database');
-                          return res.status(200).send("OK")
+                            console.log('User added to the database');
+                            return res.status(200).send("OK")
                         }
                     });
                 }

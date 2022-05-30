@@ -45,7 +45,7 @@ function createTable() {
                 "width": "100px", "targets": 2
             }
         ],
-        "createdRow": function (row, data, index) {
+        "createdRow": function (row, data) {
             if (data.bookedSeat == data.totSeat) {
                 $(row).addClass('notAvaibleEvent');
             }
@@ -67,15 +67,15 @@ function emptyForm() {
     $("#newEventForm").hide();
 }
 
-$('#newEventForm').submit(function(e) {
+$('#newEventForm').submit(function (e) {
     e.preventDefault();
     var form = $(this);
     var url = form.attr('action'); //get submit url 
     $.ajax({
-         type: "POST",
-         url: url,
-         data: form.serialize(), // serializes form input
-         success: () => {
+        type: "POST",
+        url: url,
+        data: form.serialize(), // serializes form input
+        success: () => {
             var newEvent = {
                 name: $("#newEventName").val(),
                 place: $("#newEventPlace").val(),
@@ -87,10 +87,10 @@ $('#newEventForm').submit(function(e) {
             setTimeout(function () {
                 emptyForm();
             }, 100);
-         },
-         error: function(err){
-             $("#addEventError").html(err.responseJSON.error)
-         }
+        },
+        error: function (err) {
+            $("#addEventError").html(err.responseJSON.error)
+        }
     });
 })
 

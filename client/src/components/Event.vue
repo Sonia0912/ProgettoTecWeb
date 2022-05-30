@@ -1,5 +1,4 @@
 <template>
-
 	<div class="blueBackground eventsContainer">
 		<div class="title">Events</div>
 		<!-- Modal error -->
@@ -11,7 +10,6 @@
 				</div>
 			</div>
 		</div>
-
 		<!-- Modal Booking -->
 		<div id="bookedEvent" class="modal">
 			<span id="closeMessagge" class="close" title="Close Modal">&times;</span>
@@ -21,7 +19,6 @@
 				</div>
 			</div>
 		</div>
-
 		<div v-for="(info, index) in information" v-bind:value="info" :key="info.name" class="eventContainer">
 			<div class="layoutEvent">
 				<figure class="figureEvent" v-if="info.photo">
@@ -66,7 +63,6 @@ export default {
 					params: { error: 'unauthorized' }
 				})
 			} else {
-
 				let booking = {
 					nameEvent: event.name,
 					userEmail: localStorage.getItem('email'),
@@ -95,28 +91,27 @@ export default {
 				this.error = "Sorry, something went wrong (" + error.status + ")";
 			})
 
-			window.onclick = function (event) {
+		window.onclick = function (event) {
 			var modalError = document.getElementById('messageError');
 			var msgBook = document.getElementById('bookedEvent');
 			if (event.target == modalError) {
 				modalError.style.display = "none";
-			}else if(event.target == msgBook ){
+			} else if (event.target == msgBook) {
 				msgBook.style.display = "none";
 			}
-}
+		}
 	}
 }
 </script>
 <style scoped>
-.bookedEvent{
+.bookedEvent {
 	color: green;
 	padding: 10px;
 }
-.serverError{
+
+.serverError {
 	color: red;
 	padding: 10px;
 }
-
-
 </style>
            

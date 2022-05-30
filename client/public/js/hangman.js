@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
   animalRequest();
   setTotalScore();
   this.punteggioPartita = 100;
@@ -49,32 +49,15 @@ function clearVariable() {
   }
 }
 
-// function Sound() {
-//   this.sound = document.createElement("audio");
-//   this.sound.setAttribute("src","client/sound/winner.mp3" )
-//   this.sound.setAttribute("preload", "auto");
-//   this.sound.setAttribute("controls", "none");
-//   this.sound.style.display = "none";
-//   document.body.appendChild(this.sound);
-//   this.play = function(){
-//     this.sound.play();
-//   }
-//   this.stop = function(){
-//     this.sound.pause();
-//   }
-// }
 
 window.onclick = function (event) {
-  // var sound = new Sound();
-  // sound.play();
   var modalResult = document.getElementById('divResult');
   var modalRules = document.getElementById('rulesPopUp');
   if (event.target == modalResult) {
     $('#containerResutl').removeClass("winner");
     $('#containerResutl').removeClass("lost");
     modalResult.style.display = "none";
-   
-  }else if(event.target == modalRules){
+  } else if (event.target == modalRules) {
     modalRules.style.display = "none";
   }
 }
@@ -88,13 +71,6 @@ $('#btnRules').on("click", function () {
 
 });
 
-// $('#closeResult').on("click", function () {
-//   $('#divResult').contents().filter(isTextNode).remove();
-//   $('#divResult').hide();
-//   $('#divResult').removeClass("winner");
-//   $('#divResult').removeClass("lost");
-// });
-
 $('#closeRules').on("click", function () {
   if ($('#rulesPopUp').is(":visible")) {
     $('#rulesPopUp').hide();
@@ -102,7 +78,6 @@ $('#closeRules').on("click", function () {
     $('#rulesPopUp').show();
   }
 });
-
 
 function animalRequest() {
   $.ajax({
@@ -124,29 +99,22 @@ function hideWord(word) {
   }
 }
 
-
 function getWordToGuess(animalJSON) {
-
   var name = animalJSON["name"];
   let wordToGuess = name.split(' ').slice(-1);
   word = wordToGuess[wordToGuess.length - 1].toLowerCase();
   guessWord = word;
-
   $('#wordToGuess').empty();
   for (let i = 0; i < word.length; i++) {
     $('#wordToGuess').append("<span class=ww id=w" + i + ">" + word.charAt(i) + "</span>");
   }
   hideWord(guessWord);
-
   $("#animalPhoto").attr("src", animalJSON["image_link"]);
-
-
 }
 
 function restart(win) {
-  if(win) {
+  if (win) {
     saveResult();
-    //setTotalScore(); 
   }
   $('#animalPhoto').css("filter", "blur(" + 10 + "px)")
   clearVariable();
@@ -155,10 +123,8 @@ function restart(win) {
 }
 
 function guess() {
-
   let userInput = $('#letter').val().toLowerCase();
-  if(userInput.length === 0) return;
-
+  if (userInput.length === 0) return;
   if (tentativi >= 9) {
     $('#containerResutl').addClass("lost");
     $('#divResult').show();
@@ -206,7 +172,7 @@ function guess() {
           }
         }
       } else {
-        // WHEN THE LETTER INSERTED IS NOT GUESSED
+        // Quando la parola inserita non è indovinata
         writeWordInsert(userInput);
         usedWord.add(userInput);
         tentativi++;
@@ -217,8 +183,7 @@ function guess() {
       }
       $('#letter').val("");
     }
-
-    // check user win
+    // Controllo se ha vinto
     let count = 0;
     for (let k = 0; k < $('#wordToGuess').text().length; k++) {
       if ($('#wordToGuess').text().charAt(k) != "+" && $('#wordToGuess').text().charAt(k) != "-") {
@@ -232,12 +197,10 @@ function guess() {
       restart(true);
       return;
     }
-
   }
   blurPhoto = blurPhoto - 1;
   $('#animalPhoto').css("filter", "blur(" + blurPhoto + "px)")
 }
-
 
 // aggiorna il punteggio totale a fine partita
 function saveResult() {
@@ -254,20 +217,17 @@ function saveResult() {
       headers: {
         token: localStorage.getItem('token')
       },
-    }).then(function() {
+    }).then(function () {
       $('#hangmanScore').text(punteggioUtente);
     })
-    .catch(err => $("#serverErrorHangman").html("Sorry, something went wrong (" + err.status + ")"));
-      
+      .catch(err => $("#serverErrorHangman").html("Sorry, something went wrong (" + err.status + ")"));
   }
-
 }
 
 function writeWordInsert(insertWord) {
   if (usedWord.has(insertWord)) {
     $('#divResult').show();
     $('#textResult').text("You have already inserted the letter: " + insertWord);
-    //punteggio = punteggio - 5;
   } else {
     $('#usedLetters').append("<span class=www>" + insertWord + "</span>");
   }

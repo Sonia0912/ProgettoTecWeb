@@ -2,19 +2,19 @@ var express = require('express');
 var router = express.Router();
 const fs = require('fs');
 
-router.get('/dogsForAdoption', function(req, res) {
+router.get('/dogsForAdoption', function (req, res) {
     var contents = fs.readFileSync('./data/dog.json', 'utf8');
     obj = JSON.parse(contents);
     res.json(obj);
 });
 
-router.get('/catsForAdoption', function(req, res) {
+router.get('/catsForAdoption', function (req, res) {
     var contents = fs.readFileSync('./data/cat.json', 'utf8');
     obj = JSON.parse(contents);
     res.json(obj);
 });
 
-router.get('/getPets', function(req, res) {
+router.get('/getPets', function (req, res) {
     var contentsDog = fs.readFileSync('./data/dog.json', 'utf8');
     var contentsCat = fs.readFileSync('./data/cat.json', 'utf8');
     objDog = JSON.parse(contentsDog);
@@ -29,16 +29,16 @@ router.get('/getPets', function(req, res) {
     res.json(obj);
 });
 
-router.get('/infoPet/:type/:name', function(req, res) {
+router.get('/infoPet/:type/:name', function (req, res) {
     var contents = fs.readFileSync('./data/' + req.params.type + '.json', 'utf8');
     obj = JSON.parse(contents);
     var pet = obj.find(pet => pet.name === req.params.name);
     res.json(pet);
 });
 
-router.post('/adoptionBook', function(req, res) {
+router.post('/adoptionBook', function (req, res) {
     fs.readFile('./data/visits.json', 'utf8', function readFileCallback(err, data) {
-        if(err) {
+        if (err) {
             console.log("ERROR READING FILE: " + err);
         } else {
             obj = JSON.parse(data);
@@ -54,13 +54,13 @@ router.post('/adoptionBook', function(req, res) {
             json = JSON.stringify(obj);
             fs.writeFile('./data/visits.json', json, 'utf8', (err) => {
                 if (!err) {
-                  console.log('Visit added to the database');
+                    console.log('Visit added to the database');
                 }
             });
         }
     });
     fs.readFile('./data/visitsPerDay.json', 'utf8', function readFileCallback(err, data) {
-        if(err) {
+        if (err) {
             console.log("ERROR READING FILE: " + err);
         } else {
             obj = JSON.parse(data);
@@ -74,7 +74,7 @@ router.post('/adoptionBook', function(req, res) {
                 }
             }
             // add the new booking to the database
-            if(!found) {
+            if (!found) {
                 var timesArr = [];
                 timesArr.push(req.body.time)
                 obj.push({
@@ -86,22 +86,22 @@ router.post('/adoptionBook', function(req, res) {
             json = JSON.stringify(obj);
             fs.writeFile('./data/visitsPerDay.json', json, 'utf8', (err) => {
                 if (!err) {
-                  console.log('Number of visits updated');
-                  res.status(204).send("OK")
+                    console.log('Number of visits updated');
+                    res.status(204).send("OK")
                 }
             });
         }
     });
 });
 
-router.post('/addPet', function(req, res) {
+router.post('/addPet', function (req, res) {
     fs.readFile('./data/' + req.body.type + '.json', 'utf8', function readFileCallback(err, data) {
-        if(err) {
+        if (err) {
             console.log("ERROR READING FILE: " + err);
         } else {
             obj = JSON.parse(data);
             var pet = obj.find(pet => pet.name === req.body.name);
-            if(pet) {
+            if (pet) {
                 return res.status(409).json({
                     title: "Existing pet name",
                     error: "This name is already used"
@@ -118,8 +118,8 @@ router.post('/addPet', function(req, res) {
                 json = JSON.stringify(obj);
                 fs.writeFile('./data/' + req.body.type + '.json', json, 'utf8', (err) => {
                     if (!err) {
-                      console.log('Pet added to the database');
-                      res.status(204).send("OK");
+                        console.log('Pet added to the database');
+                        res.status(204).send("OK");
                     }
                 });
             }
@@ -128,7 +128,7 @@ router.post('/addPet', function(req, res) {
 })
 
 // When the admin deletes a pet
-router.delete('/deletePet/:type/:name', function(req, res) {
+router.delete('/deletePet/:type/:name', function (req, res) {
     // Deletes in dog.json or cat.json
     var contents = fs.readFileSync('./data/' + req.params.type + '.json', 'utf8');
     obj = JSON.parse(contents);
@@ -136,51 +136,51 @@ router.delete('/deletePet/:type/:name', function(req, res) {
     json = JSON.stringify(remainingObj);
     fs.writeFile('./data/' + req.params.type + '.json', json, 'utf8', (err) => {
         if (!err) {
-          console.log('Pet deleted (1)');
+            console.log('Pet deleted (1)');
         }
     });
     // Deletes in visits.json
     var contents = fs.readFileSync('./data/visits.json', 'utf8');
     obj = JSON.parse(contents);
     remainingObj = [];
-    for(let i = 0; i < obj.length; i++) {
-        if(obj[i].petName != req.params.name) {
+    for (let i = 0; i < obj.length; i++) {
+        if (obj[i].petName != req.params.name) {
             remainingObj.push(obj[i]);
         }
     }
     json = JSON.stringify(remainingObj);
     fs.writeFile('./data/visits.json', json, 'utf8', (err) => {
         if (!err) {
-          console.log('Pet deleted (2)');
+            console.log('Pet deleted (2)');
         }
     });
     // Deletes in visitsPerDay.json
     var contents = fs.readFileSync('./data/visitsPerDay.json', 'utf8');
     obj = JSON.parse(contents);
     remainingObj = [];
-    for(let i = 0; i < obj.length; i++) {
-        if(obj[i].petName != req.params.name) {
+    for (let i = 0; i < obj.length; i++) {
+        if (obj[i].petName != req.params.name) {
             remainingObj.push(obj[i]);
         }
     }
     json = JSON.stringify(remainingObj);
     fs.writeFile('./data/visitsPerDay.json', json, 'utf8', (err) => {
         if (!err) {
-          console.log('Pet deleted (3)');
+            console.log('Pet deleted (3)');
         }
     });
     res.send("OK");
 })
 
-router.get('/myvisits/:loggedEmail', function(req, res) {
+router.get('/myvisits/:loggedEmail', function (req, res) {
     fs.readFile('./data/visits.json', 'utf8', function readFileCallback(err, data) {
-        if(err) {
+        if (err) {
             console.log("ERROR READING FILE: " + err);
         } else {
             obj = JSON.parse(data);
             var myBookings = [];
-            for(let i = 0; i < obj.length; i++) {
-                if(obj[i].username === req.params.loggedEmail) {
+            for (let i = 0; i < obj.length; i++) {
+                if (obj[i].username === req.params.loggedEmail) {
                     myBookings.push(obj[i]);
                 }
             }
@@ -191,7 +191,7 @@ router.get('/myvisits/:loggedEmail', function(req, res) {
 })
 
 // When a user deletes a visit with a pet
-router.delete('/deleteBooking/:idVisit', function(req, res) { 
+router.delete('/deleteBooking/:idVisit', function (req, res) {
     var contents = fs.readFileSync('./data/visits.json', 'utf8');
     obj = JSON.parse(contents);
     visitToDelete = obj.filter(data => data.id === req.params.idVisit);
@@ -199,13 +199,13 @@ router.delete('/deleteBooking/:idVisit', function(req, res) {
     json = JSON.stringify(remainingObj);
     fs.writeFile('./data/visits.json', json, 'utf8', (err) => {
         if (!err) {
-          console.log('Visit deleted');
+            console.log('Visit deleted');
         }
     });
     var contents2 = fs.readFileSync('./data/visitsPerDay.json', 'utf8');
     obj2 = JSON.parse(contents2);
-    for(let i = 0; i < obj2.length; i++) {
-        if(obj2[i].petName === visitToDelete[0].petName && obj2[i].date === visitToDelete[0].date) {
+    for (let i = 0; i < obj2.length; i++) {
+        if (obj2[i].petName === visitToDelete[0].petName && obj2[i].date === visitToDelete[0].date) {
             obj2[i].times = obj2[i].times.filter(item => item !== visitToDelete[0].time)
             break;
         }
@@ -213,27 +213,27 @@ router.delete('/deleteBooking/:idVisit', function(req, res) {
     json2 = JSON.stringify(obj2);
     fs.writeFile('./data/visitsPerDay.json', json2, 'utf8', (err) => {
         if (!err) {
-          console.log('Times of the visit updated');
+            console.log('Times of the visit updated');
         }
     });
     res.send("OK");
 })
 
-router.get('/getVisits', function(req, res) {
+router.get('/getVisits', function (req, res) {
     var contents = fs.readFileSync('./data/visits.json', 'utf8');
     obj = JSON.parse(contents);
     res.json(obj.reverse());
 })
 
-router.get('/visits/:petName', function(req, res) {
+router.get('/visits/:petName', function (req, res) {
     fs.readFile('./data/visitsPerDay.json', 'utf8', function readFileCallback(err, data) {
-        if(err) {
+        if (err) {
             console.log("ERROR READING FILE: " + err);
         } else {
             obj = JSON.parse(data);
             var bookedVisits = [];
-            for(let i = 0; i < obj.length; i++) {
-                if(obj[i].petName === req.params.petName) {
+            for (let i = 0; i < obj.length; i++) {
+                if (obj[i].petName === req.params.petName) {
                     bookedVisits.push(obj[i]);
                 }
             }
@@ -242,17 +242,17 @@ router.get('/visits/:petName', function(req, res) {
     });
 })
 
-router.put('/modifyVisit', function(req, res) {
+router.put('/modifyVisit', function (req, res) {
     // modifico la visita in visits.json
     fs.readFile('./data/visits.json', 'utf8', function readFileCallback(err, data) {
-        if(err) {
+        if (err) {
             console.log("ERROR READING FILE: " + err);
         } else {
             obj = JSON.parse(data);
             var oldTime = '';
             var oldDate = '';
-            for(let i = 0; i < obj.length; i++) {
-                if(obj[i].id === req.body.id) {
+            for (let i = 0; i < obj.length; i++) {
+                if (obj[i].id === req.body.id) {
                     oldTime = obj[i].time;
                     oldDate = obj[i].date;
                     obj[i].date = req.body.date;
@@ -261,8 +261,8 @@ router.put('/modifyVisit', function(req, res) {
                 }
             }
             var myBookings = [];
-            for(let i = 0; i < obj.length; i++) {
-                if(obj[i].username === req.body.username) {
+            for (let i = 0; i < obj.length; i++) {
+                if (obj[i].username === req.body.username) {
                     myBookings.push(obj[i]);
                 }
             }
@@ -273,21 +273,21 @@ router.put('/modifyVisit', function(req, res) {
                     console.log('Day and time of the visit modified');
                     // modifico il giorno e gli orari in visitsPerDay.json
                     fs.readFile('./data/visitsPerDay.json', 'utf8', function readFileCallback(err, data) {
-                        if(err) {
+                        if (err) {
                             console.log("ERROR READING FILE: " + err);
                         } else {
                             obj2 = JSON.parse(data);
                             var found = false;
-                            for(let i = 0; i < obj2.length; i++) {
-                                if(obj2[i].petName === req.body.petName && obj2[i].date === req.body.date) {
+                            for (let i = 0; i < obj2.length; i++) {
+                                if (obj2[i].petName === req.body.petName && obj2[i].date === req.body.date) {
                                     obj2[i].times.push(req.body.time);
                                     found = true;
                                 }
-                                if(obj2[i].petName === req.body.petName && obj2[i].date === oldDate) {
+                                if (obj2[i].petName === req.body.petName && obj2[i].date === oldDate) {
                                     obj2[i].times = obj2[i].times.filter(t => t != oldTime)
                                 }
                             }
-                            if(!found) {
+                            if (!found) {
                                 var timesArr = [];
                                 timesArr.push(req.body.time);
                                 obj2.push({

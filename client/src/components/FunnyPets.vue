@@ -4,8 +4,8 @@
             <div class="title">Funny cats</div>
             <div id="serverErrorCats" class="serverError"></div>
             <img id="funcat">
-            <div> 
-                <button class="postBtn" @click="postOnDashboradCat()"  v-if="postable">Post</button>
+            <div>
+                <button class="postBtn" @click="postOnDashboradCat()" v-if="postable">Post</button>
                 <button id="anotherFuncat">Next one</button>
             </div>
         </div>
@@ -13,9 +13,9 @@
             <div class="title">Funny dogs</div>
             <div id="serverErrorDogs" class="serverError"></div>
             <img id="fundog">
-            <div> 
-                <button class="postBtn" @click="postOnDashboradDog()"  v-if="postable">Post</button>   
-                <button id="anotherFundog">Next one</button> 
+            <div>
+                <button class="postBtn" @click="postOnDashboradDog()" v-if="postable">Post</button>
+                <button id="anotherFundog">Next one</button>
             </div>
         </div>
     </div>
@@ -32,12 +32,12 @@ export default {
         Script.setAttribute("src", "./js/funnypets.js");
         document.head.appendChild(Script);
 
-        if(localStorage.getItem('token')!= null){
+        if (localStorage.getItem('token') != null) {
             this.postable = true;
         }
     },
-    data(){
-        return{
+    data() {
+        return {
             text: "Look at this fun ",
             image: '',
             postable: false
@@ -45,11 +45,11 @@ export default {
     },
     methods: {
         postOnDashboradCat() {
-          var data={
-            text: this.text + 'cat',
-            img: $('#funcat').attr('src')
-          }
-        
+            var data = {
+                text: this.text + 'cat',
+                img: $('#funcat').attr('src')
+            }
+
             axios.post('http://localhost:3000/posts', data, {
                 headers: {
                     'token': localStorage.getItem('token')
@@ -63,11 +63,11 @@ export default {
                 .catch(err => this.error = "Sorry, something went wrong (" + err.message + ")")
         },
         postOnDashboradDog() {
-          var data={
-            text: this.text + 'dog',
-            img: $('#fundog').attr('src')
-          }
-        
+            var data = {
+                text: this.text + 'dog',
+                img: $('#fundog').attr('src')
+            }
+
             axios.post('http://localhost:3000/posts', data, {
                 headers: {
                     'token': localStorage.getItem('token')
@@ -94,7 +94,8 @@ export default {
     margin: 0 auto 20px auto;
 }
 
-#anotherFuncat, #anotherFundog {
+#anotherFuncat,
+#anotherFundog {
     width: fit-content;
     padding: 8px;
     margin: 0px auto;
@@ -103,7 +104,8 @@ export default {
     color: white;
 }
 
-#anotherFuncat:hover, #anotherFundog:hover {
+#anotherFuncat:hover,
+#anotherFundog:hover {
     background-color: #fb9746;
 }
 
