@@ -36,7 +36,7 @@
 			</div>
 			<div class="infoEvent">
 				<div>Available seats: <span class="seatEvent">{{ info.totSeat - info.bookedSeat }}</span></div>
-				<div><button class="bookEvent" @click="booking(info, index)">Book</button></div>
+				<div><button v-if="info.totSeat != info.bookedSeat" class="bookEvent" @click="booking(info, index)">Book</button></div>
 			</div>
 		</div>
 	</div>
