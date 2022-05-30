@@ -5,48 +5,45 @@
             <div class="serverError">{{ error }}</div>
 
             <div id="factsTypes">
-                <button @click="typeOfFacts = 0" :class="{ active: typeOfFacts === 0 }">Cats
-                    Facts</button>
-                <button @click="typeOfFacts = 1" :class="{ active: typeOfFacts === 1 }">Dog
-                    Facts</button>
-                <button @click="typeOfFacts = 2" :class="{ active: typeOfFacts === 2 }">Snail
-                    Facts</button>
-                <button @click="typeOfFacts = 3" :class="{ active: typeOfFacts === 3 }"> Horse
-                    Facts</button>
+                <button @click="typeOfFacts = 0" :class="{ active: typeOfFacts === 0 }">Fish Habitats</button>
+                <button @click="typeOfFacts = 1" :class="{ active: typeOfFacts === 1 }">Cat Facts</button>
+                <button @click="typeOfFacts = 2" :class="{ active: typeOfFacts === 2 }">Endangered Reptiles</button>
+                <button @click="typeOfFacts = 3" :class="{ active: typeOfFacts === 3 }">Bird Population</button>
             </div>
 
-            <!-- CAT FACTS -->
+            <!-- FISH FACTS -->
             <div v-if="typeOfFacts === 0" id="catFacts">
-                <!-- v-scroll="scrollFunction(this.type[0])"> -->
-                <div class="fact" v-for="f in factsCats" :key="f">
+                <div class="fact" v-for="f in factsFishes" :key="f">
                     {{ f }}
                     <button v-if="loggedIn" class="publishFactBtn" @click="postOnDashboard(f)"> Post </button>
                 </div>
-                <div id="otherFacts"></div>
+                <div class="otherFacts"></div>
             </div>
-            <!-- DOG FACTS -->
+            <!-- CAT FACTS -->
             <div v-if="typeOfFacts === 1" id="dogFacts">
-                <div class="fact" v-for="d in factsDogs" :key="d">
+                <div class="fact" v-for="d in factsCats" :key="d">
                     {{ d }}
                     <button v-if="loggedIn" class="publishFactBtn" @click="postOnDashboard(d)"> Post </button>
                 </div>
-                <div id="otherFacts"></div>
+                <div class="otherFacts"></div>
             </div>
-            <!-- SNAIL FACTS  -->
+            <!-- ENDAGERED SPECIES  -->
             <div v-if="typeOfFacts === 2" id="snailFacts">
-                <div class="fact" v-for="s in factsSnail" :key="s">
+                <div class="fact" v-for="s in factsEndangered" :key="s">
                     {{ s }}
                     <button v-if="loggedIn" class="publishFactBtn" @click="postOnDashboard(s)"> Post </button>
                 </div>
-                <div id="otherFacts"></div>
+                <div class="waitingFunFacts" v-if="waitingForReptiles">Please wait</div>
+                <div class="otherFacts"></div>
             </div>
-            <!-- HORSE FACTS  -->
+            <!-- BIRD HABITATS  -->
             <div v-if="typeOfFacts === 3" id="horseFacts">
-                <div class="fact" v-for="h in factsHorse" :key="h">
+                <div class="fact" v-for="h in factsBirds" :key="h">
                     {{ h }}
                     <button v-if="loggedIn" class="publishFactBtn" @click="postOnDashboard(h)"> Post </button>
                 </div>
-                <div id="otherFacts"></div>
+                <div class="waitingFunFacts" v-if="waitingForBirds">Please wait</div>
+                <div class="otherFacts"></div>
             </div>
 
             <button id="loadMoreFacts" @click="loadMore">&#8595;</button>
@@ -61,14 +58,17 @@ export default {
     name: "funfacts",
     data() {
         return {
+            factsFishes: [],
             factsCats: [],
-            factsDogs: [],
-            factsSnail: [],
-            factsHorse: [],
+            factsEndangered: [],
+            factsBirds: [],
             error: '',
             typeOfFacts: 0,
             loggedIn: false,
-            scrollable: true
+            scrollable: true,
+            waitingForReptiles: true,
+            waitingForBirds: true,
+
         }
     },
     created() {
@@ -77,25 +77,37 @@ export default {
         }
 
         var promises = []
-        //Cat Facts
+        promises.push(axios.get("http://localhost:3000/getFactsOf/fish"));
         promises.push(axios.get("http://localhost:3000/getFactsOf/cat"));
-        //Dog Facts
-        promises.push(axios.get("http://localhost:3000/getFactsOf/dog"));
-        //Snail Facts
-        promises.push(axios.get("http://localhost:3000/getFactsOf/snail"));
-        //Horse Facts
-        promises.push(axios.get("http://localhost:3000/getFactsOf/horse"));
 
         Promise.all(promises)
         .then(res => {
-            this.factsCats = res[0].data; 
-            this.factsDogs = res[1].data;
-            this.factsSnail = res[2].data;
-            this.factsHorse = res[3].data;
+            var formattedArray = [];
+            for(let i = 0; i < res[0].data.length; i++) {
+                if(res[0].data[i] != null) {
+                    var firstFormat = res[0].data[i].replace(/(<([^>]+)>)/gi, "");
+                    formattedArray.push(firstFormat.replace(/&nbsp;/g, ''));
+                }
+            }
+            this.factsFishes = formattedArray; 
+            this.factsCats = res[1].data;
         })
-        .catch(err => {
-            this.error = "Sorry, something went wrong (" + err.message + ")"
+        .catch(err => this.error = "Sorry, something went wrong (" + err.message + ")")
+
+        // Essendo lente la facciamo separatamente
+        axios.get("http://localhost:3000/getFactsOf/endangered")
+        .then(res => {  
+            this.waitingForReptiles = false;
+            this.factsEndangered = res.data;
         })
+        .catch(err => this.error = "Sorry, something went wrong (" + err.message + ")")
+        axios.get("http://localhost:3000/getFactsOf/bird")
+        .then(res => {  
+            this.waitingForBirds = false;
+            this.factsBirds = res.data;
+        })
+        .catch(err => this.error = "Sorry, something went wrong (" + err.message + ")")
+
     },
     methods: {
         postOnDashboard(facts) {
@@ -111,31 +123,40 @@ export default {
             .catch(err => this.error = "Sorry, something went wrong (" + err.message + ")")
         }, 
         loadMore() {
-            var type = "cat";
+            var type = "fish";
             if(this.typeOfFacts === 1) {
-                type = "dog";
+                type = "cat";
             }else if ( this.typeOfFacts === 2) {
-                type = "snail";
+                this.waitingForReptiles = true;
+                type = "endangered";
             }else if(this.typeOfFacts === 3) {
-                type = "horse";
+                this.waitingForBirds = true;
+                type = "bird";
             }
             axios.get('http://localhost:3000/getFactsOf/' + type)
             .then (facts => {
-                if (type === "cat") {
+                if (type === "fish") {
+                    //var formattedArray = [];
+                    for(let i = 0; i < facts.data.length; i++) {
+                        if(facts.data[i] != null) {
+                            var firstFormat = facts.data[i].replace(/(<([^>]+)>)/gi, "");
+                            this.factsFishes.push(firstFormat.replace(/&nbsp;/g, ''));
+                            //this.factsFishes.push(formattedArray); 
+                        }
+                    }
+                } else if (type === "cat") {
                     for(let i = 0; i < facts.data.length; i++) {
                         this.factsCats.push(facts.data[i]);
-                    } 
-                } else if (type === "dog") {
-                    for(let i = 0; i < facts.data.length; i++) {
-                        this.factsDogs.push(facts.data[i]);
                     }
-                } else if (type === "snail") {
+                } else if (type === "endangered") {
+                    this.waitingForReptiles = false;
                     for(let i = 0; i < facts.data.length; i++) {
-                        this.factsSnail.push(facts.data[i]);
+                        this.factsEndangered.push(facts.data[i]);
                     }
-                } else {
+                } else if (type === "bird") {
+                    this.waitingForBirds = false;
                     for(let i = 0; i < facts.data.length; i++) {
-                        this.factsHorse.push(facts.data[i]);
+                        this.factsBirds.push(facts.data[i]);
                     }
                 }
             })
@@ -200,6 +221,11 @@ export default {
     border-radius: 5px;
     padding: 0 13px;
     font-size: 25px;
+}
+
+.waitingFunFacts {
+    font-size: 22px;
+    margin-top: 20px;
 }
 
 @media screen and (max-width: 768px) {
