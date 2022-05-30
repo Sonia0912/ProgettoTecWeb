@@ -9,6 +9,10 @@
             <option value="ES">SPAIN</option>
             <option value="GB">GREAT BRITAIN</option>
             <option value="FI">FINLAND</option>
+            <option value="JP">JAPAN</option>
+            <option value="AZ">AZERBAGIAN</option>
+            <option value="PH">PHILIPPINES</option>
+            <option value="MA">MOROCCO</option>
         </select>
         <div class="centeredGrid topTen"> 
             <div v-for="(video, index) in videos" v-bind:value="video" :key="video.id" class="funnyVideo">
@@ -95,6 +99,7 @@ export default {
 
 .number {
     font-weight: 900;
+  transform: scaleY(1.5);
 }
 
 .videoPet{

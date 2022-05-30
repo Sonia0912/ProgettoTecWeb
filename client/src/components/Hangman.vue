@@ -7,7 +7,7 @@
                 <!-- Modal rules -->
                 <div id="rulesPopUp" class="modal">
                     <span id="closeRules" class="close" title="Close Modal">&times;</span>
-                    <form class="modal-content hangmanModal-content">
+                    <div class="modal-content hangmanModal-content">
                         <div class="container hangmanRulesContainer">
                             <h1>How to play</h1>
                             <ul>
@@ -19,15 +19,15 @@
                                 <li>You only have 10 rounds to win!</li>
                             </ul>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
 
             <!-- Modal message -->
-            <div id="divResult" class="modalMessageaHangman">
+            <div id="divResult" class="modal">
                 <span id="closeMessagge" class="close" title="Close Modal">&times;</span>
-                <div class="modal-content">
-                    <div id="containerResutl" class="container hangmanMessaggeContainer">
+                <div class="modal-content-hangman">
+                    <div id="containerResutl" class="hangmanMessaggeContainer">
                         <div id="textResult"></div>
                     </div>
                 </div>
@@ -54,12 +54,25 @@
             </div>
         </div>
     </div>
+<!-- 
+    <audio controls autoplay>
+	<source src="/client/public/mp3/winner.mp3" type="audio/mp3">   
+	Your browser does not support the audio tag.
+</audio> -->
 </template>
 
 <script>
 import axios from 'axios'
+// import useSound from 'vue-use-sound'
+// import sound from '../../mp3/winner.mp3';
 export default {
     name: "hangman",
+//     setup() {
+//     const [play] = useSound(sound)
+//     return {
+//       play,
+//     }
+//   },
     data() {
         return {
             isAuth: false,

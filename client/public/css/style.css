@@ -353,14 +353,17 @@ button {
      background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
 }
 .modalMessageaHangman {
+    
      display: none; /* Hidden by default */
      position: fixed; /* Stay in place */
      z-index: 1; /* Sit on top */
      padding-top: 100px; /* Location of the box */
-     width: 100vw; 
-     height: 100vh; 
-     justify-content: center;
-     background-color: rgb(232, 236, 25); /* Fallback color */
+     left: 0;
+     top: 0;
+     width: 100%; /* Full width */
+     height: 100%; /* Full height */
+     overflow: auto;
+     left: 160px;
      background-color: rgba(25, 183, 236, 0.9); /* Black w/ opacity */
 }
 
@@ -371,6 +374,10 @@ button {
      display: block;
      width: 80%;
      max-width: 700px;
+}
+.modal-content-hangman{
+     margin: auto;
+     width: fit-content;
 }
    
 /* Caption of Modal Image (Image Text) - Same Width as the Image */
@@ -1340,6 +1347,7 @@ button {
      .carousel-caption.d-md-block h5 {
           font-size: 24px;
      }
+    
 }
 
 @media screen and (max-width: 650px) {
@@ -1386,6 +1394,11 @@ button {
      #profileGridContainer {
           margin: 0px 10px;
      }
+     .modalMessageaHangman{
+          width: 100vw;
+          left: unset;
+     }
+    
 }
      
 @media screen and (max-width: 480px) {

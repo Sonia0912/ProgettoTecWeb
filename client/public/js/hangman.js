@@ -49,7 +49,24 @@ function clearVariable() {
   }
 }
 
+// function Sound() {
+//   this.sound = document.createElement("audio");
+//   this.sound.setAttribute("src","client/sound/winner.mp3" )
+//   this.sound.setAttribute("preload", "auto");
+//   this.sound.setAttribute("controls", "none");
+//   this.sound.style.display = "none";
+//   document.body.appendChild(this.sound);
+//   this.play = function(){
+//     this.sound.play();
+//   }
+//   this.stop = function(){
+//     this.sound.pause();
+//   }
+// }
+
 window.onclick = function (event) {
+  // var sound = new Sound();
+  // sound.play();
   var modalResult = document.getElementById('divResult');
   var modalRules = document.getElementById('rulesPopUp');
   if (event.target == modalResult) {

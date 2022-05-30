@@ -5,10 +5,9 @@
             <div class="serverError">{{ error }}</div>
 
             <div id="factsTypes">
-                <button @click="typeOfFacts = 0" :class="{ active: typeOfFacts === 0 }">Fish Habitats</button>
-                <button @click="typeOfFacts = 1" :class="{ active: typeOfFacts === 1 }">Cat Facts</button>
-                <button @click="typeOfFacts = 2" :class="{ active: typeOfFacts === 2 }">Endangered Reptiles</button>
-                <button @click="typeOfFacts = 3" :class="{ active: typeOfFacts === 3 }">Bird Population</button>
+                <button @click="typeOfFacts = 0" :class="{ active: typeOfFacts === 0 }">Fish Habitats 🐟 </button>
+                <button @click="typeOfFacts = 1" :class="{ active: typeOfFacts === 1 }">Endangered Reptiles 🦎</button>
+                <button @click="typeOfFacts = 2" :class="{ active: typeOfFacts === 2 }">Bird Population  🦅</button>
             </div>
 
             <!-- FISH FACTS -->
@@ -19,16 +18,8 @@
                 </div>
                 <div class="otherFacts"></div>
             </div>
-            <!-- CAT FACTS -->
-            <div v-if="typeOfFacts === 1" id="dogFacts">
-                <div class="fact" v-for="d in factsCats" :key="d">
-                    {{ d }}
-                    <button v-if="loggedIn" class="publishFactBtn" @click="postOnDashboard(d)"> Post </button>
-                </div>
-                <div class="otherFacts"></div>
-            </div>
             <!-- ENDAGERED SPECIES  -->
-            <div v-if="typeOfFacts === 2" id="snailFacts">
+            <div v-if="typeOfFacts === 1" id="snailFacts">
                 <div class="fact" v-for="s in factsEndangered" :key="s">
                     {{ s }}
                     <button v-if="loggedIn" class="publishFactBtn" @click="postOnDashboard(s)"> Post </button>
@@ -37,7 +28,7 @@
                 <div class="otherFacts"></div>
             </div>
             <!-- BIRD HABITATS  -->
-            <div v-if="typeOfFacts === 3" id="horseFacts">
+            <div v-if="typeOfFacts === 2" id="horseFacts">
                 <div class="fact" v-for="h in factsBirds" :key="h">
                     {{ h }}
                     <button v-if="loggedIn" class="publishFactBtn" @click="postOnDashboard(h)"> Post </button>
@@ -47,7 +38,7 @@
             </div>
 
             <button id="loadMoreFacts" @click="loadMore">&#8595;</button>
-
+ 
         </div>
     </div>
 </template>
@@ -59,7 +50,6 @@ export default {
     data() {
         return {
             factsFishes: [],
-            factsCats: [],
             factsEndangered: [],
             factsBirds: [],
             error: '',
@@ -68,29 +58,22 @@ export default {
             scrollable: true,
             waitingForReptiles: true,
             waitingForBirds: true,
-
         }
     },
     created() {
         if (localStorage.getItem('token') != null) {
             this.loggedIn = true;
         }
-
-        var promises = []
-        promises.push(axios.get("http://localhost:3000/getFactsOf/fish"));
-        promises.push(axios.get("http://localhost:3000/getFactsOf/cat"));
-
-        Promise.all(promises)
+        axios.get("http://localhost:3000/getFactsOf/fish")
         .then(res => {
             var formattedArray = [];
-            for(let i = 0; i < res[0].data.length; i++) {
-                if(res[0].data[i] != null) {
-                    var firstFormat = res[0].data[i].replace(/(<([^>]+)>)/gi, "");
+            for(let i = 0; i < res.data.length; i++) {
+                if(res.data[i] != null) {
+                    var firstFormat = res.data[i].replace(/(<([^>]+)>)/gi, "");
                     formattedArray.push(firstFormat.replace(/&nbsp;/g, ''));
                 }
             }
             this.factsFishes = formattedArray; 
-            this.factsCats = res[1].data;
         })
         .catch(err => this.error = "Sorry, something went wrong (" + err.message + ")")
 
@@ -124,29 +107,21 @@ export default {
         }, 
         loadMore() {
             var type = "fish";
-            if(this.typeOfFacts === 1) {
-                type = "cat";
-            }else if ( this.typeOfFacts === 2) {
+            if ( this.typeOfFacts === 1) {
                 this.waitingForReptiles = true;
                 type = "endangered";
-            }else if(this.typeOfFacts === 3) {
+            }else if(this.typeOfFacts === 2) {
                 this.waitingForBirds = true;
                 type = "bird";
             }
             axios.get('http://localhost:3000/getFactsOf/' + type)
             .then (facts => {
                 if (type === "fish") {
-                    //var formattedArray = [];
                     for(let i = 0; i < facts.data.length; i++) {
                         if(facts.data[i] != null) {
                             var firstFormat = facts.data[i].replace(/(<([^>]+)>)/gi, "");
                             this.factsFishes.push(firstFormat.replace(/&nbsp;/g, ''));
-                            //this.factsFishes.push(formattedArray); 
                         }
-                    }
-                } else if (type === "cat") {
-                    for(let i = 0; i < facts.data.length; i++) {
-                        this.factsCats.push(facts.data[i]);
                     }
                 } else if (type === "endangered") {
                     this.waitingForReptiles = false;
