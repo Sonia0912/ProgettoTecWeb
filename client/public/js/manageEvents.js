@@ -67,23 +67,32 @@ function emptyForm() {
     $("#newEventForm").hide();
 }
 
-$('#newEventForm').submit(function (e) {
-
-    var newEvent = {
-        name: $("#newEventName").val(),
-        place: $("#newEventPlace").val(),
-        date: $("#newEventDate").val(),
-        totSeat: $('#newEventSeats').val(),
-        bookedSeat: 0
-    }
-    table.row.add(newEvent).draw(false);
-    setTimeout(function () {
-        emptyForm();
-    }, 100);
-
-
-});
-
+$('#newEventForm').submit(function(e) {
+    e.preventDefault();
+    var form = $(this);
+    var url = form.attr('action'); //get submit url 
+    $.ajax({
+         type: "POST",
+         url: url,
+         data: form.serialize(), // serializes form input
+         success: () => {
+            var newEvent = {
+                name: $("#newEventName").val(),
+                place: $("#newEventPlace").val(),
+                date: $("#newEventDate").val(),
+                totSeat: $('#newEventSeats').val(),
+                bookedSeat: 0
+            }
+            table.row.add(newEvent).draw(false);
+            setTimeout(function () {
+                emptyForm();
+            }, 100);
+         },
+         error: function(err){
+             $("#addEventError").html(err.responseJSON.error)
+         }
+    });
+})
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
@@ -108,11 +117,8 @@ $("#confirmDeleteButton").on("click", function () {
         selectedRow.remove().draw();
         $('#modalDeleteEvent').hide();
     }).fail(function () {
-
         $("#serverErrorManageEvent").html("Sorry something went wrong (" + err.status + ")")
         $('#modalDeleteEvent').hide();
-
-
     })
 })
 

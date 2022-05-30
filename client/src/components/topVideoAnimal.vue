@@ -1,6 +1,7 @@
 <template>
     <div class="centeredGrid leafPattern">
         <div class="title" id="containerTop10Video">Top 10</div>
+        <div>{{error}}</div>
         <div class="subtitle">Here you can find the daily top 10 videos about animals on YouTube filtered by country.</div>
         <select @change="getTop10of($event)" id="countryVideo" required>
             <option value="IT">ITALY</option>
@@ -8,6 +9,10 @@
             <option value="ES">SPAIN</option>
             <option value="GB">GREAT BRITAIN</option>
             <option value="FI">FINLAND</option>
+            <option value="JP">JAPAN</option>
+            <option value="AZ">AZERBAGIAN</option>
+            <option value="PH">PHILIPPINES</option>
+            <option value="MA">MOROCCO</option>
         </select>
         <div class="centeredGrid topTen"> 
             <div v-for="(video, index) in videos" v-bind:value="video" :key="video.id" class="funnyVideo">
@@ -61,7 +66,9 @@ export default {
                         view: el.statistics.viewCount
                     });
                 })
-            })
+            }).catch(error => {
+                    this.error = "Sorry, something went wrong (" + error.status + ")";
+                })
     }
 }
 </script>
@@ -92,6 +99,7 @@ export default {
 
 .number {
     font-weight: 900;
+  transform: scaleY(1.5);
 }
 
 .videoPet{

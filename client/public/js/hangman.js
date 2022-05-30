@@ -49,12 +49,33 @@ function clearVariable() {
   }
 }
 
+// function Sound() {
+//   this.sound = document.createElement("audio");
+//   this.sound.setAttribute("src","client/sound/winner.mp3" )
+//   this.sound.setAttribute("preload", "auto");
+//   this.sound.setAttribute("controls", "none");
+//   this.sound.style.display = "none";
+//   document.body.appendChild(this.sound);
+//   this.play = function(){
+//     this.sound.play();
+//   }
+//   this.stop = function(){
+//     this.sound.pause();
+//   }
+// }
+
 window.onclick = function (event) {
-  var modal = document.getElementById('divResult');
-  if (event.target == modal) {
-    modal.style.display = "none";
-    $('#divResult').removeClass("winner");
-    $('#divResult').removeClass("lost");
+  // var sound = new Sound();
+  // sound.play();
+  var modalResult = document.getElementById('divResult');
+  var modalRules = document.getElementById('rulesPopUp');
+  if (event.target == modalResult) {
+    $('#containerResutl').removeClass("winner");
+    $('#containerResutl').removeClass("lost");
+    modalResult.style.display = "none";
+   
+  }else if(event.target == modalRules){
+    modalRules.style.display = "none";
   }
 }
 
@@ -67,12 +88,12 @@ $('#btnRules').on("click", function () {
 
 });
 
-$('#closeResult').on("click", function () {
-  $('#divResult').contents().filter(isTextNode).remove();
-  $('#divResult').hide();
-  $('#divResult').removeClass("winner");
-  $('#divResult').removeClass("lost");
-});
+// $('#closeResult').on("click", function () {
+//   $('#divResult').contents().filter(isTextNode).remove();
+//   $('#divResult').hide();
+//   $('#divResult').removeClass("winner");
+//   $('#divResult').removeClass("lost");
+// });
 
 $('#closeRules').on("click", function () {
   if ($('#rulesPopUp').is(":visible")) {
@@ -139,7 +160,7 @@ function guess() {
   if(userInput.length === 0) return;
 
   if (tentativi >= 9) {
-    $('#divResult').addClass("lost");
+    $('#containerResutl').addClass("lost");
     $('#divResult').show();
     $('#textResult').text("Game over! The word was: " + guessWord);
     restart(false);
@@ -149,7 +170,7 @@ function guess() {
     // Se inserisce la parola
     if (userInput.length > 1) {
       if (guessWord == userInput) {
-        $('#divResult').addClass("winner");
+        $('#containerResutl').addClass("winner");
         $('#divResult').show();
         $('#textResult').text("Congratulations, you won!");
         restart(true);
@@ -205,7 +226,7 @@ function guess() {
       }
     }
     if (count === $('#wordToGuess').text().length) {
-      $('#divResult').addClass("winner");
+      $('#containerResutl').addClass("winner");
       $('#divResult').show();
       $('#textResult').text("Congratulations, you won!");
       restart(true);

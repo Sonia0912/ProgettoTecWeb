@@ -5,7 +5,7 @@
 
         <div class="centeredGrid">
             <button id="addEvent">New event</button>
-            <form  id="newEventForm" @submit="submit" action="http://localhost:3000/addEvent" method="post">
+            <form  id="newEventForm" action="http://localhost:3000/addEvent" method="post">
                 <div id="colForm1">
                     <!-- Name -->
                     <div class="newEventField">Name:
@@ -50,6 +50,7 @@
                     </div>
                 </div>
                 <div id="newEventSubmit">
+                    <div id="addEventError"></div>
                     <button type="submit" id="addEventBtn">Add</button>
                 </div>
             </form>
@@ -107,6 +108,10 @@
 </script>
 
 <style scoped>
+#addEventError{
+    color: red;
+
+}
 .cancelbtn, .deletebtn {
   float: left;
   width: 30%;
