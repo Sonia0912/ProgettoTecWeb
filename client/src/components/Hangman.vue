@@ -21,19 +21,22 @@
                         </div>
                     </form>
                 </div>
-            </div>                
+            </div>
 
             <!-- Modal message -->
-            <div id="divResult" class="modal" >
-                <div class="modal-content"> 
-                    <button id="closeResult">&times;</button>
-                    <div id="textResult"></div>
+            <div id="divResult" class="modalMessageaHangman">
+                <span id="closeMessagge" class="close" title="Close Modal">&times;</span>
+                <div class="modal-content">
+                    <div id="containerResutl" class="container hangmanMessaggeContainer">
+                        <div id="textResult"></div>
+                    </div>
                 </div>
+
             </div>
 
             <div>
                 <div class="title">Hangman Game</div>
-                 <div id="serverErrorHangman" class="serverError">{{ error }}</div>
+                <div id="serverErrorHangman" class="serverError">{{ error }}</div>
                 <span>
                     <div v-if="isAuth" class="scoreHangman">Your total score: <span id="hangmanScore"> </span></div>
                     <div class="scoreHangman">Current score: <span id="hangmanCurrentScore"></span></div>
@@ -58,23 +61,23 @@ import axios from 'axios'
 export default {
     name: "hangman",
     data() {
-            return {
-                isAuth: false,
-                score: 0,
-                error: ''
-            }
-        },
-        created() {
-            if(localStorage.getItem('token') != null) {
-                this.isAuth = true;
-                axios.get("http://localhost:3000/hangmanScore/email/" + localStorage.email)
+        return {
+            isAuth: false,
+            score: 0,
+            error: ''
+        }
+    },
+    created() {
+        if (localStorage.getItem('token') != null) {
+            this.isAuth = true;
+            axios.get("http://localhost:3000/hangmanScore/email/" + localStorage.email)
                 .then((res) => {
                     this.score = res.data.score
                 }).catch(error => {
-				this.error = "Sorry, something went wrong (" + error + ")";
-			})
-            }
-        },
+                    this.error = "Sorry, something went wrong (" + error + ")";
+                })
+        }
+    },
     mounted() {
         let Script = document.createElement("script");
         Script.setAttribute("src", "./js/hangman.js");

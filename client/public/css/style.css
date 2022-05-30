@@ -352,6 +352,18 @@ button {
      background-color: rgb(0,0,0); /* Fallback color */
      background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
 }
+.modalMessageaHangman {
+     display: none; /* Hidden by default */
+     position: fixed; /* Stay in place */
+     z-index: 1; /* Sit on top */
+     padding-top: 100px; /* Location of the box */
+     width: 100vw; 
+     height: 100vh; 
+     justify-content: center;
+     background-color: rgb(232, 236, 25); /* Fallback color */
+     background-color: rgba(25, 183, 236, 0.9); /* Black w/ opacity */
+}
+
    
 /* Modal Content (Image) */
 .modal-content {
@@ -893,6 +905,15 @@ button {
 .modal-content.hangmanModal-content {
      background-color: #e37a24;
 }
+.hangmanMessaggeContainer{
+     
+     background-color: rgba(59, 157, 248, 0.5);
+     padding: 20px;
+     align-self: center;
+     justify-content: center;
+     color: white;
+
+}
 
 #hangmanInput{
      display: flex;
@@ -919,32 +940,13 @@ button {
      padding: 6px 15px;
      color: white;
 }
-#divResult{
-     display: none;
-     position: fixed; /* Stay in place */
-     z-index: 2;
-    
-     max-width: 30vh; 
-     max-height: 50vw; 
-     top:30vh;
-     right: 10vw;
-     left: 10vw;
-     background-color: rgba(59, 157, 248, 0.5);
-     border-radius: 20px;
-     padding: 0px 15px 10px 15px;
-     align-self: center;
-     margin: 10px;
-     justify-content: center;
-     color: white;
-     box-shadow: 10px 10px lightblue;
 
-
-}
 .lost{
-     background-color: rgba(248, 78, 59, 0.5) !important;
+     background-color: rgba(239, 47, 26, 0.9);
 }
 .winner{
-     background-color: rgba(59, 248, 72, 0.5) !important;
+     background-color: rgb(59, 248, 72); /* Fallback color */
+     background-color: rgba(59, 248, 72, 0.9);
 }
 #closeResult{
      z-index: 2;
@@ -955,7 +957,8 @@ button {
      height: 30px;
 }
 #textResult {
-     float: left;
+    text-align: center;
+     margin: 8px;
 }
 
 /*
