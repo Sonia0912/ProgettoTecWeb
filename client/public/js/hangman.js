@@ -56,7 +56,6 @@ window.onclick = function (event) {
   var modalResult = document.getElementById('divResult');
   var modalRules = document.getElementById('rulesPopUp');
   if (event.target == modalResult) {
-
     $('#containerResutl').removeClass("winner");
     $('#containerResutl').removeClass("lost");
     modalResult.style.display = "none";
@@ -90,6 +89,8 @@ $('#mute').on("click",function (){
 
 $('#closeMessagge').on("click", function () {
   if ($('#divResult').is(":visible")) {
+    $('#containerResutl').removeClass("winner");
+    $('#containerResutl').removeClass("lost");
     $('#divResult').hide();
   } else {
     $('#divResult').show();

@@ -5,7 +5,7 @@
             <div id="spanRules">
                 <button id="btnRules"> ? </button>
                 <div id="soundControllContainer">
-                    <button id="play" class="soundControll"> &#9655; </button>
+                    <button id="play" class="soundControll"> &#128266; </button>
                     <button id="mute" class="soundControll"> &#128263; </button>
                 </div>
                 
@@ -58,19 +58,16 @@
                 </div>
             </div>
         </div>
+        <audio id="winnerSound">
+            <source src="../../sound/winner.mp3" type="audio/mp3">
+        </audio>
+        <audio id="gameoverSound">
+            <source src="../../sound/gameover.mp3" type="audio/mp3">
+        </audio>
+        <audio id="gameMusic">
+            <source src="../../sound/musicgame.mp3" type="audio/mp3">
+        </audio>
     </div>
-
-
-    <audio id="winnerSound">
-        <source src="../../sound/winner.mp3" type="audio/mp3">
-    </audio>
-    <audio id="gameoverSound">
-        <source src="../../sound/gameover.mp3" type="audio/mp3">
-    </audio>
-    <audio id="gameMusic">
-        <source src="../../sound/musicgame.mp3" type="audio/mp3">
-    </audio>
-
 </template>
 
 <script>
@@ -102,4 +99,3 @@ export default {
     }
 }
 </script>
- 
