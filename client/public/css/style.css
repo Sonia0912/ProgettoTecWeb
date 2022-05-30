@@ -968,6 +968,16 @@ button {
      margin: 8px;
 }
 
+#soundControllContainer{
+     position: absolute;
+     top: 7vh;
+     margin: 10px;
+}
+
+.soundControll{
+     border-radius: 10px;
+     margin: 5px;
+}
 /*
      PROFILE
 */

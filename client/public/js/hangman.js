@@ -1,8 +1,10 @@
 $(function () {
+  document.getElementById('gameMusic').play();
   animalRequest();
   setTotalScore();
   this.punteggioPartita = 100;
   $('#hangmanCurrentScore').text(punteggioPartita);
+
 
 });
 
@@ -32,6 +34,7 @@ var blurPhoto = 10;
 var usedWord = new Set();
 var guessedWord = new Set();
 var isTextNode = (_, el) => el.nodeType === Node.TEXT_NODE;
+var musicIsOn = true;
 
 function clearVariable() {
   this.tentativi = 0;
@@ -49,11 +52,11 @@ function clearVariable() {
   }
 }
 
-
 window.onclick = function (event) {
   var modalResult = document.getElementById('divResult');
   var modalRules = document.getElementById('rulesPopUp');
   if (event.target == modalResult) {
+
     $('#containerResutl').removeClass("winner");
     $('#containerResutl').removeClass("lost");
     modalResult.style.display = "none";
@@ -77,6 +80,12 @@ $('#closeRules').on("click", function () {
   } else {
     $('#rulesPopUp').show();
   }
+});
+$('#play').on("click",function (){
+      document.getElementById('gameMusic').play();
+});
+$('#mute').on("click",function (){
+    document.getElementById('gameMusic').pause();
 });
 
 function animalRequest() {
@@ -129,6 +138,7 @@ function guess() {
     $('#containerResutl').addClass("lost");
     $('#divResult').show();
     $('#textResult').text("Game over! The word was: " + guessWord);
+    document.getElementById('gameoverSound').play();
     restart(false);
     return;
   } else {
@@ -139,6 +149,7 @@ function guess() {
         $('#containerResutl').addClass("winner");
         $('#divResult').show();
         $('#textResult').text("Congratulations, you won!");
+        document.getElementById('winnerSound').play();
         restart(true);
         return;
       } else {
@@ -194,6 +205,7 @@ function guess() {
       $('#containerResutl').addClass("winner");
       $('#divResult').show();
       $('#textResult').text("Congratulations, you won!");
+      document.getElementById('winnerSound').play();
       restart(true);
       return;
     }
