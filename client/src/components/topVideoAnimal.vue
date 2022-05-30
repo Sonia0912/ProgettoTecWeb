@@ -1,6 +1,7 @@
 <template>
     <div class="centeredGrid leafPattern">
         <div class="title" id="containerTop10Video">Top 10</div>
+        <div>{{error}}</div>
         <div class="subtitle">Here you can find the daily top 10 videos about animals on YouTube filtered by country.</div>
         <select @change="getTop10of($event)" id="countryVideo" required>
             <option value="IT">ITALY</option>
@@ -61,7 +62,9 @@ export default {
                         view: el.statistics.viewCount
                     });
                 })
-            })
+            }).catch(error => {
+                    this.error = "Sorry, something went wrong (" + error.status + ")";
+                })
     }
 }
 </script>

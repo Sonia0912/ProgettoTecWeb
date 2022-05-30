@@ -17,7 +17,6 @@ router.post('/bookingEvent', async (req, res) => {
             console.log("ERROR READING FILE: " + err);
         } else {
             obj = JSON.parse(data);
-
             //controllo che non sia già presente la prenotazione
             for (var i = 0; i < obj.length; i++) {
                 if (obj[i].nameEvent === req.body.nameEvent && obj[i].userEmail === req.body.userEmail) {
@@ -65,7 +64,7 @@ router.post('/bookingEvent', async (req, res) => {
                 });
 
             } else {
-                return res.status(400).send("false");
+                return res.status(409).send("false");
             }
 
         }
