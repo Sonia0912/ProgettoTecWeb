@@ -17,7 +17,7 @@ $('#newPetForm').submit(function(e) {
     e.preventDefault();
     //this.submit();
     var form = $(this);
-    var url = form.attr('action'); //get submit url [replace url here if desired]
+    var url = form.attr('action'); //get submit url 
     $.ajax({
          type: "POST",
          url: url,

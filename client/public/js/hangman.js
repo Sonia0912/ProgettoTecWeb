@@ -88,6 +88,14 @@ $('#mute').on("click",function (){
     document.getElementById('gameMusic').pause();
 });
 
+$('#closeMessagge').on("click", function () {
+  if ($('#divResult').is(":visible")) {
+    $('#divResult').hide();
+  } else {
+    $('#divResult').show();
+  }
+});
+
 function animalRequest() {
   $.ajax({
     type: 'GET',
