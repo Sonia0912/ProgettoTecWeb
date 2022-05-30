@@ -40,8 +40,7 @@
                     }
                     axios.post('http://localhost:3000/register', newUser)
                     .then(
-                        (res) => {
-                            console.log(res)
+                        () => {
                             this.$router.push("login")
                         },
                         err => {
