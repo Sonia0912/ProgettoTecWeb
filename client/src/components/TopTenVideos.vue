@@ -55,9 +55,6 @@ export default {
         }
     },
     mounted() {
-        let Script = document.createElement("script");
-        Script.setAttribute("src", "./js/topvideoanimal.js");
-        document.head.appendChild(Script);
         axios.get("https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=10&regionCode=" + "IT" + "&videoCategoryId=15&alt=json&key=AIzaSyAC8x_AdVk02SwbCbFp5eLEQJ1OBg78AQE")
             .then(res => {
                 res.data.items.forEach(el => {

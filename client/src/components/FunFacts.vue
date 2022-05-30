@@ -8,16 +8,17 @@
                 <button @click="typeOfFacts = 1" :class="{ active: typeOfFacts === 1 }">Endangered Reptiles 🦎</button>
                 <button @click="typeOfFacts = 2" :class="{ active: typeOfFacts === 2 }">Bird Population 🦅</button>
             </div>
-            <!-- FISH FACTS -->
-            <div v-if="typeOfFacts === 0" id="catFacts">
+            <!-- FISH -->
+            <div v-if="typeOfFacts === 0">
                 <div class="fact" v-for="f in factsFishes" :key="f">
                     {{ f }}
                     <button v-if="loggedIn" class="publishFactBtn" @click="postOnDashboard(f)"> Post </button>
                 </div>
+                <div class="waitingFunFacts" v-if="waitingForFishes">Please wait</div>
                 <div class="otherFacts"></div>
             </div>
-            <!-- ENDAGERED SPECIES  -->
-            <div v-if="typeOfFacts === 1" id="snailFacts">
+            <!-- ENDAGERED  -->
+            <div v-if="typeOfFacts === 1">
                 <div class="fact" v-for="s in factsEndangered" :key="s">
                     {{ s }}
                     <button v-if="loggedIn" class="publishFactBtn" @click="postOnDashboard(s)"> Post </button>
@@ -25,8 +26,8 @@
                 <div class="waitingFunFacts" v-if="waitingForReptiles">Please wait</div>
                 <div class="otherFacts"></div>
             </div>
-            <!-- BIRD HABITATS  -->
-            <div v-if="typeOfFacts === 2" id="horseFacts">
+            <!-- BIRD  -->
+            <div v-if="typeOfFacts === 2">
                 <div class="fact" v-for="h in factsBirds" :key="h">
                     {{ h }}
                     <button v-if="loggedIn" class="publishFactBtn" @click="postOnDashboard(h)"> Post </button>
@@ -52,6 +53,7 @@ export default {
             typeOfFacts: 0,
             loggedIn: false,
             scrollable: true,
+            waitingForFishes: true,
             waitingForReptiles: true,
             waitingForBirds: true
         }
@@ -60,8 +62,10 @@ export default {
         if (localStorage.getItem('token') != null) {
             this.loggedIn = true;
         }
+        // Essendo lente la facciamo separatamente
         axios.get("http://localhost:3000/getFactsOf/fish")
             .then(res => {
+                this.waitingForFishes = false;
                 var formattedArray = [];
                 for (let i = 0; i < res.data.length; i++) {
                     if (res.data[i] != null) {
@@ -72,8 +76,6 @@ export default {
                 this.factsFishes = formattedArray;
             })
             .catch(err => this.error = "Sorry, something went wrong (" + err.message + ")")
-
-        // Essendo lente la facciamo separatamente
         axios.get("http://localhost:3000/getFactsOf/endangered")
             .then(res => {
                 this.waitingForReptiles = false;
@@ -102,8 +104,11 @@ export default {
                 .catch(err => this.error = "Sorry, something went wrong (" + err.message + ")")
         },
         loadMore() {
-            var type = "fish";
-            if (this.typeOfFacts === 1) {
+            var type = "";
+            if(this.typeOfFacts === 0) {
+                this.waitingForFishes = true;
+                type = "fish"
+            } else if (this.typeOfFacts === 1) {
                 this.waitingForReptiles = true;
                 type = "endangered";
             } else if (this.typeOfFacts === 2) {
@@ -113,6 +118,7 @@ export default {
             axios.get('http://localhost:3000/getFactsOf/' + type)
                 .then(facts => {
                     if (type === "fish") {
+                        this.waitingForFishes = false;
                         for (let i = 0; i < facts.data.length; i++) {
                             if (facts.data[i] != null) {
                                 var firstFormat = facts.data[i].replace(/(<([^>]+)>)/gi, "");

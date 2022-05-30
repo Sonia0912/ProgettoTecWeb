@@ -39,7 +39,6 @@ router.post('/bookingEvent', async (req, res) => {
                 fs.writeFile('./data/bookingEvent.json', newJson, 'utf8', (err) => {
                     if (!err) {
                         console.log('Booking updated');
-                        //return res.status(200).send("true")
                     }
                 });
                 fs.readFile('./data/events.json', 'utf8', function readFileCallback(err, data) {
@@ -78,8 +77,6 @@ router.post('/bookingEvent', async (req, res) => {
 router.get('/getEvents', function (req, res) {
     var content = fs.readFileSync('./data/events.json', 'utf8');
     obj = JSON.parse(content);
-    // obj[0].avaibleSeat = obj[0].totSeat - obj[0].bookedSeat;
-
     res.json(obj);
 });
 

@@ -79,6 +79,14 @@ $('#closeRules').on("click", function () {
   }
 });
 
+$('#closeMessagge').on("click", function () {
+  if ($('#divResult').is(":visible")) {
+    $('#divResult').hide();
+  } else {
+    $('#divResult').show();
+  }
+});
+
 function animalRequest() {
   $.ajax({
     type: 'GET',
