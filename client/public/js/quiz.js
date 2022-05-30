@@ -231,7 +231,6 @@ function updateScore(correctAnswer) {
             type: 'PUT'
         })
         .then((res) => {
-            console.log(res)
             $("#quizScore").html(res.score);
         })
         .catch((err) => $("#serverErrorQuiz").html("Sorry something went wrong (" + err.status + ")"));
