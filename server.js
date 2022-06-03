@@ -11,13 +11,10 @@ const bodyParser = require('body-parser')
 app.use(cors())
 app.use(morgan('tiny'))
 
-app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
 
 app.locals.siteTitle = 'AnimalHouse';
-app.locals.userAuthenticated = false;
 
-app.use(express.static("public"));
 app.use(express.json());
 
 app.use(bodyParser.json({ limit: '50MB', type: 'application/json' }));

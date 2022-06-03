@@ -25,10 +25,9 @@ function setTotalScore() {
 }
 
 var punteggioUtente = 0;
-var tentativi = 1;
+var tentativi = 0;
 var punteggioPartita = 100;
 var guessWord;
-var error = true;
 var difficult = false;
 var blurPhoto = 10;
 var usedWord = new Set();
@@ -42,7 +41,6 @@ function clearVariable() {
   $('#letter').val("");
   $('#hangmanCurrentScore').text(punteggioPartita);
   this.guessWord = "";
-  this.error = true;
   this.blurPhoto = 10;
   this.usedWord.clear();
   this.guessedWord.clear();
@@ -143,66 +141,56 @@ function restart(win) {
 function guess() {
   let userInput = $('#letter').val().toLowerCase();
   if (userInput.length === 0) return;
-  if (tentativi >= 9) {
-    $('#containerResutl').addClass("lost");
-    $('#divResult').show();
-    $('#textResult').text("Game over! The word was: " + guessWord);
-    document.getElementById('gameoverSound').play();
-    restart(false);
-    return;
-  } else {
-    error = true;
-    // Se inserisce la parola
-    if (userInput.length > 1) {
-      if (guessWord == userInput) {
-        $('#containerResutl').addClass("winner");
+   // Se inserisce una lettera
+  if (userInput.length === 1) {
+    if (guessWord.includes(userInput)) {
+      if (guessedWord.has(userInput)) {
         $('#divResult').show();
-        $('#textResult').text("Congratulations, you won!");
-        document.getElementById('winnerSound').play();
-        restart(true);
-        return;
-      } else {
-        $('#divResult').show();
-        $('#textResult').text("Try again and you will be luckier")
-        $('#letter').val("");
-        punteggioPartita = punteggioPartita - 10;
-        $('#hangmanCurrentScore').text(punteggioPartita);
-      }
-    }
-    // Se inserisce una lettera
-    else if (userInput.length == 1) {
-      if (guessWord.includes(userInput)) {
-        if (guessedWord.has(userInput)) {
-          $('#divResult').show();
-          $('#textResult').text("You have already guessed the letter: " + userInput)
-          tentativi++;
-          punteggioPartita = punteggioPartita - 10;
-          $('#hangmanCurrentScore').text(punteggioPartita);
-          $('#letter').val("");
-          changeImgHangMan();
-        } else {
-          $('#hangmanCurrentScore').text(punteggioPartita);
-          error = false;
-        }
-        guessedWord.add(userInput);
-        //aggiunge la lettera indovinata alla parola
-        for (let j = 0; j < guessWord.length; j++) {
-          if (guessWord[j] == userInput) {
-            $('#w' + j).text(userInput);
-          }
-        }
-      } else {
-        // Quando la parola inserita non è indovinata
-        writeWordInsert(userInput);
-        usedWord.add(userInput);
+        $('#textResult').text("You have already guessed the letter: " + userInput)
         tentativi++;
         punteggioPartita = punteggioPartita - 10;
         $('#hangmanCurrentScore').text(punteggioPartita);
         $('#letter').val("");
         changeImgHangMan();
+      } else {
+        $('#hangmanCurrentScore').text(punteggioPartita);
       }
+      guessedWord.add(userInput);
+      //aggiunge la lettera indovinata alla parola
+      for (let j = 0; j < guessWord.length; j++) {
+        if (guessWord[j] == userInput) {
+          $('#w' + j).text(userInput);
+        }
+      }
+    } else {
+      // Quando la parola inserita non è indovinata
+      writeWordInsert(userInput);
+      usedWord.add(userInput);
+      tentativi++;
+        
+      punteggioPartita = punteggioPartita - 10;
+      $('#hangmanCurrentScore').text(punteggioPartita);
       $('#letter').val("");
+      changeImgHangMan();
     }
+    $('#letter').val("");
+  }else {
+    // Se inserisce la parola
+    if (guessWord == userInput) {
+      $('#containerResutl').addClass("winner");
+      $('#divResult').show();
+      $('#textResult').text("Congratulations, you won!");
+      document.getElementById('winnerSound').play();
+      restart(true);
+      return;
+    } else {
+      $('#divResult').show();
+      $('#textResult').text("Try again and you will be luckier")
+      $('#letter').val("");
+      punteggioPartita = punteggioPartita - 10;
+      $('#hangmanCurrentScore').text(punteggioPartita);
+    }
+  }
     // Controllo se ha vinto
     let count = 0;
     for (let k = 0; k < $('#wordToGuess').text().length; k++) {
@@ -218,7 +206,15 @@ function guess() {
       restart(true);
       return;
     }
-  }
+
+  if (tentativi >= 10) {
+    $('#containerResutl').addClass("lost");
+    $('#divResult').show();
+    $('#textResult').text("Game over! The word was: " + guessWord);
+    document.getElementById('gameoverSound').play();
+    restart(false);
+    return;
+  } 
   blurPhoto = blurPhoto - 1;
   $('#animalPhoto').css("filter", "blur(" + blurPhoto + "px)")
 }
