@@ -17,6 +17,7 @@ router.get('/getFactsOf/:type', function(req, res) {
         .catch(err => console.log("ERROR: " + err.message))
     }
     // Endangered facts
+    // API -> https://rapidapi.com/luisvilla/api/animals-endangered-environmentalism
     else if(req.params.type === "endangered") {
         const options = {
             method: 'GET',

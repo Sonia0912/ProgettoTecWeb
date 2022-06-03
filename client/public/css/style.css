@@ -955,14 +955,7 @@ button {
      background-color: rgb(59, 248, 72); /* Fallback color */
      background-color: rgba(59, 248, 72, 0.9);
 }
-#closeResult{
-     z-index: 2;
-     background-color: transparent;
-     font-size: 25px;
-     font-weight: 600;
-     float: right;
-     height: 30px;
-}
+
 #textResult {
     text-align: center;
      margin: 8px;
