@@ -1,18 +1,12 @@
-/*
-COLORS
-     Dark blue: #1b284d
-     Brigth blue: #0d6efd
-     Light blue: #d7e7ff
-     Orange: #fd7e14
-     Pink: #f43e99
-     Green/blue: #60cead
-     Red: #dc3545
-
-FONTS
-     font-family: 'Kalam', cursive;
-     font-family: 'Nanum Myeongjo', serif;
-     font-family: 'Red Hat Display', sans-serif;
-*/
+:root {
+     --blue: #0d6efd;
+     --dark_blue: #1b284d;
+     --light_blue: #d7e7ff;
+     --orange: #fd7e14;
+     --pink: #f43e99;
+     --turquoise: #60cead;
+     --red: #dc3545;
+}
 
 *{
      box-sizing: border-box;
@@ -47,7 +41,7 @@ button {
 
 .serverError {
      text-align: center;
-     color: #dc3545;
+     color: var(--red);
 }
 
 /*
@@ -84,13 +78,13 @@ button {
 #nameHeader {
      font-size: 40px;
      font-weight: 600;
-     color: #1b284d;
+     color: var(--dark_blue);
      padding-left: 20px;
      text-decoration: none;
 }
 
 .sidebar-heading.border-bottom.bg-light {
-     color: #1b284d;
+     color: var(--dark_blue);
 }
 
 #navbarSupportedContent ul {
@@ -110,7 +104,7 @@ button {
      font-size: 0.85rem;
      padding: 20px 0;
      line-height: 1.6;
-     background:  #1b284d;
+     background:  var(--dark_blue);
 }
  
 .footer__text,
@@ -169,7 +163,7 @@ button {
 }
 
 .carousel-caption.d-md-block h5 {
-     text-shadow: 0 0 3px #1b284d;
+     text-shadow: 0 0 3px var(--dark_blue);
      font-size: 40px;
 }
 
@@ -224,7 +218,7 @@ button {
      text-align: center;
      font-size: 60px;
      padding: 20px;
-     color: #1b284d;
+     color: var(--dark_blue);
      text-shadow: 3px 3px white;
 }
 
@@ -241,7 +235,7 @@ button {
 }
 
 .wigglePattern {
-     background-color: #d7e7ff;
+     background-color: var(--light_blue);
      background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230d6efd' fill-opacity='0.2'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
 
@@ -265,7 +259,7 @@ button {
 
 .answersRow button {
      background-color: white;
-     color: #1b284d;
+     color: var(--dark_blue);
      margin: 10px 10px;
      border-radius: 10px;
      min-height: 50px;
@@ -293,7 +287,7 @@ button {
 #showPicLink {
      background-color: unset;
      border: unset;
-     color: #0d6efd;
+     color: var(--blue);
 }
 
 #showPicLink:hover {
@@ -301,7 +295,7 @@ button {
 }
 
 #nextQuestion {
-     background-color: #fd7e14;
+     background-color: var(--orange);
      color: white;
      margin: 30px 0px;
      border-radius: 10px;
@@ -443,7 +437,7 @@ button {
 
 .postDate {
      padding-bottom: 5px;
-     border-bottom: 1px solid #d7e7ff;
+     border-bottom: 1px solid var(--light_blue);
 }
 
 .postText {
@@ -451,11 +445,11 @@ button {
 }
 
 .blueBackground {
-     background-color: #d7e7ff;
+     background-color: var(--light_blue);
 }
 
 .blueCurtainBackground {
-     background-color: #d7e7ff;
+     background-color: var(--light_blue);
      background-image: url("data:image/svg+xml,%3Csvg width='44' height='12' viewBox='0 0 44 12' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 12v-2L0 0v10l4 2h16zm18 0l4-2V0L22 10v2h16zM20 0v8L4 0h16zm18 0L22 8V0h16z' fill='%23b1d0ff' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E");
 }
 
@@ -533,7 +527,7 @@ button {
 }
 
 #submitPost {
-     background-color: #60cead;
+     background-color: var(--turquoise);
 }
 
 #submitPost:hover {
@@ -555,7 +549,7 @@ button {
 }
 
 .leafPattern {
-     background-color: #d7e7ff;
+     background-color: var(--light_blue);
      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='24' viewBox='0 0 88 24'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='autumn' fill='%230d6efd' fill-opacity='0.1'%3E%3Cpath d='M10 0l30 15 2 1V2.18A10 10 0 0 0 41.76 0H39.7a8 8 0 0 1 .3 2.18v10.58L14.47 0H10zm31.76 24a10 10 0 0 0-5.29-6.76L4 1 2 0v13.82a10 10 0 0 0 5.53 8.94L10 24h4.47l-6.05-3.02A8 8 0 0 1 4 13.82V3.24l31.58 15.78A8 8 0 0 1 39.7 24h2.06zM78 24l2.47-1.24A10 10 0 0 0 86 13.82V0l-2 1-32.47 16.24A10 10 0 0 0 46.24 24h2.06a8 8 0 0 1 4.12-4.98L84 3.24v10.58a8 8 0 0 1-4.42 7.16L73.53 24H78zm0-24L48 15l-2 1V2.18A10 10 0 0 1 46.24 0h2.06a8 8 0 0 0-.3 2.18v10.58L73.53 0H78z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
 }
 
@@ -631,14 +625,14 @@ button {
      top: 8px;
      right: 16px;
      font-size: 20px;
-     text-shadow: 0px 0px 5px #1b284d;
+     text-shadow: 0px 0px 5px var(--dark_blue);
 }
 
 .genderIcon {
      width: 20px;
      margin-bottom: 5px;
-     -webkit-filter: drop-shadow(0px 0px 3px #1b284d);
-     filter: drop-shadow(0px 0px 3px #1b284d);
+     -webkit-filter: drop-shadow(0px 0px 3px var(--dark_blue));
+     filter: drop-shadow(0px 0px 3px var(--dark_blue));
 }
 
 #filterDog, #filterCat {
@@ -651,7 +645,7 @@ button {
 }
 
 .activeBtn {
-     background-color: #f43e99 !important;
+     background-color: var(--pink) !important;
 }
 
 #advancedFilters {
@@ -757,7 +751,7 @@ button {
  .bookingForm button {
      border-radius: 10px;
      margin: 30px auto;
-     background-color: #f43e99;
+     background-color: var(--pink);
      color: white;
      font-weight: 600;
      border: unset;
@@ -804,7 +798,7 @@ button {
 #jobBook, #jobSubmit {
      border-radius: 10px;
      margin: 30px auto;
-     background-color: #f43e99;
+     background-color: var(--pink);
      color: white;
      font-weight: 600;
      border: unset;
@@ -890,7 +884,7 @@ button {
 #btnRules{
      border-radius: 20px;
      padding: 5px 13px;
-     background-color: #0d6efd;
+     background-color: var(--blue);
      margin: 10px;
      color: white;
 }
@@ -942,7 +936,7 @@ button {
      margin-bottom: 10px;
      background-color: green;
      border-radius: 10px;
-     background-color: #fd7e14;
+     background-color: var(--orange);
      border-radius: 6px;
      padding: 6px 15px;
      color: white;
@@ -970,7 +964,7 @@ button {
 .soundControll{
      border-radius: 10px;
      margin: 5px;
-     background-color: #fd7e14;
+     background-color: var(--orange);
 }
 
 /*
@@ -1024,7 +1018,7 @@ button {
 #logoutBtn{
      grid-column-start: 1;
      grid-column-end: 2;
-     background-color: #dc3545;
+     background-color: var(--red);
 }
 #logoutBtn:hover {
      background-color: #e36672;
@@ -1032,7 +1026,7 @@ button {
 #saveBtn{
      grid-column-start: 3;
      grid-column-end: 4;
-     background-color: #60cead;
+     background-color: var(--turquoise);
      justify-self: end;
 } 
 #saveBtn:hover {
@@ -1108,7 +1102,7 @@ button {
 }
 
 .bookEvent{
-     background-color: #f43e99;
+     background-color: var(--pink);
      border-radius: 10px;
      padding: 8px 12px;
      color: white;
@@ -1122,7 +1116,7 @@ button {
      margin: 10px;
 }
 .notAvaibleEvent{
-     color: #dc3545;
+     color: var(--red);
 }
 
 .past-events-list .event-item:nth-child(2n) {
@@ -1163,14 +1157,14 @@ button {
      margin: 0 auto;
      padding: 10px 15px;
      border-radius: 10px;
-     background-color: #f43e99;
+     background-color: var(--pink);
      color: white;
 }
 
 #addPetBtn, #addVolBtn, #addEventBtn {
      padding: 10px 15px;
      border-radius: 10px;
-     background-color: #f43e99;
+     background-color: var(--pink);
      color: white;
      float: right;
 }
@@ -1182,7 +1176,7 @@ button {
 .deletePet, .deleteEvent, .deleteVol {
      padding: 4px 8px;
      color: white;
-     background-color: #dc3545;
+     background-color: var(--red);
      border-radius: 7px;
 }
 
@@ -1284,7 +1278,7 @@ button {
 
 #errorNewPet {
      padding-top: 5px;
-     color: #dc3545;
+     color: var(--red);
      transition: 1s;
 }
 
